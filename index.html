@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO / META -->
+    <title>meet founders – one match a week, picked for you</title>
+    <meta name="description" content="A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes." />
+    <meta property="og:title" content="meet founders – one match a week, picked for you" />
+    <meta property="og:description" content="A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes." />
+    <meta property="og:image" content="og.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="meet founders – one match a week, picked for you" />
+    <meta name="twitter:description" content="A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes." />
+    <meta name="twitter:image" content="og.jpg" />
+
+    <!-- Favicon: gold circle (AOM accent) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23fbe06c'/%3E%3C/svg%3E" />
+
+    <!-- PLAUSIBLE SCRIPT HERE -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      // Palette + type copied from Art of Mondays / Founder Family stylesheet.
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+              display: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+            },
+            colors: {
+              ink: '#0a0a0a',        // --background
+              surface: '#0f0d0b',    // --surface
+              surface2: '#191511',   // --surface-2
+              cream: '#fff3d5',      // --foreground
+              muted: '#a8a49e',      // --muted-foreground
+              gold: {
+                DEFAULT: '#fbe06c',  // --gold
+                soft: '#fdeb9c',     // --gold-soft
+              },
+            },
+            maxWidth: { content: '80rem' },     // 7xl, AOM container
+            letterSpacing: { eyebrow: '0.18em' },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #0a0a0a;
+        color: #fff3d5;
+        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      .card {
+        background: #191511;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* Scroll-in: fade up with stagger */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+      /* Gold shimmer accent word */
+      .shimmer {
+        display: inline-block;
+        padding-bottom: 0.08em;   /* keep descenders (e.g. the "y") from clipping */
+        background: linear-gradient(100deg, #fbe06c 0%, #fbe06c 35%, #fff6cf 50%, #fbe06c 65%, #fbe06c 100%);
+        background-size: 250% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: shimmer 5s ease-in-out infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: 150% 0; }
+        100% { background-position: -150% 0; }
+      }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .shimmer { animation: none; }
+      }
+    </style>
+  </head>
+
+  <body class="font-sans antialiased selection:bg-gold selection:text-ink">
+    <!-- ============================ NAV ============================ -->
+    <nav class="fixed inset-x-0 top-0 z-50 transition-all duration-300" id="nav">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="flex items-center justify-between py-5">
+          <a href="#top" class="flex items-center gap-2.5" aria-label="Home">
+            <span class="inline-block h-3 w-3 rounded-full bg-gold"></span>
+            <span class="text-lg font-semibold uppercase tracking-wide text-cream" data-brand>meet founders</span>
+          </a>
+          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply</a>
+        </div>
+      </div>
+    </nav>
+
+    <span id="top"></span>
+
+    <!-- ============================ HERO ============================ -->
+    <section class="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20">
+      <div class="mx-auto w-full max-w-content px-5 sm:px-8">
+        <div class="max-w-4xl">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted" data-hero-eyebrow>
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span>
+          </p>
+
+          <h1 class="reveal mt-7 pb-1 text-[2.75rem] font-medium leading-[1.1] tracking-tight text-cream sm:text-6xl lg:text-[4.75rem]" data-hero-headline style="transition-delay:80ms"></h1>
+
+          <p class="reveal mt-8 max-w-xl text-lg leading-relaxed text-muted sm:text-xl" data-hero-subhead style="transition-delay:160ms"></p>
+
+          <div class="reveal mt-10 flex flex-col gap-4 sm:flex-row sm:items-center" style="transition-delay:240ms">
+            <a href="#apply" data-cta="hero" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
+            <span class="text-sm text-muted">Takes 2 minutes · reviewed weekly</span>
+          </div>
+
+          <p class="reveal mt-6 text-sm text-muted" style="transition-delay:300ms">We reject more than we accept.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ MEMBER SHOWCASE ============================ -->
+    <section class="py-20 sm:py-24" id="members">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Members
+            </p>
+            <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Who's in the room</h2>
+          </div>
+          <div class="reveal hidden shrink-0 gap-2 sm:flex" style="transition-delay:120ms">
+            <button type="button" data-members-prev aria-label="Previous member" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button type="button" data-members-next aria-label="Next member" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="reveal mt-12" style="transition-delay:80ms">
+          <div class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2" data-members></div>
+        </div>
+
+        <!-- Aggregate credibility stat -->
+        <div class="reveal mt-12 border-t border-white/10 pt-8" style="transition-delay:80ms">
+          <p class="flex items-center justify-center gap-3 text-center text-xl font-light leading-relaxed text-cream sm:text-2xl" data-credibility>
+            <span class="inline-block h-2 w-2 shrink-0 rounded-full bg-gold"></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ THE IDEA (you become who you're around) ============================ -->
+    <section class="py-28 text-center sm:py-36">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <p class="reveal flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> The idea
+        </p>
+        <p class="reveal mt-7 text-4xl font-light leading-[1.15] tracking-tight text-cream sm:text-5xl lg:text-6xl" style="transition-delay:60ms">
+          You become the people you <span class="text-gold">spend your time with</span>.
+        </p>
+        <p class="reveal mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">
+          So we are deliberate about who that is. One founder a week, chosen on purpose – not left to chance, not whoever happens to be in the room.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ STATS ============================ -->
+    <section class="py-20 sm:py-24">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="grid grid-cols-1 gap-10 sm:grid-cols-3" data-stats></div>
+      </div>
+    </section>
+
+    <!-- ============================ HOW IT WORKS ============================ -->
+    <section class="border-t border-white/10 bg-surface py-24 sm:py-32" id="how">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> How it works
+        </p>
+        <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">One founder. Every week. Picked by hand.</h2>
+
+        <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3" data-steps></div>
+      </div>
+    </section>
+
+    <!-- ============================ WHAT THE MATCH LOOKS LIKE (carousel) ============================ -->
+    <section class="py-24 sm:py-32">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="flex items-end justify-between gap-4">
+          <div class="max-w-2xl">
+            <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> The match
+            </p>
+            <p class="reveal mt-6 text-3xl font-light leading-[1.3] tracking-tight text-cream sm:text-4xl" style="transition-delay:60ms">
+              Coffee on Old Street. A walk in Hyde Park. A bench in Bondi.
+            </p>
+            <p class="reveal mt-5 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">
+              Nothing complicated. Just one founder, 60 minutes, no agenda.
+            </p>
+          </div>
+          <div class="reveal hidden shrink-0 gap-2 sm:flex" style="transition-delay:160ms">
+            <button type="button" data-gallery-prev aria-label="Previous photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button type="button" data-gallery-next aria-label="Next photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="reveal mt-12" style="transition-delay:120ms">
+          <div class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2" data-gallery></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WHO IT'S FOR ============================ -->
+    <section class="border-y border-white/10 bg-surface py-28 sm:py-36">
+      <div class="mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal text-3xl font-light leading-[1.3] tracking-tight text-cream sm:text-[2.5rem] sm:leading-[1.25]">
+          For founders building real businesses. Not networkers. Not pitch-deck collectors.
+          <span class="text-muted">One high-signal conversation a week.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ TESTIMONIALS ============================ -->
+    <section class="py-24 sm:py-32">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> In their words
+        </p>
+        <div class="mt-14 grid gap-6 md:grid-cols-3" data-testimonials></div>
+      </div>
+    </section>
+
+    <!-- ============================ VETTING ============================ -->
+    <section class="border-t border-white/10 bg-surface py-24 sm:py-32" id="vetting">
+      <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-6">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Vetting
+          </p>
+          <h2 class="reveal mt-5 text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">We reject more than we accept.</h2>
+          <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">Every application is hand-screened. No bots, no auto-approve. Roughly 1 in 4 get through.</p>
+
+          <div class="reveal mt-8" style="transition-delay:180ms">
+            <p class="text-xs font-semibold uppercase tracking-eyebrow text-muted">Not for</p>
+            <ul class="mt-4 space-y-3" data-anti></ul>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10" data-vetting></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PRICING ============================ -->
+    <section class="py-24 sm:py-32" id="pricing">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="reveal card mx-auto max-w-lg rounded-2xl p-9 sm:p-12">
+          <p class="text-xs font-semibold uppercase tracking-eyebrow text-muted">Membership</p>
+          <p class="mt-5 flex items-baseline gap-2">
+            <span class="text-6xl font-medium tracking-tight text-cream sm:text-7xl">$99</span>
+            <span class="text-lg text-muted">/ month</span>
+          </p>
+
+          <ul class="mt-9 space-y-4" data-pricing></ul>
+
+          <a href="#apply" data-cta="pricing" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+          <p class="mt-5 text-center text-sm text-muted">Cancel any time. No lock-in.</p>
+        </div>
+
+        <p class="reveal mx-auto mt-8 max-w-lg text-center text-sm text-muted" style="transition-delay:80ms">
+          <span class="font-semibold text-cream">Live in:</span> <span data-live-cities></span>. No charge until you're matched.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ ============================ -->
+    <section class="border-t border-white/10 bg-surface py-24 sm:py-32" id="faq">
+      <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-4">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Questions
+          </p>
+          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Good to know</h2>
+        </div>
+        <div class="space-y-10 lg:col-span-8" data-faq></div>
+      </div>
+    </section>
+
+    <!-- ============================ FINAL CTA ============================ -->
+    <section class="bg-surface2 py-28 sm:py-36" id="apply">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <h2 class="text-5xl font-medium tracking-tight text-cream sm:text-6xl">Ready?</h2>
+          <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted">Applications take 2 minutes. Reviewed weekly. We'll be in touch within 7 days.</p>
+          <a href="#form" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
+          <p class="mt-6 text-sm text-muted">We reject more than we accept.</p>
+        </div>
+
+        <!-- Typeform embed -->
+        <div class="reveal mx-auto mt-16 max-w-2xl" id="form" style="transition-delay:120ms">
+          <div data-tf-live="REPLACE_WITH_TYPEFORM_ID" data-tf-hidden="variant=A" class="min-h-[420px] w-full overflow-hidden rounded-2xl bg-white/5" style="display:none"></div>
+          <!-- Placeholder shown until Typeform ID is set -->
+          <div class="flex min-h-[200px] flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-8 text-center" id="form-placeholder">
+            <p class="text-sm font-medium text-cream/80">Typeform application embeds here</p>
+            <p class="max-w-sm text-xs text-muted">Set <code class="rounded bg-white/10 px-1.5 py-0.5">data-tf-live</code> with your form ID. Hidden field <code class="rounded bg-white/10 px-1.5 py-0.5">variant=A</code> is wired for attribution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="border-t border-white/10 py-14">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+          <a href="#top" class="flex items-center gap-2.5">
+            <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold"></span>
+            <span class="font-semibold uppercase tracking-wide text-cream" data-brand>meet founders</span>
+          </a>
+          <div class="flex items-center gap-6 text-sm text-muted">
+            <span data-copyright>© 2026 Meet Founders</span>
+            <a href="/privacy" class="transition-colors hover:text-cream">privacy</a>
+            <a href="/terms" class="transition-colors hover:text-cream">terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================ SCRIPT ============================ -->
+    <script>
+      /* ----------------------------------------------------------------
+         VARIANT CONFIG – clone this file for B and C and change only this block.
+         Variant-specific copy: hero + sub-headline + how-it-works steps.
+      ---------------------------------------------------------------- */
+      const VARIANT = 'A';
+      const BRAND = 'meet founders';
+      const BRAND_PROPER = 'Meet Founders';
+
+      const HERO_EYEBROW = 'Now in London';
+      const HEADLINE = 'Meet one founder. Every Monday. Picked for you.';
+      const ACCENT_WORD = 'Monday';
+      const SUBHEAD =
+        'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.';
+
+      const STEPS = [
+        { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+        { n: '2', title: 'Match', body: "Every Monday at 8am, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+        { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+      ];
+
+      /* ---- Shared copy (edit freely; not variant-specific) ---- */
+      const STATS = [
+        { figure: '1 in 4', label: 'applications accepted' },
+        { figure: '60 min', label: 'one conversation a week' },
+        { figure: '8am Mon', label: 'your match lands' },
+      ];
+
+      // TODO: swap stock photos for real lifestyle/experience shots before going live.
+      const GALLERY = [
+        { caption: 'Coffee on Old Street', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=640&q=70' },
+        { caption: 'A walk in Hyde Park', img: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=70' },
+        { caption: 'A bench in Bondi', img: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=640&q=70' },
+        { caption: 'Breakfast in Shoreditch', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=640&q=70' },
+        { caption: 'A loop of the Heath', img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&q=70' },
+        { caption: 'Lunch in Soho', img: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=640&q=70' },
+      ];
+
+      // TODO: replace stock faces + placeholder names with the real member base (AOM / FF / FSC, with permission).
+      const MEMBERS = [
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a DTC skincare brand', img: 'https://i.pravatar.cc/480?img=12' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building B2B SaaS', img: 'https://i.pravatar.cc/480?img=32' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a creative agency', img: 'https://i.pravatar.cc/480?img=5' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a marketplace', img: 'https://i.pravatar.cc/480?img=15' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building consumer fintech', img: 'https://i.pravatar.cc/480?img=51' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building an e-commerce group', img: 'https://i.pravatar.cc/480?img=68' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building dev tools', img: 'https://i.pravatar.cc/480?img=14' },
+        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a health app', img: 'https://i.pravatar.cc/480?img=45' },
+      ];
+
+      // TODO: drop in the figure once Mo pulls combined revenue across the FF + FSC paying base.
+      const CREDIBILITY_STAT = 'Members include founders of companies with combined revenue over $[X].';
+
+      // Live cities + waitlist transparency.
+      const LIVE_CITIES = ['London'];
+
+      // TODO: replace with REAL named testimonials before going live (no first-name-only, no initials).
+      const TESTIMONIALS = [
+        { quote: 'The single highest-leverage hour of my week. No fluff, just the right person.', name: 'Member name', company: 'Company', img: 'https://i.pravatar.cc/240?img=33' },
+        { quote: 'I have met more useful people in a month here than a year of events.', name: 'Member name', company: 'Company', img: 'https://i.pravatar.cc/240?img=23' },
+        { quote: 'It is the only thing on my calendar I never reschedule.', name: 'Member name', company: 'Company', img: 'https://i.pravatar.cc/240?img=60' },
+      ];
+
+      const VETTING = [
+        { title: 'Stage', body: 'Are you actually building, with revenue or real traction?' },
+        { title: 'Intent', body: 'Are you here for one good conversation, not to sell?' },
+        { title: 'Signal', body: 'Would the founder we match you with be glad they showed up?' },
+      ];
+
+      const ANTI_CRITERIA = [
+        'Investors looking for deal flow',
+        'Coaches selling courses',
+        'Anyone with a pitch deck in their back pocket',
+      ];
+
+      const PRICING = [
+        'One curated match per week',
+        'Founding London member – rate locked in',
+        'Vetted founders only',
+        'Cancel anytime',
+      ];
+
+      const FAQ = [
+        { q: 'Can I cancel anytime?', a: 'Yes. Cancel any time, no lock-in.' },
+        { q: "What's the no-show policy?", a: 'Matches are locked in 24 hours before. If you cancel within 4 hours of a match, you get a strike. Three strikes and your membership is paused.' },
+        { q: 'What if I need to reschedule?', a: 'One-tap to shift your match anywhere in the same week. Use it before the 24-hour lock-in.' },
+        { q: 'What if my city is quiet?', a: "We only run cities with member density. If yours is on the waitlist, you don't get charged until we can match you." },
+        { q: 'Who else is a member?', a: 'Founders running real businesses. Hand-screened. Roughly 1 in 4 applications get through.' },
+      ];
+
+      /* ---------------------------- RENDER ---------------------------- */
+      const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+      document.querySelectorAll('[data-brand]').forEach((el) => (el.textContent = BRAND));
+      const cp = document.querySelector('[data-copyright]');
+      if (cp) cp.textContent = '© ' + new Date().getFullYear() + ' ' + BRAND_PROPER;
+
+      // Hero
+      document.querySelector('[data-hero-eyebrow]').insertAdjacentText('beforeend', ' ' + HERO_EYEBROW);
+      document.querySelector('[data-hero-subhead]').textContent = SUBHEAD;
+
+      const headlineEl = document.querySelector('[data-hero-headline]');
+      if (ACCENT_WORD && HEADLINE.includes(ACCENT_WORD)) {
+        const parts = HEADLINE.split(ACCENT_WORD);
+        headlineEl.innerHTML =
+          esc(parts[0]) + '<span class="shimmer">' + esc(ACCENT_WORD) + '</span>' + esc(parts.slice(1).join(ACCENT_WORD));
+      } else {
+        headlineEl.textContent = HEADLINE;
+      }
+
+      // Stats
+      document.querySelector('[data-stats]').innerHTML = STATS.map((s, i) => `
+        <div class="reveal text-center sm:text-left" style="transition-delay:${i * 80}ms">
+          <p class="text-5xl font-medium tracking-tight text-gold sm:text-6xl">${esc(s.figure)}</p>
+          <p class="mt-3 text-sm uppercase tracking-eyebrow text-muted">${esc(s.label)}</p>
+        </div>
+      `).join('');
+
+      // How-it-works steps
+      document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => `
+        <div class="reveal bg-surface p-9 sm:p-10" style="transition-delay:${i * 100}ms">
+          <span class="text-5xl font-light text-gold">${esc(s.n)}</span>
+          <h3 class="mt-6 text-xl font-semibold tracking-tight text-cream">${esc(s.title)}</h3>
+          <p class="mt-3 leading-relaxed text-muted">${esc(s.body)}</p>
+        </div>
+      `).join('');
+
+      // Member showcase carousel
+      const membersEl = document.querySelector('[data-members]');
+      membersEl.innerHTML = MEMBERS.map((m) => `
+        <div class="w-56 shrink-0 snap-start sm:w-60">
+          <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy" class="aspect-[4/5] w-full object-cover" />
+          </div>
+          <p class="mt-4 font-semibold tracking-tight text-cream">${esc(m.name)}</p>
+          <p class="mt-0.5 text-sm text-muted">${esc(m.company)} · ${esc(m.city)}</p>
+          <p class="mt-1 text-sm italic text-muted/70">${esc(m.tag)}</p>
+        </div>
+      `).join('');
+
+      const membersPrev = document.querySelector('[data-members-prev]');
+      const membersNext = document.querySelector('[data-members-next]');
+      const scrollMembers = (dir) => {
+        const card = membersEl.querySelector(':scope > div');
+        const amount = card ? card.getBoundingClientRect().width + 20 : 260;
+        membersEl.scrollBy({ left: dir * amount, behavior: 'smooth' });
+      };
+      if (membersPrev) membersPrev.addEventListener('click', () => scrollMembers(-1));
+      if (membersNext) membersNext.addEventListener('click', () => scrollMembers(1));
+
+      // Aggregate credibility stat
+      document.querySelector('[data-credibility]').insertAdjacentText('beforeend', ' ' + CREDIBILITY_STAT);
+
+      // Live cities
+      document.querySelector('[data-live-cities]').textContent = LIVE_CITIES.join(', ');
+
+      // Photo gallery carousel
+      const galleryEl = document.querySelector('[data-gallery]');
+      galleryEl.innerHTML = GALLERY.map((g) => `
+        <figure class="w-72 shrink-0 snap-start sm:w-80">
+          <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <img src="${esc(g.img)}" alt="${esc(g.caption)}" loading="lazy" class="aspect-[4/3] w-full object-cover" />
+          </div>
+          <figcaption class="mt-3 text-sm text-muted">${esc(g.caption)}</figcaption>
+        </figure>
+      `).join('');
+
+      const galleryPrev = document.querySelector('[data-gallery-prev]');
+      const galleryNext = document.querySelector('[data-gallery-next]');
+      const scrollGallery = (dir) => {
+        const card = galleryEl.querySelector(':scope > figure');
+        const amount = card ? card.getBoundingClientRect().width + 20 : 320;
+        galleryEl.scrollBy({ left: dir * amount, behavior: 'smooth' });
+      };
+      if (galleryPrev) galleryPrev.addEventListener('click', () => scrollGallery(-1));
+      if (galleryNext) galleryNext.addEventListener('click', () => scrollGallery(1));
+
+      // Testimonials
+      document.querySelector('[data-testimonials]').innerHTML = TESTIMONIALS.map((t, i) => `
+        <figure class="reveal card flex h-full flex-col rounded-2xl p-8" style="transition-delay:${i * 90}ms">
+          <blockquote class="text-xl font-light leading-relaxed text-cream">${esc(t.quote)}</blockquote>
+          <figcaption class="mt-7 flex items-center gap-4">
+            <img src="${esc(t.img)}" alt="${esc(t.name)}" loading="lazy" class="h-12 w-12 shrink-0 rounded-full border border-white/10 object-cover" />
+            <span class="text-sm leading-tight">
+              <span class="block font-semibold text-cream">${esc(t.name)}</span>
+              <span class="block text-muted">${esc(t.company)}</span>
+            </span>
+          </figcaption>
+        </figure>
+      `).join('');
+
+      // Anti-criteria
+      document.querySelector('[data-anti]').innerHTML = ANTI_CRITERIA.map((a) => `
+        <li class="flex items-start gap-3 text-muted">
+          <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-white/30"></span>
+          ${esc(a)}
+        </li>
+      `).join('');
+
+      // Vetting
+      document.querySelector('[data-vetting]').innerHTML = VETTING.map((v) => `
+        <div class="reveal bg-surface p-7 sm:p-8">
+          <h3 class="text-lg font-semibold tracking-tight text-cream">${esc(v.title)}</h3>
+          <p class="mt-2 leading-relaxed text-muted">${esc(v.body)}</p>
+        </div>
+      `).join('');
+
+      // Pricing list
+      document.querySelector('[data-pricing]').innerHTML = PRICING.map((p) => `
+        <li class="flex items-start gap-3 text-cream/90">
+          <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gold"></span>
+          ${esc(p)}
+        </li>
+      `).join('');
+
+      // FAQ
+      document.querySelector('[data-faq]').innerHTML = FAQ.map((f, i) => `
+        <div class="reveal border-b border-white/10 pb-10 last:border-0 last:pb-0" style="transition-delay:${i * 70}ms">
+          <h3 class="text-lg font-semibold tracking-tight text-cream sm:text-xl">${esc(f.q)}</h3>
+          <p class="mt-3 max-w-2xl leading-relaxed text-muted">${esc(f.a)}</p>
+        </div>
+      `).join('');
+
+      /* ---------------------------- NAV ON SCROLL ---------------------------- */
+      const nav = document.getElementById('nav');
+      const onScroll = () => {
+        if (window.scrollY > 12) nav.classList.add('bg-ink/85', 'backdrop-blur', 'border-b', 'border-white/10');
+        else nav.classList.remove('bg-ink/85', 'backdrop-blur', 'border-b', 'border-white/10');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---------------------------- SCROLL-IN ANIMATIONS ---------------------------- */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      /* ---------------------------- ANALYTICS ---------------------------- */
+      const track = (name) => {
+        if (window.plausible) window.plausible(name, { props: { variant: VARIANT } });
+      };
+      const CTA_EVENTS = { hero: 'CTA: Hero', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
+      document.querySelectorAll('[data-cta]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const ev = CTA_EVENTS[el.getAttribute('data-cta')];
+          if (ev) track(ev);
+        });
+      });
+
+      /* ---------------------------- TYPEFORM ---------------------------- */
+      const tf = document.querySelector('[data-tf-live]');
+      const tfPlaceholder = document.getElementById('form-placeholder');
+      if (tf && tf.getAttribute('data-tf-live') !== 'REPLACE_WITH_TYPEFORM_ID') {
+        tf.style.display = 'block';
+        if (tfPlaceholder) tfPlaceholder.style.display = 'none';
+        const s = document.createElement('script');
+        s.src = '//embed.typeform.com/next/embed.js';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>
