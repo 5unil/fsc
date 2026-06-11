@@ -338,13 +338,8 @@
         <div class="reveal mx-auto max-w-2xl text-center">
           <h2 class="text-5xl font-medium tracking-tight text-cream sm:text-6xl">Ready?</h2>
           <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted">Applications take 2 minutes. Reviewed weekly. We'll be in touch within 7 days.</p>
-          <a href="#form" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
+          <a href="#" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
           <p class="mt-6 text-sm text-muted">We reject more than we accept.</p>
-        </div>
-
-        <!-- Tally application form. The `variant` hidden field is appended in JS for A/B/C attribution. -->
-        <div class="reveal mx-auto mt-16 max-w-2xl" id="form" style="transition-delay:120ms">
-          <iframe id="tally-form" loading="lazy" width="100%" height="560" frameborder="0" marginheight="0" marginwidth="0" title="Meet Founders Application" class="w-full overflow-hidden rounded-2xl"></iframe>
         </div>
       </div>
     </section>
@@ -655,32 +650,43 @@
         if (window.plausible) window.plausible(name, { props: { variant: VARIANT } });
       };
       const CTA_EVENTS = { hero: 'CTA: Hero', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
+
+      /* ---------------------------- TALLY FORM (popup) ---------------------------- */
+      // The form opens in a modal over the page. `variant` is passed as a hidden
+      // field for A/B/C attribution (add a hidden field named "variant" in Tally).
+      const FORM_ID = FORM_URL.split('/r/')[1]; // e.g. '44GQBo'
+      const FORM_FALLBACK = `${FORM_URL}?variant=${encodeURIComponent(VARIANT)}`;
+
+      const openApply = () => {
+        if (window.Tally && typeof Tally.openPopup === 'function') {
+          Tally.openPopup(FORM_ID, {
+            layout: 'modal',
+            width: 560,
+            overlay: true,
+            hiddenFields: { variant: VARIANT },
+          });
+          return true;
+        }
+        return false; // let the anchor fall back to opening the form page
+      };
+
+      // Wire every CTA: fire analytics, then open the popup (fall back to the form URL).
       document.querySelectorAll('[data-cta]').forEach((el) => {
-        el.addEventListener('click', () => {
+        el.setAttribute('href', FORM_FALLBACK);
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+        el.addEventListener('click', (e) => {
           const ev = CTA_EVENTS[el.getAttribute('data-cta')];
           if (ev) track(ev);
+          if (openApply()) e.preventDefault();
         });
       });
 
-      /* ---------------------------- TALLY FORM ---------------------------- */
-      // Build the embed URL with the variant hidden field so signups are attributed.
-      // NOTE: add a hidden field named "variant" in the Tally form for this to be captured.
-      const formFrame = document.getElementById('tally-form');
-      if (formFrame) {
-        const src = `${FORM_URL}?transparentBackground=1&alignLeft=1&dynamicHeight=1&variant=${encodeURIComponent(VARIANT)}`;
-        formFrame.setAttribute('data-tally-src', src);
-        const loadTally = () => {
-          if (window.Tally) Tally.loadEmbeds();
-          else formFrame.src = src; // fallback if the widget script is blocked
-        };
-        // embed.js auto-processes data-tally-src once loaded; trigger after load just in case.
-        const s = document.createElement('script');
-        s.src = 'https://tally.so/widgets/embed.js';
-        s.async = true;
-        s.onload = loadTally;
-        s.onerror = () => { formFrame.src = src; };
-        document.body.appendChild(s);
-      }
+      // Load the Tally widget script (provides Tally.openPopup).
+      const tallyScript = document.createElement('script');
+      tallyScript.src = 'https://tally.so/widgets/embed.js';
+      tallyScript.async = true;
+      document.body.appendChild(tallyScript);
     </script>
   </body>
 </html>
