@@ -652,10 +652,25 @@
       const CTA_EVENTS = { hero: 'CTA: Hero', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
 
       /* ---------------------------- TALLY FORM (popup) ---------------------------- */
-      // The form opens in a modal over the page. `variant` is passed as a hidden
-      // field for A/B/C attribution (add a hidden field named "variant" in Tally).
+      // The form opens in a modal over the page. We forward the landing page's URL
+      // params (utm_source, utm_campaign, fbclid, etc.) plus `variant` into the form
+      // as hidden fields, so ad attribution survives into each submission.
+      // NOTE: Tally only STORES a param if a hidden field of the same name exists on
+      // the form. Add hidden fields named: variant, utm_source, utm_medium,
+      // utm_campaign, utm_content, utm_term, fbclid (and any others you send).
       const FORM_ID = FORM_URL.split('/r/')[1]; // e.g. '44GQBo'
-      const FORM_FALLBACK = `${FORM_URL}?variant=${encodeURIComponent(VARIANT)}`;
+
+      // Collect the page's URL params, then force the file's variant (so attribution
+      // can't be overridden by a stray ?variant in the link).
+      const pageParams = new URLSearchParams(location.search);
+      const hiddenFields = {};
+      pageParams.forEach((value, key) => { hiddenFields[key] = value; });
+      hiddenFields.variant = VARIANT;
+
+      // Fallback URL (used only if the popup script is blocked) carries the same params.
+      const fallbackParams = new URLSearchParams(location.search);
+      fallbackParams.set('variant', VARIANT);
+      const FORM_FALLBACK = `${FORM_URL}?${fallbackParams.toString()}`;
 
       const openApply = () => {
         if (window.Tally && typeof Tally.openPopup === 'function') {
@@ -663,7 +678,7 @@
             layout: 'modal',
             width: 560,
             overlay: true,
-            hiddenFields: { variant: VARIANT },
+            hiddenFields,
           });
           return true;
         }
