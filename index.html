@@ -208,6 +208,23 @@
       </div>
     </section>
 
+    <!-- ============================ MATCHING TIERS ============================ -->
+    <section class="py-24 sm:py-32" id="tiers">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> <span data-tiers-eyebrow></span>
+          </p>
+          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-tiers-headline></h2>
+          <p class="reveal mt-6 text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-tiers-subhead></p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-3" data-tiers></div>
+
+        <p class="reveal mt-8 text-sm text-muted" style="transition-delay:80ms" data-tiers-note></p>
+      </div>
+    </section>
+
     <!-- ============================ WHAT THE MATCH LOOKS LIKE (carousel) ============================ -->
     <section class="py-24 sm:py-32">
       <div class="mx-auto max-w-content px-5 sm:px-8">
@@ -372,7 +389,7 @@
 
       const STEPS = [
         { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-        { n: '2', title: 'Match', body: "Every Monday at 8am, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+        { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
         { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
       ];
 
@@ -380,8 +397,22 @@
       const STATS = [
         { figure: '1 in 4', label: 'applications accepted' },
         { figure: '60 min', label: 'one conversation a week' },
-        { figure: '8am Mon', label: 'your match lands' },
+        { figure: 'Monday', label: 'the day you meet' },
       ];
+
+      // Matching tiers. Same membership + price for everyone; the tier signals
+      // who you're matched with. `highlight` flags the aspirational top tier.
+      // TODO: confirm the revenue bands with the real member data before launch.
+      const TIERS_EYEBROW = 'Matched at your level';
+      const TIERS_HEADLINE = 'We match you within your tier.';
+      const TIERS_SUBHEAD =
+        "Every founder you meet is operating at your altitude – not pitching up, not slumming down. Your tier reflects where your business is today, and moves as you grow.";
+      const TIERS = [
+        { name: 'Builder', range: 'Pre-revenue → first traction', body: 'Shipping fast and hunting for product–market fit.' },
+        { name: 'Operator', range: '$100k+ a year', body: 'Revenue on the board and a business starting to compound.' },
+        { name: 'Scale', range: '$1M+ a year', body: 'Running a real, sizeable business – matched with founders in the same league.', highlight: true },
+      ];
+      const TIERS_NOTE = 'One membership, one price across every tier. You are matched within your tier, so the room is always at your level.';
 
       // TODO: swap stock photos for real lifestyle/experience shots before going live.
       const GALLERY = [
@@ -432,6 +463,7 @@
 
       const PRICING = [
         'One curated match per week',
+        'Matched within your tier',
         'Founding London member – rate locked in',
         'Vetted founders only',
         'Cancel anytime',
@@ -470,6 +502,24 @@
         <div class="reveal text-center sm:text-left" style="transition-delay:${i * 80}ms">
           <p class="text-5xl font-medium tracking-tight text-gold sm:text-6xl">${esc(s.figure)}</p>
           <p class="mt-3 text-sm uppercase tracking-eyebrow text-muted">${esc(s.label)}</p>
+        </div>
+      `).join('');
+
+      // Matching tiers
+      document.querySelector('[data-tiers-eyebrow]').textContent = TIERS_EYEBROW;
+      document.querySelector('[data-tiers-headline]').textContent = TIERS_HEADLINE;
+      document.querySelector('[data-tiers-subhead]').textContent = TIERS_SUBHEAD;
+      document.querySelector('[data-tiers-note]').textContent = TIERS_NOTE;
+      const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
+      document.querySelector('[data-tiers]').innerHTML = TIERS.map((t, i) => `
+        <div class="reveal flex h-full flex-col rounded-2xl border p-8 ${t.highlight ? 'border-gold/40 bg-gold/[0.05]' : 'card'}" style="transition-delay:${i * 90}ms">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-eyebrow ${t.highlight ? 'text-gold' : 'text-muted'}">Tier ${ROMAN[i]}</span>
+            ${t.highlight ? '<span class="rounded-full bg-gold px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-ink">Top tier</span>' : ''}
+          </div>
+          <h3 class="mt-5 text-2xl font-medium tracking-tight text-cream">${esc(t.name)}</h3>
+          <p class="mt-2 text-lg font-medium ${t.highlight ? 'text-gold' : 'text-cream/80'}">${esc(t.range)}</p>
+          <p class="mt-4 leading-relaxed text-muted">${esc(t.body)}</p>
         </div>
       `).join('');
 
