@@ -490,7 +490,7 @@
         { caption: 'Lunch in Soho', img: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=640&q=70' },
       ];
 
-      // Real FSC member base (draft copy — may change). Photos are PLACEHOLDERS
+      // Real FSC member base (draft copy – may change). Photos are PLACEHOLDERS
       // pending real headshots: swap each `img` when photos arrive.
       // Curated subset (not the full list). Order is intentional: Max first, a
       // woman second, Sunil third, then the rest of the most interesting.
@@ -498,9 +498,9 @@
         { name: 'Max Hertan', company: 'Founder · longevity', city: 'Australia', revenue: 'Two exits', tag: 'Survived flesh-eating bacteria; now ranked 8th in the world for biological age reversal.', img: 'images/members/max.jpg' },
         { name: 'Haley McClain Hill', company: 'Founder, TORCH', city: 'USA', revenue: '£1M–£2M/yr', tag: 'Ex-military, building the go-to apparel brand for military women worldwide.', img: 'images/members/haley.jpg' },
         { name: 'Sunil Jindal', company: 'FSC team', city: 'London', revenue: '8-figure exit', tag: 'Exited a fitness-mirror company at 8 figures. Semi-pro table tennis player.', img: 'images/members/sunil.jpg' },
-        { name: 'Jaryd & Dean Leibbrandt', company: 'Co-founders, Nakie', city: 'Australia', revenue: '£5M+/yr', tag: "Australia's fastest-growing outdoor brand — 20M trees pledged by 2030.", img: 'images/members/jaryd-dean.jpg' },
+        { name: 'Jaryd & Dean Leibbrandt', company: 'Co-founders, Nakie', city: 'Australia', revenue: '£5M+/yr', tag: "Australia's fastest-growing outdoor brand – 20M trees pledged by 2030.", img: 'images/members/jaryd-dean.jpg' },
         { name: 'Mathew Russell', company: 'Founder, Rosslyn Coffee', city: 'London', revenue: '£6M–£12M/yr', tag: 'Growing a London coffee chain while building always-on eCommerce.', img: 'images/members/matt-russell.jpg' },
-        { name: 'Marie-Lou Girard', company: 'Founder, growth hiring agency', city: 'Paris', revenue: '£1M+/yr', tag: 'Built a 100% remote, zero-employee agency to €1M+ — unbothered by conventional advice.', img: 'images/members/marie-lou.jpg' },
+        { name: 'Marie-Lou Girard', company: 'Founder, growth hiring agency', city: 'Paris', revenue: '£1M+/yr', tag: 'Built a 100% remote, zero-employee agency to €1M+ – unbothered by conventional advice.', img: 'images/members/marie-lou.jpg' },
         { name: 'Lennon Jessup', company: 'Founder, Hard Sneakers', city: 'LA', revenue: '£2M–£5M/yr', tag: '19, building a global wholesale marketplace for sneakers and streetwear.', img: 'images/members/lennon.jpg' },
         { name: 'Gabrielle Bufrem', company: 'Product coach + angel', city: 'NYC', revenue: '£500k–£1M/yr', tag: 'Coaching founders and product teams; building an angel portfolio on the side.', img: 'images/members/gabrielle.jpg' },
       ];
@@ -609,7 +609,7 @@
             <img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy" class="aspect-[4/5] w-full object-cover" />
           </div>
           <p class="mt-4 font-semibold tracking-tight text-cream">${esc(m.name)}</p>
-          <p class="mt-0.5 text-sm text-muted">${esc(m.company)} · ${esc(m.city)}</p>
+          <p class="mt-0.5 text-sm text-muted">${esc(m.company)}</p>
           ${m.revenue ? `<p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gold/80">${esc(m.revenue)}</p>` : ''}
           <p class="mt-1.5 text-sm italic text-muted/70">${esc(m.tag)}</p>
         </div>
