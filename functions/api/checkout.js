@@ -1,5 +1,5 @@
 /**
- * Cloudflare Pages Function  —  POST/GET /api/checkout
+ * Cloudflare Pages Function  –  POST/GET /api/checkout
  *
  * Creates a Stripe Checkout Session in `setup` mode: it saves the applicant's
  * card and charges £0. Nothing is ever charged here. After you APPROVE an
@@ -14,7 +14,7 @@
  *         --cancel-->  /
  *
  * Config (Cloudflare Pages → Settings → Environment variables):
- *   STRIPE_SECRET_KEY  — sk_test_… while testing, sk_live_… to go live.
+ *   STRIPE_SECRET_KEY  – sk_test_… while testing, sk_live_… to go live.
  *                        Add it as a *Secret*, not a plain text var.
  */
 
@@ -70,14 +70,14 @@ async function createSession(params, env, origin) {
   return Response.redirect(session.url, 303);
 }
 
-// GET — Tally's "redirect on completion" lands here with answers in the query
+// GET – Tally's "redirect on completion" lands here with answers in the query
 // string, and we bounce straight to Stripe.
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   return createSession(url.searchParams, env, url.origin);
 }
 
-// POST — for a JS-driven handoff (form post) if you ever move off the Tally
+// POST – for a JS-driven handoff (form post) if you ever move off the Tally
 // redirect. Accepts the same fields as form-encoded body.
 export async function onRequestPost({ request, env }) {
   const url = new URL(request.url);
