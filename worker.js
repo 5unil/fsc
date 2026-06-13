@@ -56,6 +56,14 @@ async function createSession(params, env, origin) {
     if (value) form.set(`metadata[${key}]`, value);
   }
 
+  // Setup mode has no line items, so the product name/price/description never
+  // render. This message (above the submit button) gives the applicant context
+  // on what saving their card means.
+  form.set(
+    'custom_text[submit][message]',
+    "You won't be charged today. If your application is accepted, your Meet Founders membership starts at £99/month – cancel any time.",
+  );
+
   const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {
     method: 'POST',
     headers: {
