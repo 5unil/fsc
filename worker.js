@@ -42,11 +42,19 @@ async function createSession(params, env, origin) {
     return new Response('Stripe is not configured (missing STRIPE_SECRET_KEY).', { status: 500 });
   }
 
+  // Send the applicant back to THEIR variant's subdomain for /welcome, so each
+  // variant's funnel stays clean in analytics even though Tally redirects every
+  // submission through a single host. Falls back to the request origin off the
+  // production domain (localhost / *.workers.dev) or when the variant is unknown.
+  const variant = (params.get('variant') || '').toUpperCase();
+  const sub = { A: 'a', B: 'b', C: 'c', D: 'd' }[variant];
+  const base = sub && origin.endsWith('foundermeets.com') ? `https://${sub}.foundermeets.com` : origin;
+
   const form = new URLSearchParams();
   form.set('mode', 'setup');
   form.set('payment_method_types[]', 'card');
-  form.set('success_url', `${origin}/welcome`);
-  form.set('cancel_url', `${origin}/?checkout=cancelled`);
+  form.set('success_url', `${base}/welcome`);
+  form.set('cancel_url', `${base}/?checkout=cancelled`);
 
   const email = params.get('email');
   if (email) form.set('customer_email', email);
