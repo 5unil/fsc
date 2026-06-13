@@ -429,83 +429,86 @@
       const VARIANTS = {
         A: BASE,
 
-        // Variant C = the "group chat" positioning: a small, ongoing private
-        // chat of matched founders (vs A's weekly 1-on-1). DRAFT copy.
+        // Variant C = the "community-led group chat" positioning: a private,
+        // vetted, London founder chat. Drop in, suggest meetups, attend events.
+        // DRAFT copy adapted to London / £99.
         C: {
           ...BASE,
-          headline: 'Five founders. One group chat. Picked for you.',
+          headline: 'Join the group chat to get access.',
           accentWord: 'group chat',
-          subhead: 'We match you into a small, private chat with a handful of London founders at your stage – the group you would want in your corner, on tap.',
-          ideaSub: 'So we are deliberate about who that is. A small group of London founders at your stage, in one chat – chosen on purpose, not whoever is loudest in a Slack of thousands.',
-          howHeading: 'A small group. One chat. Matched by hand.',
+          subhead: 'A private channel of vetted founders in London. Drop in when you want. Meet up when it makes sense.',
+          ideaSub: 'So we are deliberate about who that is. A small, vetted channel of founders in London – the right people, one tap away, no scheduled meetups required.',
+          howHeading: 'Vetted founders. One private chat. Hand-screened.',
           steps: [
-            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-            { n: '2', title: 'Match', body: 'We place you in a small, private chat with a handful of London founders at your stage and intent.' },
-            { n: '3', title: 'Meet when it counts', body: 'Trade intros, asks, and wins day to day – and meet up in person whenever the group wants.' },
+            { n: '1', title: 'Apply', body: 'Tell us your stage. We hand-screen every applicant.' },
+            { n: '2', title: 'Get in', body: "Once accepted, you're added to London's private group chat with other vetted founders." },
+            { n: '3', title: 'Show up', body: 'Suggest meetups, attend community events, or just be part of the conversation when it suits you.' },
           ],
           stats: [
             { figure: '1 in 4', label: 'applications accepted' },
-            { figure: '5–7', label: 'founders in your chat' },
-            { figure: 'Daily', label: 'in your corner' },
+            { figure: 'One chat', label: 'vetted founders only' },
+            { figure: 'Any time', label: 'drop in when it suits' },
           ],
           matchLine: 'A 7am intro. A "who has hired a great CFO?" A pint on Thursday.',
-          matchSub: 'Nothing complicated. A handful of founders, in your corner, in one chat.',
+          matchSub: 'Nothing complicated. The right founders in London, one tap away.',
           pricing: [
-            'A private chat with 5–7 founders at your stage',
-            'Matched within your tier',
-            'In-person meetups whenever the group wants',
-            'Vetted founders only',
+            'A private London group chat, vetted founders only',
+            'Member-suggested meetups',
+            'Curated London events',
+            'No scheduled 1-on-1s – drop in when it suits',
             'Cancel anytime',
           ],
           faq: [
-            { q: 'How big is the group?', a: 'Small on purpose – 5–7 founders at your stage in London.' },
-            { q: 'Is it just a chat?', a: 'It starts as a private chat, but groups meet in person whenever they want; we help you book it.' },
+            { q: "What's actually in the chat?", a: 'Other vetted founders in London – people posting what they are working on, asking questions, suggesting meetups, sharing intros. No auto-DMs, no spam. A quiet, high-signal channel.' },
+            { q: 'How is this different from a free Slack or WhatsApp community?', a: 'Vetting. We hand-screen every applicant; around 1 in 4 get through. The result is a small, dense group of real founders, not a noisy bulletin board.' },
             { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
-            { q: 'What if the group is quiet?', a: 'We only form a group when there are enough founders for real momentum. No charge until you are placed.' },
+            { q: 'What if my city is quiet?', a: 'We only open a chat when there is enough founder density to make it worth being in. You are not charged until there is.' },
           ],
           seo: {
-            title: 'Meet Founders – your founder group chat, picked for you',
-            description: 'We match you into a small private chat with London founders at your stage. Vetted, picked by hand.',
+            title: 'Meet Founders – a private chat of founders in London',
+            description: 'A private channel of vetted founders in London. Drop in, suggest meetups, attend events. Hand-screened.',
           },
         },
 
-        // Variant B = the "mentor / mentee / peer" positioning: you pick the
-        // role you need and we match the founder who fits it. DRAFT copy.
+        // Variant B = the "3-level peer ladder": each month you're matched with
+        // three founders – one a step ahead (mentor), one at your level (peer),
+        // one a step behind (mentee). (MVP matches same-stage only; do not
+        // expose that here.) DRAFT copy adapted to London / £99.
         B: {
           ...BASE,
-          headline: 'A mentor, a mentee, or a peer, matched for you.',
-          accentWord: 'matched',
-          subhead: 'Tell us whether you need to learn, to give, or to meet an equal. Each week we match you with the London founder who fits, as a mentor, a mentee, or a peer.',
-          ideaSub: 'So we are deliberate about who that is. The right London founder for where you are: someone to learn from, someone to lift, or someone in the exact same trench.',
-          howHeading: 'One founder. The right role. Picked by hand.',
+          headline: 'One mentor. One peer. One mentee. Every month.',
+          accentWord: 'Every month',
+          subhead: 'Each month, we match you with three founders – one a step ahead, one at your level, one a step behind. Learn from one, build with another, give back to the third.',
+          ideaSub: 'So we are deliberate about who that is. Learn from people a step ahead, build with people alongside, give back to people a step behind – every month.',
+          howHeading: 'Three founders. Every month. Matched by hand.',
           steps: [
-            { n: '1', title: 'Apply', body: 'Tell us your stage and whether you want a mentor, a mentee, or a peer. We vet every applicant.' },
-            { n: '2', title: 'Match', body: 'We pair you with the London founder who fits the role you picked: same intent, right level.' },
-            { n: '3', title: 'Meet', body: 'A walk or a coffee, 60 minutes. Reschedule anywhere in the week if you need.' },
+            { n: '1', title: 'Apply', body: 'Tell us your stage. We vet every applicant.' },
+            { n: '2', title: 'Match', body: "On the first Monday of each month, you're matched with three founders – one a step ahead of you, one at your level, one a step behind." },
+            { n: '3', title: 'Meet', body: 'Walks or coffees, 60 minutes each. We help with the scheduling. One-tap reschedule within the month.' },
           ],
           stats: [
             { figure: '1 in 4', label: 'applications accepted' },
-            { figure: '3 roles', label: 'mentor, mentee or peer' },
-            { figure: '60 min', label: 'one conversation a week' },
+            { figure: '3 founders', label: 'mentor, peer, mentee' },
+            { figure: 'Monthly', label: 'matched by hand' },
           ],
-          matchLine: 'A mentor over coffee. A mentee on a walk. A peer who just gets it.',
-          matchSub: 'Nothing complicated. One founder, the right role, 60 minutes.',
+          matchLine: 'A mentor over coffee. A peer on a walk. A mentee who needs the hour.',
+          matchSub: 'Nothing complicated. Three founders a month, 60 minutes each.',
           pricing: [
-            'One curated 1-on-1 a week: mentor, mentee, or peer',
+            'Three curated matches a month: one mentor, one peer, one mentee',
+            'A same-stage peer, plus a mentor and mentee a step away',
             'Matched within your tier',
-            'You choose the role you need',
             'Vetted founders only',
             'Cancel anytime',
           ],
           faq: [
-            { q: 'How do you decide mentor vs peer?', a: 'You tell us what you need each week; we match the founder who fits that role and your stage.' },
-            { q: 'Can I switch roles?', a: 'Yes. Ask for a mentor one week and a peer the next.' },
+            { q: 'How do you decide who is ahead, at, or behind me?', a: 'You self-select your stage when you apply, and we verify your business so the matching routes accurately: each month, one founder a step ahead, one at your level, one a step behind.' },
+            { q: "What if I can't fit three meetups in a month?", a: 'You can reschedule once per match within the month. Skipping has no penalty, but a skipped match costs the founder on the other side, so we ask members to commit before locking in.' },
             { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
-            { q: 'What if my city is quiet?', a: 'We only run cities with enough founders for a real match. No charge until you are matched.' },
+            { q: 'What if my city is quiet?', a: 'We only run when there are enough founders across all three stages for a real match. You are not charged until we can match you across all three.' },
           ],
           seo: {
-            title: 'Meet Founders – a mentor, a mentee, or a peer, matched for you',
-            description: 'Tell us what you need: a mentor, a mentee, or a peer. We match you with the London founder who fits.',
+            title: 'Meet Founders – one mentor, one peer, one mentee, every month',
+            description: 'Each month, we match you with three founders: one a step ahead, one at your level, one a step behind. Learn, build, give back.',
           },
         },
 
