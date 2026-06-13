@@ -369,10 +369,16 @@
     <!-- ============================ SCRIPT ============================ -->
     <script>
       /* ----------------------------------------------------------------
-         VARIANT CONFIG – clone this file for B and C and change only this block.
-         Variant-specific copy: hero + sub-headline + how-it-works steps.
+         VARIANT CONFIG – A/B/C/D landing-page test.
+         The variant is chosen AUTOMATICALLY from the subdomain:
+           a.foundermeets.com → A   b. → B   c. → C   d. → D (control)
+         Falls back to ?variant=B in the URL, then A. To differentiate a
+         variant, edit ONLY its block in VARIANTS below (eyebrow, headline,
+         accentWord, subhead, steps). Everything outside VARIANTS is shared
+         across all four. B/C/D are clones of A until you give them their
+         own copy – until then every subdomain shows identical copy (but is
+         still attributed to its own variant in Tally / Stripe / analytics).
       ---------------------------------------------------------------- */
-      const VARIANT = 'A';
       const BRAND = 'meet founders';
       const BRAND_PROPER = 'Meet Founders';
 
@@ -380,17 +386,78 @@
       // hidden field (see the form wiring at the bottom of this script).
       const FORM_URL = 'https://tally.so/r/44GQBo';
 
-      const HERO_EYEBROW = 'London only';
-      const HEADLINE = 'Meet one founder. Every Monday. Picked for you.';
-      const ACCENT_WORD = 'Monday';
-      const SUBHEAD =
-        'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.';
+      const VARIANTS = {
+        A: {
+          eyebrow: 'London only',
+          headline: 'Meet one founder. Every Monday. Picked for you.',
+          accentWord: 'Monday',
+          subhead:
+            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+          ],
+        },
 
-      const STEPS = [
-        { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-        { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
-        { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
-      ];
+        // TODO: variant B – give it its own hero copy to actually test something.
+        B: {
+          eyebrow: 'London only',
+          headline: 'Meet one founder. Every Monday. Picked for you.',
+          accentWord: 'Monday',
+          subhead:
+            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+          ],
+        },
+
+        // TODO: variant C – give it its own hero copy.
+        C: {
+          eyebrow: 'London only',
+          headline: 'Meet one founder. Every Monday. Picked for you.',
+          accentWord: 'Monday',
+          subhead:
+            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+          ],
+        },
+
+        // Control. TODO: set the control's copy (often the current/baseline version).
+        D: {
+          eyebrow: 'London only',
+          headline: 'Meet one founder. Every Monday. Picked for you.',
+          accentWord: 'Monday',
+          subhead:
+            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+          ],
+        },
+      };
+
+      // Variant is chosen by subdomain (a/b/c/d), then ?variant=, then A.
+      function detectVariant() {
+        const sub = location.hostname.toLowerCase().split('.')[0];
+        const byHost = { a: 'A', b: 'B', c: 'C', d: 'D' }[sub];
+        if (byHost) return byHost;
+        const q = (new URLSearchParams(location.search).get('variant') || '').toUpperCase();
+        return VARIANTS[q] ? q : 'A';
+      }
+      const VARIANT = detectVariant();
+      const _V = VARIANTS[VARIANT] || VARIANTS.A;
+      const HERO_EYEBROW = _V.eyebrow;
+      const HEADLINE = _V.headline;
+      const ACCENT_WORD = _V.accentWord;
+      const SUBHEAD = _V.subhead;
+      const STEPS = _V.steps;
 
       /* ---- Shared copy (edit freely; not variant-specific) ---- */
       const STATS = [
