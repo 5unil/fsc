@@ -428,8 +428,86 @@
 
       const VARIANTS = {
         A: BASE,
-        B: { ...BASE }, // TODO: variant B differentiating copy
-        C: { ...BASE }, // TODO: variant C differentiating copy
+
+        // Variant C = the "group chat" positioning: a small, ongoing private
+        // chat of matched founders (vs A's weekly 1-on-1). DRAFT copy.
+        C: {
+          ...BASE,
+          headline: 'Five founders. One group chat. Picked for you.',
+          accentWord: 'group chat',
+          subhead: 'We match you into a small, private chat with a handful of London founders at your stage – the group you would want in your corner, on tap.',
+          ideaSub: 'So we are deliberate about who that is. A small group of London founders at your stage, in one chat – chosen on purpose, not whoever is loudest in a Slack of thousands.',
+          howHeading: 'A small group. One chat. Matched by hand.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+            { n: '2', title: 'Match', body: 'We place you in a small, private chat with a handful of London founders at your stage and intent.' },
+            { n: '3', title: 'Meet when it counts', body: 'Trade intros, asks, and wins day to day – and meet up in person whenever the group wants.' },
+          ],
+          stats: [
+            { figure: '1 in 4', label: 'applications accepted' },
+            { figure: '5–7', label: 'founders in your chat' },
+            { figure: 'Daily', label: 'in your corner' },
+          ],
+          matchLine: 'A 7am intro. A "who has hired a great CFO?" A pint on Thursday.',
+          matchSub: 'Nothing complicated. A handful of founders, in your corner, in one chat.',
+          pricing: [
+            'A private chat with 5–7 founders at your stage',
+            'Matched within your tier',
+            'In-person meetups whenever the group wants',
+            'Vetted founders only',
+            'Cancel anytime',
+          ],
+          faq: [
+            { q: 'How big is the group?', a: 'Small on purpose – 5–7 founders at your stage in London.' },
+            { q: 'Is it just a chat?', a: 'It starts as a private chat, but groups meet in person whenever they want; we help you book it.' },
+            { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
+            { q: 'What if the group is quiet?', a: 'We only form a group when there are enough founders for real momentum. No charge until you are placed.' },
+          ],
+          seo: {
+            title: 'Meet Founders – your founder group chat, picked for you',
+            description: 'We match you into a small private chat with London founders at your stage. Vetted, picked by hand.',
+          },
+        },
+
+        // Variant B = the "mentor / mentee / peer" positioning: you pick the
+        // role you need and we match the founder who fits it. DRAFT copy.
+        B: {
+          ...BASE,
+          headline: 'A mentor, a mentee, or a peer, matched for you.',
+          accentWord: 'matched',
+          subhead: 'Tell us whether you need to learn, to give, or to meet an equal. Each week we match you with the London founder who fits, as a mentor, a mentee, or a peer.',
+          ideaSub: 'So we are deliberate about who that is. The right London founder for where you are: someone to learn from, someone to lift, or someone in the exact same trench.',
+          howHeading: 'One founder. The right role. Picked by hand.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'Tell us your stage and whether you want a mentor, a mentee, or a peer. We vet every applicant.' },
+            { n: '2', title: 'Match', body: 'We pair you with the London founder who fits the role you picked: same intent, right level.' },
+            { n: '3', title: 'Meet', body: 'A walk or a coffee, 60 minutes. Reschedule anywhere in the week if you need.' },
+          ],
+          stats: [
+            { figure: '1 in 4', label: 'applications accepted' },
+            { figure: '3 roles', label: 'mentor, mentee or peer' },
+            { figure: '60 min', label: 'one conversation a week' },
+          ],
+          matchLine: 'A mentor over coffee. A mentee on a walk. A peer who just gets it.',
+          matchSub: 'Nothing complicated. One founder, the right role, 60 minutes.',
+          pricing: [
+            'One curated 1-on-1 a week: mentor, mentee, or peer',
+            'Matched within your tier',
+            'You choose the role you need',
+            'Vetted founders only',
+            'Cancel anytime',
+          ],
+          faq: [
+            { q: 'How do you decide mentor vs peer?', a: 'You tell us what you need each week; we match the founder who fits that role and your stage.' },
+            { q: 'Can I switch roles?', a: 'Yes. Ask for a mentor one week and a peer the next.' },
+            { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
+            { q: 'What if my city is quiet?', a: 'We only run cities with enough founders for a real match. No charge until you are matched.' },
+          ],
+          seo: {
+            title: 'Meet Founders – a mentor, a mentee, or a peer, matched for you',
+            description: 'Tell us what you need: a mentor, a mentee, or a peer. We match you with the London founder who fits.',
+          },
+        },
 
         // Variant D = the legacy FSC product: monthly small-group SPORT matching.
         // London-only and £99 like the others – only the product shape differs.
@@ -458,6 +536,8 @@
           ],
           matchLine: 'Padel on a Tuesday. Five-a-side on the weekend. A run before work.',
           matchSub: 'Nothing complicated. Show up, play, get to know founders in London.',
+          // TODO: photos are still A's placeholder shots – needs real sport imagery.
+          galleryCaptions: ['Padel on a Tuesday', 'Five-a-side on the weekend', 'A morning run by the river', 'Table tennis after work', 'A Saturday climb', 'Tennis before work'],
           pricing: [
             'A new group of 4–6 founders to play sport with, every month',
             'Same-stage matching (Builder, Operator, or Veteran)',
@@ -669,14 +749,17 @@
 
       // Photo gallery carousel
       const galleryEl = document.querySelector('[data-gallery]');
-      galleryEl.innerHTML = GALLERY.map((g) => `
+      galleryEl.innerHTML = GALLERY.map((g, i) => {
+        // Per-variant caption override (e.g. D swaps walk/coffee for sport).
+        const cap = (_V.galleryCaptions && _V.galleryCaptions[i]) || g.caption;
+        return `
         <figure class="w-72 shrink-0 snap-start sm:w-80">
           <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <img src="${esc(g.img)}" alt="${esc(g.caption)}" loading="lazy" class="aspect-[4/3] w-full object-cover" />
+            <img src="${esc(g.img)}" alt="${esc(cap)}" loading="lazy" class="aspect-[4/3] w-full object-cover" />
           </div>
-          <figcaption class="mt-3 text-sm text-muted">${esc(g.caption)}</figcaption>
-        </figure>
-      `).join('');
+          <figcaption class="mt-3 text-sm text-muted">${esc(cap)}</figcaption>
+        </figure>`;
+      }).join('');
 
       const galleryPrev = document.querySelector('[data-gallery-prev]');
       const galleryNext = document.querySelector('[data-gallery-next]');
