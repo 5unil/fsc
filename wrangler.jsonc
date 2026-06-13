@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "fsc",
+  "name": "fsc-founder-meets",
   "main": "worker.js",
   "compatibility_date": "2026-06-13",
   "compatibility_flags": ["nodejs_compat"],
