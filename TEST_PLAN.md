@@ -1,8 +1,8 @@
 # Meet Founders – Test Plan
 
-A/B/C/D landing-page test. One Cloudflare Worker (`fsc-founder-meets`) serves the
+one/ladder/chat/sport landing-page test. One Cloudflare Worker (`fsc-founder-meets`) serves the
 static site **and** the Stripe £0 card-capture endpoint. The variant is chosen by
-subdomain (`a/b/c/d.foundermeets.com` → A/B/C/D; `d` = control).
+subdomain – `one` / `ladder` / `chat` / `sport`.foundermeets.com (`sport` = control).
 
 **Funnel:** landing page → Tally application → `/api/checkout` (Stripe `setup`
 mode, £0) → Stripe hosted checkout → `/welcome`.
@@ -24,7 +24,7 @@ Things verifiable without dashboards. ✅ = passing.
 | 2 | Price renders `£99 / month`; zero `$` anywhere on the page | ✅ |
 | 3 | No em dashes anywhere (en dashes only) | ✅ |
 | 4 | 8 member cards, all using local `images/members/*.jpg` | ✅ |
-| 5 | Variant detection: no param → A, `?variant=C` → C, bad value → A | ✅ |
+| 5 | Variant detection: no param → one, `?variant=chat` → chat, bad value → one | ✅ |
 | 6 | 4 CTAs, all `target=_blank`, all open the Tally form | ✅ |
 | 7 | CTA carries attribution (`variant`, `utm_*`, `fbclid`) into Tally | ✅ |
 | 8 | `/api/checkout` (live key) → 303 redirect to `checkout.stripe.com` `cs_live_` | ✅ |
@@ -32,7 +32,7 @@ Things verifiable without dashboards. ✅ = passing.
 | 10 | Cloudflare Web Analytics collecting for the zone (auto, no beacon) | ✅ |
 
 **Known-open (not yet verifiable by automation):**
-- `a/d.foundermeets.com` returned **403** to an automated probe – confirm in a real
+- the variant subdomains returned **403** to an automated probe – confirm in a real
   browser (see §2.1). Likely bot-challenge or subdomains not yet routed.
 
 ---
@@ -43,17 +43,17 @@ The variant system is built; these are the dependencies that make a real test wo
 Verify each in a normal browser.
 
 ### 2.1 Subdomains live
-- [ ] `https://a.foundermeets.com` loads the site (variant A)
-- [ ] `https://b.foundermeets.com` loads the site (variant B)
-- [ ] `https://c.foundermeets.com` loads the site (variant C)
-- [ ] `https://d.foundermeets.com` loads the site (variant D, control)
+- [ ] `https://one.foundermeets.com` loads the site (1-on-1)
+- [ ] `https://ladder.foundermeets.com` loads the site (mentor/peer/mentee)
+- [ ] `https://chat.foundermeets.com` loads the site (group chat)
+- [ ] `https://sport.foundermeets.com` loads the site (sport, control)
 - [ ] Each shows a valid SSL padlock (cert provisioned)
 
 ### 2.2 Variant detection on the live subdomains
 On each subdomain, open DevTools console and run:
 `document.querySelector('[data-cta=\"hero\"]').href` → the URL should contain
-`variant=A` on `a.`, `variant=B` on `b.`, etc.
-- [ ] a. → variant=A  - [ ] b. → variant=B  - [ ] c. → variant=C  - [ ] d. → variant=D
+`variant=one` on `one.`, `variant=ladder` on `ladder.`, etc.
+- [ ] one. → variant=one  - [ ] ladder. → variant=ladder  - [ ] chat. → variant=chat  - [ ] sport. → variant=sport
 
 ### 2.3 Tally wiring
 - [ ] Tally form has a **hidden field named `variant`** (exact spelling)
@@ -72,7 +72,7 @@ On each subdomain, open DevTools console and run:
 
 ## 3. Manual end-to-end test (run once per variant on the LIVE domain)
 
-Do this for at least `a.` and one other (e.g. `c.`) before scaling spend.
+Do this for at least `one.` and one other (e.g. `chat.`) before scaling spend.
 **Note:** live mode → the `4242…` test card will NOT work; use a real card. The
 capture charges **£0**, so nothing is taken; delete the test customer afterward.
 
@@ -98,7 +98,7 @@ Repeat for the other variant(s).
 In the Stripe Dashboard (**live mode**):
 - [ ] Each test created a **Customer** with the email you entered
 - [ ] Each customer has a **saved card** and **£0 charged**
-- [ ] Each customer's **Metadata** shows the correct `variant` (A/B/C/D) and any UTMs
+- [ ] Each customer's **Metadata** shows the correct `variant` (one/ladder/chat/sport) and any UTMs
 - [ ] Variant attribution matches the subdomain you tested from
 - [ ] (cleanup) delete the test customers
 
@@ -110,7 +110,7 @@ This metadata is the source of truth for **conversions per variant**.
 
 Cloudflare → **Web Analytics → foundermeets.com**:
 - [ ] Page views appear for the subdomains you visited
-- [ ] Add a **Host** filter → can isolate `a/b/c/d.foundermeets.com` individually
+- [ ] Add a **Host** filter → can isolate `one/ladder/chat/sport.foundermeets.com` individually
 - [ ] `/welcome` views appear on the correct subdomain per variant
 
 **Headline metric per variant:** `/welcome` views ÷ landing views (or, more

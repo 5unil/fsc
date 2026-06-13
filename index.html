@@ -416,12 +416,11 @@
       };
 
       const VARIANTS = {
-        A: BASE,
+        one: BASE,
 
-        // Variant C = the "community-led group chat" positioning: a private,
-        // vetted, London founder chat. Drop in, suggest meetups, attend events.
-        // DRAFT copy adapted to London / £99.
-        C: {
+        // 'chat' = the community-led group chat: a private, vetted, London
+        // founder chat. Drop in, suggest meetups, attend events. DRAFT copy.
+        chat: {
           ...BASE,
           headline: 'Join the group chat to get access.',
           accentWord: 'group chat',
@@ -457,11 +456,11 @@
           },
         },
 
-        // Variant B = the "3-level peer ladder": each month you're matched with
+        // 'ladder' = the 3-level peer ladder: each month you're matched with
         // three founders – one a step ahead (mentor), one at your level (peer),
         // one a step behind (mentee). (MVP matches same-stage only; do not
         // expose that here.) DRAFT copy adapted to London / £99.
-        B: {
+        ladder: {
           ...BASE,
           headline: 'One mentor. One peer. One mentee. Every month.',
           accentWord: 'Every month',
@@ -497,9 +496,9 @@
           },
         },
 
-        // Variant D = the legacy FSC product: monthly small-group SPORT matching.
+        // 'sport' = the legacy FSC product: monthly small-group SPORT matching.
         // London-only and £99 like the others – only the product shape differs.
-        D: {
+        sport: {
           ...BASE,
           headline: 'Play sport with founders in London.',
           accentWord: 'sport',
@@ -541,16 +540,16 @@
         },
       };
 
-      // Variant is chosen by subdomain (a/b/c/d), then ?variant=, then A.
+      // Variant is chosen by subdomain (one/ladder/chat/sport), then ?variant=,
+      // then defaults to 'one'. The subdomain slug IS the variant key.
       function detectVariant() {
         const sub = location.hostname.toLowerCase().split('.')[0];
-        const byHost = { a: 'A', b: 'B', c: 'C', d: 'D' }[sub];
-        if (byHost) return byHost;
-        const q = (new URLSearchParams(location.search).get('variant') || '').toUpperCase();
-        return VARIANTS[q] ? q : 'A';
+        if (VARIANTS[sub]) return sub;
+        const q = (new URLSearchParams(location.search).get('variant') || '').toLowerCase();
+        return VARIANTS[q] ? q : 'one';
       }
       const VARIANT = detectVariant();
-      const _V = VARIANTS[VARIANT] || VARIANTS.A;
+      const _V = VARIANTS[VARIANT] || VARIANTS.one;
       const HERO_EYEBROW = _V.eyebrow;
       const HEADLINE = _V.headline;
       const ACCENT_WORD = _V.accentWord;

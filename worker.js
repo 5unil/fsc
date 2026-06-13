@@ -12,7 +12,7 @@
  *
  * Flow:
  *   Tally application (qualification)
- *     --redirect on completion-->  /api/checkout?email=…&variant=A&utm_source=…
+ *     --redirect on completion-->  /api/checkout?email=…&variant=chat&utm_source=…
  *       --> Stripe Checkout (save card, £0)
  *         --success--> /welcome
  *         --cancel-->  /
@@ -46,9 +46,9 @@ async function createSession(params, env, origin) {
   // variant's funnel stays clean in analytics even though Tally redirects every
   // submission through a single host. Falls back to the request origin off the
   // production domain (localhost / *.workers.dev) or when the variant is unknown.
-  const variant = (params.get('variant') || '').toUpperCase();
-  const sub = { A: 'a', B: 'b', C: 'c', D: 'd' }[variant];
-  const base = sub && origin.endsWith('foundermeets.com') ? `https://${sub}.foundermeets.com` : origin;
+  const variant = (params.get('variant') || '').toLowerCase();
+  const slugs = ['one', 'ladder', 'chat', 'sport'];
+  const base = slugs.includes(variant) && origin.endsWith('foundermeets.com') ? `https://${variant}.foundermeets.com` : origin;
 
   const form = new URLSearchParams();
   form.set('mode', 'setup');
