@@ -80,12 +80,12 @@ before switching the Tally redirect to the production domain.
 
 ## Before going live (placeholders to replace)
 
-- **Member showcase** – real member faces, names, companies (`MEMBERS`).
+- **Member showcase** – real member photos (`MEMBERS` `img` fields are placeholders).
 - **Testimonials** – real named quotes with companies (`TESTIMONIALS`).
-- **Credibility stat** – fill the `$[X]` combined-revenue figure (`CREDIBILITY_STAT`).
 - **Tally hidden fields** – add fields named `variant`, `utm_source`,
   `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid` so params are
   stored, and set the redirect URL above.
-- **Stripe** – set `STRIPE_SECRET_KEY` (test then live) on the `fsc-founder-meets` Worker.
-- **Plausible** – paste the script tag into the `<!-- PLAUSIBLE SCRIPT HERE -->`
-  slot in `<head>`. CTA click events already fire.
+- **Cloudflare Web Analytics** – Dashboard → Analytics & Logs → Web Analytics →
+  Add a site → paste the token into the `data-cf-beacon` snippet in `<head>`.
+  Page views track automatically. Per-variant: segment by hostname (one subdomain
+  per variant) or path. Conversion = `/welcome` views ÷ landing views.

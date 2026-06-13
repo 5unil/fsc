@@ -19,7 +19,13 @@
     <!-- Favicon: gold circle (AOM accent) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23fbe06c'/%3E%3C/svg%3E" />
 
-    <!-- PLAUSIBLE SCRIPT HERE -->
+    <!-- Cloudflare Web Analytics (free, privacy-friendly, no cookie banner).
+         Setup: Cloudflare dashboard → Analytics & Logs → Web Analytics →
+         "Add a site" → copy the token → replace YOUR_CF_BEACON_TOKEN below.
+         Page views are then tracked automatically (segment by hostname/path,
+         e.g. one subdomain per variant). -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "YOUR_CF_BEACON_TOKEN"}'></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
