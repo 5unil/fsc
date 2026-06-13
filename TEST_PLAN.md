@@ -37,7 +37,7 @@ Things verifiable without dashboards. ✅ = passing.
 
 ---
 
-## 2. Pre-variant infrastructure — must be GREEN before building B/C/D
+## 2. Pre-variant infrastructure – must be GREEN before building B/C/D
 
 The variant system is built; these are the dependencies that make a real test work.
 Verify each in a normal browser.
@@ -86,7 +86,7 @@ For variant **X** (replace x/X):
    charged if your application is successful."* shows above the pay button.
 7. Enter a **real card** → submit.
 8. **Expect:** you land on `https://x.foundermeets.com/welcome` (the SAME subdomain
-   you started on — this is the per-variant routing).
+   you started on – this is the per-variant routing).
 9. Record: did steps 5–8 all pass? ____
 
 Repeat for the other variant(s).
