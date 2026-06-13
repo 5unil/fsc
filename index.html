@@ -20,10 +20,10 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23fbe06c'/%3E%3C/svg%3E" />
 
     <!-- Web Analytics: handled AUTOMATICALLY by Cloudflare for the proxied
-         foundermeets.com zone (no beacon snippet needed — Cloudflare injects it
+         foundermeets.com zone (no beacon snippet needed – Cloudflare injects it
          at the edge). View in Cloudflare → Web Analytics; filter by Host for
          per-variant numbers (a/b/c/d.foundermeets.com).
-         Do NOT add a manual beacon here as well — it would double-count. -->
+         Do NOT add a manual beacon here as well – it would double-count. -->
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -139,7 +139,7 @@
             <a href="#apply" data-cta="hero" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
           </div>
 
-          <p class="reveal mt-5 text-sm text-muted" style="transition-delay:300ms">Takes 2 minutes · we reject more than we accept.</p>
+          <p class="reveal mt-5 text-sm text-muted" style="transition-delay:300ms" data-hero-urgency></p>
         </div>
       </div>
     </section>
@@ -186,9 +186,7 @@
         <p class="reveal mt-7 text-4xl font-light leading-[1.15] tracking-tight text-cream sm:text-5xl lg:text-6xl" style="transition-delay:60ms">
           You become the people you <span class="text-gold">spend your time with</span>.
         </p>
-        <p class="reveal mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">
-          So we are deliberate about who that is. One founder a week, chosen on purpose – not left to chance, not whoever happens to be in the room.
-        </p>
+        <p class="reveal mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-idea-sub></p>
       </div>
     </section>
 
@@ -205,7 +203,7 @@
         <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
           <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> How it works
         </p>
-        <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">One founder. Every week. Picked by hand.</h2>
+        <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-how-heading></h2>
 
         <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3" data-steps></div>
       </div>
@@ -236,12 +234,8 @@
             <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
               <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> The match
             </p>
-            <p class="reveal mt-6 text-3xl font-light leading-[1.3] tracking-tight text-cream sm:text-4xl" style="transition-delay:60ms">
-              Coffee on Old Street. A walk in Hyde Park. A bench in Victoria Park.
-            </p>
-            <p class="reveal mt-5 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">
-              Nothing complicated. Just one founder, 60 minutes, no agenda.
-            </p>
+            <p class="reveal mt-6 text-3xl font-light leading-[1.3] tracking-tight text-cream sm:text-4xl" style="transition-delay:60ms" data-match-line></p>
+            <p class="reveal mt-5 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-match-sub></p>
           </div>
           <div class="reveal hidden shrink-0 gap-2 sm:flex" style="transition-delay:160ms">
             <button type="button" data-gallery-prev aria-label="Previous photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
@@ -384,60 +378,103 @@
       // hidden field (see the form wiring at the bottom of this script).
       const FORM_URL = 'https://tally.so/r/44GQBo';
 
+      // BASE = variant A's full copy. Each variant spreads BASE and overrides
+      // only what it changes; B/C inherit everything until they get their own
+      // copy. Shared sections (members, gallery, vetting, footer) live outside.
+      const BASE = {
+        eyebrow: 'London only',
+        headline: 'Meet one founder. Every Monday. Picked for you.',
+        accentWord: 'Monday',
+        subhead: 'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
+        urgency: 'Takes 2 minutes · we reject more than we accept.',
+        ideaSub: 'So we are deliberate about who that is. One founder a week, chosen on purpose – not left to chance, not whoever happens to be in the room.',
+        howHeading: 'One founder. Every week. Picked by hand.',
+        steps: [
+          { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
+          { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+          { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+        ],
+        stats: [
+          { figure: '1 in 4', label: 'applications accepted' },
+          { figure: '60 min', label: 'one conversation a week' },
+          { figure: 'Monday', label: 'the day you meet' },
+        ],
+        tiers: [
+          { name: 'Builder', range: 'Pre-revenue → first traction', body: 'Shipping fast and hunting for product–market fit.' },
+          { name: 'Operator', range: '£100k+ a year', body: 'Revenue on the board and a business starting to compound.' },
+          { name: 'Scale', range: '£1M+ a year', body: 'Running a real, sizeable business – matched with founders in the same league.', highlight: true },
+        ],
+        matchLine: 'Coffee on Old Street. A walk in Hyde Park. A bench in Victoria Park.',
+        matchSub: 'Nothing complicated. Just one founder, 60 minutes, no agenda.',
+        pricing: [
+          'One curated match per week',
+          'Matched within your tier',
+          'Founding London member – rate locked in',
+          'Vetted founders only',
+          'Cancel anytime',
+        ],
+        faq: [
+          { q: 'Can I cancel anytime?', a: 'Yes. Cancel any time, no lock-in.' },
+          { q: "What's the no-show policy?", a: 'Matches are locked in 24 hours before. If you cancel within 4 hours of a match, you get a strike. Three strikes and your membership is paused.' },
+          { q: 'What if I need to reschedule?', a: 'One-tap to shift your match anywhere in the same week. Use it before the 24-hour lock-in.' },
+          { q: 'What if my city is quiet?', a: "We only run cities with member density. If yours is on the waitlist, you don't get charged until we can match you." },
+          { q: 'Who else is a member?', a: 'Founders running real businesses. Hand-screened. Roughly 1 in 4 applications get through.' },
+        ],
+        seo: {
+          title: 'Meet Founders – One Match a Week, Picked for You',
+          description: 'A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes.',
+        },
+      };
+
       const VARIANTS = {
-        A: {
-          eyebrow: 'London only',
-          headline: 'Meet one founder. Every Monday. Picked for you.',
-          accentWord: 'Monday',
-          subhead:
-            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
-          steps: [
-            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
-            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
-          ],
-        },
+        A: BASE,
+        B: { ...BASE }, // TODO: variant B differentiating copy
+        C: { ...BASE }, // TODO: variant C differentiating copy
 
-        // TODO: variant B – give it its own hero copy to actually test something.
-        B: {
-          eyebrow: 'London only',
-          headline: 'Meet one founder. Every Monday. Picked for you.',
-          accentWord: 'Monday',
-          subhead:
-            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
-          steps: [
-            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
-            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
-          ],
-        },
-
-        // TODO: variant C – give it its own hero copy.
-        C: {
-          eyebrow: 'London only',
-          headline: 'Meet one founder. Every Monday. Picked for you.',
-          accentWord: 'Monday',
-          subhead:
-            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
-          steps: [
-            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
-            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
-          ],
-        },
-
-        // Control. TODO: set the control's copy (often the current/baseline version).
+        // Variant D = the legacy FSC product: monthly small-group SPORT matching.
+        // London-only and £99 like the others – only the product shape differs.
         D: {
-          eyebrow: 'London only',
-          headline: 'Meet one founder. Every Monday. Picked for you.',
-          accentWord: 'Monday',
-          subhead:
-            'We match you with the one founder in your city you most need to meet this week. A walk, a coffee, 60 minutes.',
+          ...BASE,
+          headline: 'Play sport with founders in London.',
+          accentWord: 'sport',
+          subhead: 'Each month we match you with a small group of founders in London to play a sport together. Padel, table tennis, football, running – whatever your thing is.',
+          urgency: 'Applications reviewed weekly. We reject more than we accept.',
+          ideaSub: 'So we are deliberate about who that is. A small group of founders in London, matched on purpose – playing the sport you love, not left to chance.',
+          howHeading: 'A new group. Every month. Matched by hand.',
           steps: [
-            { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-            { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet – walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
-            { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+            { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
+            { n: '2', title: 'Match', body: 'On the first of each month, we put you into a small group of 4–6 founders in London who play your sport. Same stage. Same intent.' },
+            { n: '3', title: 'Play', body: 'Your group picks a time and place that works. We help you book the venue.' },
           ],
+          stats: [
+            { figure: '1 in 4', label: 'applications accepted' },
+            { figure: '4–6', label: 'founders in your group' },
+            { figure: 'Monthly', label: 'a fresh group' },
+          ],
+          tiers: [
+            { name: 'Builder', range: 'Pre-revenue → first traction', body: 'Shipping fast and hunting for product–market fit.' },
+            { name: 'Operator', range: '£100k+ a year', body: 'Revenue on the board and a business starting to compound.' },
+            { name: 'Veteran', range: '£1M+ a year', body: 'Running a real, sizeable business – matched with founders in the same league.', highlight: true },
+          ],
+          matchLine: 'Padel on a Tuesday. Five-a-side on the weekend. A run before work.',
+          matchSub: 'Nothing complicated. Show up, play, get to know founders in London.',
+          pricing: [
+            'A new group of 4–6 founders to play sport with, every month',
+            'Same-stage matching (Builder, Operator, or Veteran)',
+            'Play any sport we run in London',
+            'Vetted founders only',
+            'Cancel anytime',
+          ],
+          faq: [
+            { q: 'What sports can I play?', a: 'Padel, tennis, table tennis, football, running, basketball, climbing, and more. You pick when you apply.' },
+            { q: "What if my group doesn't show up?", a: 'Groups are committed before they are confirmed: you opt in 24 hours before, lock in within 4 hours, and skipped meetups get a strike. Three strikes and your membership is paused.' },
+            { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
+            { q: 'What if there are not enough players?', a: 'We only confirm a group when there are enough founders for a real match in your sport. You are not charged until you are in a group.' },
+          ],
+          seo: {
+            title: 'Meet Founders – play sport with founders in London',
+            description: 'Each month, get matched with a small group of founders in London to play sport together. Padel, tennis, football, running.',
+          },
         },
       };
 
@@ -455,27 +492,25 @@
       const HEADLINE = _V.headline;
       const ACCENT_WORD = _V.accentWord;
       const SUBHEAD = _V.subhead;
+      const URGENCY = _V.urgency;
+      const IDEA_SUB = _V.ideaSub;
+      const HOW_HEADING = _V.howHeading;
       const STEPS = _V.steps;
+      const STATS = _V.stats;
+      const TIERS = _V.tiers;
+      const MATCH_LINE = _V.matchLine;
+      const MATCH_SUB = _V.matchSub;
+      const PRICING = _V.pricing;
+      const FAQ = _V.faq;
+      const SEO = _V.seo;
 
       /* ---- Shared copy (edit freely; not variant-specific) ---- */
-      const STATS = [
-        { figure: '1 in 4', label: 'applications accepted' },
-        { figure: '60 min', label: 'one conversation a week' },
-        { figure: 'Monday', label: 'the day you meet' },
-      ];
-
-      // Matching tiers. Same membership + price for everyone; the tier signals
-      // who you're matched with. `highlight` flags the aspirational top tier.
-      // TODO: confirm the revenue bands with the real member data before launch.
+      // Tier section header is shared; the tier cards themselves are per-variant
+      // (BASE.tiers / D.tiers) because D renames "Scale" → "Veteran".
       const TIERS_EYEBROW = 'Matched at your level';
       const TIERS_HEADLINE = 'We match you within your tier.';
       const TIERS_SUBHEAD =
         "Every founder you meet is operating at your altitude – not pitching up, not slumming down. Your tier reflects where your business is today, and moves as you grow.";
-      const TIERS = [
-        { name: 'Builder', range: 'Pre-revenue → first traction', body: 'Shipping fast and hunting for product–market fit.' },
-        { name: 'Operator', range: '£100k+ a year', body: 'Revenue on the board and a business starting to compound.' },
-        { name: 'Scale', range: '£1M+ a year', body: 'Running a real, sizeable business – matched with founders in the same league.', highlight: true },
-      ];
       const TIERS_NOTE = 'One membership, one price across every tier. You are matched within your tier, so the room is always at your level.';
 
       // TODO: swap stock photos for real lifestyle/experience shots before going live.
@@ -528,22 +563,6 @@
         'Anyone with a pitch deck in their back pocket',
       ];
 
-      const PRICING = [
-        'One curated match per week',
-        'Matched within your tier',
-        'Founding London member – rate locked in',
-        'Vetted founders only',
-        'Cancel anytime',
-      ];
-
-      const FAQ = [
-        { q: 'Can I cancel anytime?', a: 'Yes. Cancel any time, no lock-in.' },
-        { q: "What's the no-show policy?", a: 'Matches are locked in 24 hours before. If you cancel within 4 hours of a match, you get a strike. Three strikes and your membership is paused.' },
-        { q: 'What if I need to reschedule?', a: 'One-tap to shift your match anywhere in the same week. Use it before the 24-hour lock-in.' },
-        { q: 'What if my city is quiet?', a: "We only run cities with member density. If yours is on the waitlist, you don't get charged until we can match you." },
-        { q: 'Who else is a member?', a: 'Founders running real businesses. Hand-screened. Roughly 1 in 4 applications get through.' },
-      ];
-
       /* ---------------------------- RENDER ---------------------------- */
       const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -554,6 +573,25 @@
       // Hero
       document.querySelector('[data-hero-eyebrow]').insertAdjacentText('beforeend', ' ' + HERO_EYEBROW);
       document.querySelector('[data-hero-subhead]').textContent = SUBHEAD;
+
+      // Variant-specific copy that lives in otherwise-shared sections.
+      const setText = (sel, val) => { const el = document.querySelector(sel); if (el && val != null) el.textContent = val; };
+      setText('[data-hero-urgency]', URGENCY);
+      setText('[data-idea-sub]', IDEA_SUB);
+      setText('[data-how-heading]', HOW_HEADING);
+      setText('[data-match-line]', MATCH_LINE);
+      setText('[data-match-sub]', MATCH_SUB);
+
+      // Per-variant SEO / social meta.
+      if (SEO) {
+        document.title = SEO.title;
+        const setMeta = (sel, content) => { const m = document.querySelector(sel); if (m) m.setAttribute('content', content); };
+        setMeta('meta[name="description"]', SEO.description);
+        setMeta('meta[property="og:title"]', SEO.title);
+        setMeta('meta[property="og:description"]', SEO.description);
+        setMeta('meta[name="twitter:title"]', SEO.title);
+        setMeta('meta[name="twitter:description"]', SEO.description);
+      }
 
       const headlineEl = document.querySelector('[data-hero-headline]');
       if (ACCENT_WORD && HEADLINE.includes(ACCENT_WORD)) {
