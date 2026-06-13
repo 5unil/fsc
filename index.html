@@ -417,16 +417,19 @@
         { caption: 'Lunch in Soho', img: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=640&q=70' },
       ];
 
-      // TODO: replace stock faces + placeholder names with the real member base (AOM / FF / FSC, with permission).
+      // Real FSC member base (draft copy — may change). Photos are PLACEHOLDERS
+      // pending real headshots: swap each `img` when photos arrive.
+      // Curated subset (not the full list). Order is intentional: Max first, a
+      // woman second, Sunil third, then the rest of the most interesting.
       const MEMBERS = [
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a DTC skincare brand', img: 'https://i.pravatar.cc/480?img=12' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building B2B SaaS', img: 'https://i.pravatar.cc/480?img=32' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a creative agency', img: 'https://i.pravatar.cc/480?img=5' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a marketplace', img: 'https://i.pravatar.cc/480?img=15' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building consumer fintech', img: 'https://i.pravatar.cc/480?img=51' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building an e-commerce group', img: 'https://i.pravatar.cc/480?img=68' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building dev tools', img: 'https://i.pravatar.cc/480?img=14' },
-        { name: 'Member name', company: 'Company', city: 'London', tag: 'Building a health app', img: 'https://i.pravatar.cc/480?img=45' },
+        { name: 'Max Hertan', company: 'Founder · longevity', city: 'Australia', revenue: 'Two exits', tag: 'Survived flesh-eating bacteria; now ranked 8th in the world for biological age reversal.', img: 'https://i.pravatar.cc/480?img=12' },
+        { name: 'Haley McClain Hill', company: 'Founder, TORCH', city: 'USA', revenue: '$1M–$2M/yr', tag: 'Ex-military, building the go-to apparel brand for military women worldwide.', img: 'https://i.pravatar.cc/480?img=45' },
+        { name: 'Sunil Jindal', company: 'FSC team', city: 'London', revenue: '8-figure exit', tag: 'Exited a fitness-mirror company at 8 figures. Semi-pro table tennis player.', img: 'https://i.pravatar.cc/480?img=33' },
+        { name: 'Jaryd & Dean Leibbrandt', company: 'Co-founders, Nakie', city: 'Australia', revenue: '$5M+/yr', tag: "Australia's fastest-growing outdoor brand — 20M trees pledged by 2030.", img: 'https://i.pravatar.cc/480?img=32' },
+        { name: 'Mathew Russell', company: 'Founder, Rosslyn Coffee', city: 'London', revenue: '$6M–$12M/yr', tag: 'Growing a London coffee chain while building always-on eCommerce.', img: 'https://i.pravatar.cc/480?img=5' },
+        { name: 'Marie-Lou Girard', company: 'Founder, growth hiring agency', city: 'Paris', revenue: '$1M+/yr', tag: 'Built a 100% remote, zero-employee agency to €1M+ — unbothered by conventional advice.', img: 'https://i.pravatar.cc/480?img=15' },
+        { name: 'Lennon Jessup', company: 'Founder, Hard Sneakers', city: 'LA', revenue: '$2M–$5M/yr', tag: '19, building a global wholesale marketplace for sneakers and streetwear.', img: 'https://i.pravatar.cc/480?img=68' },
+        { name: 'Gabrielle Bufrem', company: 'Product coach + angel', city: 'NYC', revenue: '$500k–$1M/yr', tag: 'Coaching founders and product teams; building an angel portfolio on the side.', img: 'https://i.pravatar.cc/480?img=51' },
       ];
 
       // TODO: drop in the figure once Mo pulls combined revenue across the FF + FSC paying base.
@@ -534,7 +537,8 @@
           </div>
           <p class="mt-4 font-semibold tracking-tight text-cream">${esc(m.name)}</p>
           <p class="mt-0.5 text-sm text-muted">${esc(m.company)} · ${esc(m.city)}</p>
-          <p class="mt-1 text-sm italic text-muted/70">${esc(m.tag)}</p>
+          ${m.revenue ? `<p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gold/80">${esc(m.revenue)}</p>` : ''}
+          <p class="mt-1.5 text-sm italic text-muted/70">${esc(m.tag)}</p>
         </div>
       `).join('');
 
