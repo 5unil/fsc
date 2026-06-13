@@ -1,0 +1,6 @@
+# Files in the repo root that should NOT be served as public static assets.
+worker.js
+wrangler.jsonc
+.assetsignore
+README.md
+.gitignore

@@ -12,21 +12,22 @@ followed by a £0 Stripe card-capture. London only.
   the members carousel, analytics, and the Tally popup.
 - `Helvetica Neue` stack, dark warm palette (`#0a0a0a` bg, `#fff3d5` text,
   `#fbe06c` gold accent).
-- One Cloudflare **Pages Function** (`functions/api/checkout.js`) for the Stripe
-  card-capture step. Everything else is static.
+- One Cloudflare **Worker** (`worker.js`) that serves the static site and the
+  Stripe card-capture endpoint (`/api/checkout`). Config in `wrangler.jsonc`.
 
 ## Run it locally
 
-No build. Serve the folder:
+Static only (no card step):
 
 ```bash
 python3 -m http.server 8000   # http://localhost:8000
 ```
 
-To exercise the Pages Function locally (needs a Stripe test key):
+Full Worker (serves the site + `/api/checkout`, needs a Stripe test key):
 
 ```bash
-npx wrangler pages dev . --binding STRIPE_SECRET_KEY=sk_test_xxx
+npx wrangler dev   # http://localhost:8787
+# set the key for local dev once:  npx wrangler secret put STRIPE_SECRET_KEY
 ```
 
 ## Editing copy
@@ -62,18 +63,17 @@ https://YOUR-DOMAIN/api/checkout?email=@email&variant=@variant&utm_source=@utm_s
 a question or hidden field on the form. `email` is what names the Stripe
 customer; the rest land in the customer's metadata for attribution.)
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers)
 
-1. **Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git**,
-   pick the `5unil/fsc` repo, branch `main`.
-2. Build settings: **Framework preset = None**, **Build command = (blank)**,
-   **Output directory = `/`**. Pages auto-detects `functions/`.
-3. **Settings → Environment variables** → add `STRIPE_SECRET_KEY` as a
-   **Secret**:
-   - Preview env → `sk_test_…`
-   - Production env → `sk_live_…`
-4. Push to `main` → auto-deploys. The Function is live at
-   `https://YOUR-DOMAIN/api/checkout`.
+The repo is already connected to the **`fsc`** Worker (Workers & Pages →
+`fsc`, deployed from `5unil/fsc` `main`). `wrangler.jsonc` sets `main: worker.js`
+plus the `ASSETS` static-assets binding, so every push to `main` redeploys both
+the site and `/api/checkout`.
+
+1. Add the Stripe key: **Workers & Pages → `fsc` → Settings → Variables and
+   Secrets → Add → type: Secret**, name `STRIPE_SECRET_KEY`, value `sk_test_…`
+   (swap to `sk_live_…` to go live). Then **Deploy** / retry the latest build.
+2. Endpoint is live at `https://YOUR-DOMAIN/api/checkout`.
 
 Test with `sk_test_…` and a Stripe test card (`4242 4242 4242 4242`) end-to-end
 before switching the Tally redirect to the production domain.
@@ -86,6 +86,6 @@ before switching the Tally redirect to the production domain.
 - **Tally hidden fields** – add fields named `variant`, `utm_source`,
   `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid` so params are
   stored, and set the redirect URL above.
-- **Stripe** – set `STRIPE_SECRET_KEY` (test then live) in Pages.
+- **Stripe** – set `STRIPE_SECRET_KEY` (test then live) on the `fsc` Worker.
 - **Plausible** – paste the script tag into the `<!-- PLAUSIBLE SCRIPT HERE -->`
   slot in `<head>`. CTA click events already fire.
