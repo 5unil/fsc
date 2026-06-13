@@ -65,12 +65,12 @@ customer; the rest land in the customer's metadata for attribution.)
 
 ## Deploy (Cloudflare Workers)
 
-The repo is already connected to the **`fsc`** Worker (Workers & Pages →
-`fsc`, deployed from `5unil/fsc` `main`). `wrangler.jsonc` sets `main: worker.js`
+The repo is already connected to the **`fsc-founder-meets`** Worker (Workers & Pages →
+`fsc-founder-meets`, deployed from `5unil/fsc` `main`). `wrangler.jsonc` sets `main: worker.js`
 plus the `ASSETS` static-assets binding, so every push to `main` redeploys both
 the site and `/api/checkout`.
 
-1. Add the Stripe key: **Workers & Pages → `fsc` → Settings → Variables and
+1. Add the Stripe key: **Workers & Pages → `fsc-founder-meets` → Settings → Variables and
    Secrets → Add → type: Secret**, name `STRIPE_SECRET_KEY`, value `sk_test_…`
    (swap to `sk_live_…` to go live). Then **Deploy** / retry the latest build.
 2. Endpoint is live at `https://YOUR-DOMAIN/api/checkout`.
@@ -86,6 +86,6 @@ before switching the Tally redirect to the production domain.
 - **Tally hidden fields** – add fields named `variant`, `utm_source`,
   `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid` so params are
   stored, and set the redirect URL above.
-- **Stripe** – set `STRIPE_SECRET_KEY` (test then live) on the `fsc` Worker.
+- **Stripe** – set `STRIPE_SECRET_KEY` (test then live) on the `fsc-founder-meets` Worker.
 - **Plausible** – paste the script tag into the `<!-- PLAUSIBLE SCRIPT HERE -->`
   slot in `<head>`. CTA click events already fire.
