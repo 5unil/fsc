@@ -1,8 +1,8 @@
-# Meet Founders – Test Plan
+# Meet Founders - Test Plan
 
 one/ladder/chat/sport landing-page test. One Cloudflare Worker (`fsc-founder-meets`) serves the
 static site **and** the Stripe £0 card-capture endpoint. The variant is chosen by
-subdomain – `one` / `ladder` / `chat` / `sport`.foundermeets.com (`sport` = control).
+subdomain - `one` / `ladder` / `chat` / `sport`.foundermeets.com (`sport` = control).
 
 **Funnel:** landing page → Tally application → `/api/checkout` (Stripe `setup`
 mode, £0) → Stripe hosted checkout → `/welcome`.
@@ -32,12 +32,12 @@ Things verifiable without dashboards. ✅ = passing.
 | 10 | Cloudflare Web Analytics collecting for the zone (auto, no beacon) | ✅ |
 
 **Known-open (not yet verifiable by automation):**
-- the variant subdomains returned **403** to an automated probe – confirm in a real
+- the variant subdomains returned **403** to an automated probe - confirm in a real
   browser (see §2.1). Likely bot-challenge or subdomains not yet routed.
 
 ---
 
-## 2. Pre-variant infrastructure – must be GREEN before building B/C/D
+## 2. Pre-variant infrastructure - must be GREEN before building B/C/D
 
 The variant system is built; these are the dependencies that make a real test work.
 Verify each in a normal browser.
@@ -86,8 +86,8 @@ For variant **X** (replace x/X):
    charged if your application is successful."* shows above the pay button.
 7. Enter a **real card** → submit.
 8. **Expect:** you land on `https://x.foundermeets.com/welcome` (the SAME subdomain
-   you started on – this is the per-variant routing).
-9. Record: did steps 5–8 all pass? ____
+   you started on - this is the per-variant routing).
+9. Record: did steps 5-8 all pass? ____
 
 Repeat for the other variant(s).
 
