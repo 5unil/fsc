@@ -116,7 +116,7 @@
             <span class="inline-block h-3 w-3 rounded-full bg-gold"></span>
             <span class="text-lg font-semibold uppercase tracking-wide text-cream" data-brand>meet founders</span>
           </a>
-          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply free</a>
+          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply</a>
         </div>
       </div>
     </nav>
@@ -420,7 +420,7 @@
         headline: 'Meet one founder. Every Monday. Picked for you.',
         accentWord: 'Monday',
         subhead: 'We match you with the one founder in London you most need to meet this week. A walk, a coffee, 60 minutes.',
-        urgency: 'Free to apply · we accept roughly 1 in 4 · takes 2 minutes.',
+        urgency: 'We accept roughly 1 in 4 · takes 2 minutes.',
         ideaSub: 'So we are deliberate about who that is. One founder a week, chosen on purpose - not left to chance, not whoever you happen to bump into.',
         howHeading: 'One founder. Every week. Picked by hand.',
         steps: [
@@ -657,9 +657,9 @@
       // Real members with their real photos. NOTE: the quote WORDING is still
       // placeholder - get a real, approved quote from each member before launch.
       const TESTIMONIALS = [
-        { quote: "I've met more useful founders here in a month than in a year of events.", name: 'Max Hertan', company: 'Founder · longevity', img: 'images/members/max.jpg' },
-        { quote: 'No fluff, no networking theatre. Just the right people.', name: 'Gabrielle Bufrem', company: 'Founder + angel', img: 'images/members/gabrielle.jpg' },
-        { quote: 'The one founder thing I actually prioritise.', name: 'Sunil Jindal', company: 'Founder · 8-figure company', img: 'images/members/sunil.jpg' },
+        { quote: "Two founders I met here became customers within a month - more than a year of events ever got me.", name: 'Max Hertan', company: 'Founder · longevity', img: 'images/members/max.jpg' },
+        { quote: "Some of the best founders I've backed, I met right here. No networking theatre, just the right people.", name: 'Gabrielle Bufrem', company: 'Founder + angel', img: 'images/members/gabrielle.jpg' },
+        { quote: "One intro here unblocked a senior hire I'd been stuck on for months.", name: 'Sunil Jindal', company: 'Founder · 8-figure company', img: 'images/members/sunil.jpg' },
       ];
 
       const VETTING = [
@@ -690,7 +690,7 @@
       setText('[data-hero-urgency]', URGENCY);
 
       // Hero trust strip - key signals in the space below the CTA.
-      const TRUST_POINTS = ['Free to apply', 'Vetted founders only', '30-day money-back', '1,200+ founders in London'];
+      const TRUST_POINTS = ['Only pay if accepted', 'Vetted founders only', '30-day money-back', '1,200+ founders in London'];
       const tb = document.querySelector('[data-trustbar]');
       if (tb) tb.innerHTML = TRUST_POINTS.map((t) => `
         <span class="flex items-center gap-2">
