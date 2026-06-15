@@ -105,17 +105,33 @@
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+      /* Sticky nav: a transparent bar that becomes a solid blurred bar with a
+         hairline divider on scroll. Explicit CSS (not Tailwind /opacity classes,
+         which don't generate when toggled from JS) so the bar is genuinely
+         opaque and never flashes a backdrop-filter seam / white line. */
+      #nav {
+        border-bottom: 1px solid transparent;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+      #nav.nav-scrolled {
+        background-color: rgba(10, 10, 10, 0.85);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
         .reveal { opacity: 1; transform: none; transition: none; }
         .shimmer { animation: none; }
+        #nav { transition: none; }
       }
     </style>
   </head>
 
   <body class="font-sans antialiased selection:bg-gold selection:text-ink">
     <!-- ============================ NAV ============================ -->
-    <nav class="fixed inset-x-0 top-0 z-50 transition-all duration-300" id="nav">
+    <nav class="fixed inset-x-0 top-0 z-50" id="nav">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="flex items-center justify-between py-5">
           <a href="#top" class="flex items-center gap-2.5" aria-label="Home">
@@ -898,8 +914,8 @@
       /* ---------------------------- NAV ON SCROLL ---------------------------- */
       const nav = document.getElementById('nav');
       const onScroll = () => {
-        if (window.scrollY > 12) nav.classList.add('bg-ink/85', 'backdrop-blur', 'border-b', 'border-white/10');
-        else nav.classList.remove('bg-ink/85', 'backdrop-blur', 'border-b', 'border-white/10');
+        if (window.scrollY > 12) nav.classList.add('nav-scrolled');
+        else nav.classList.remove('nav-scrolled');
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
