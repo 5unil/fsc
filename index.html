@@ -206,12 +206,9 @@
         </p>
         <p class="reveal mt-6 max-w-2xl text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-idea-sub></p>
 
-        <div class="reveal mt-10 flex items-center gap-4" style="transition-delay:180ms">
-          <img src="images/members/sunil.jpg" alt="Meet Founders founder" loading="lazy" class="h-14 w-14 shrink-0 rounded-full border border-white/10 object-cover" />
-          <div>
-            <p class="font-signature text-4xl leading-none text-gold">Sunil</p>
-            <p class="mt-1.5 text-sm text-muted">Sunil &amp; the Meet Founders team</p>
-          </div>
+        <div class="reveal mt-10" style="transition-delay:180ms">
+          <p class="font-signature text-5xl leading-none text-gold">Jai</p>
+          <p class="mt-2 text-sm text-muted">Jai &amp; the Meet Founders team</p>
         </div>
       </div>
     </section>
@@ -328,7 +325,7 @@
     <section class="py-24 sm:py-32">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> In their words
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> What members say
         </p>
         <div class="mt-14 grid gap-6 md:grid-cols-3" data-testimonials></div>
       </div>
@@ -338,7 +335,7 @@
     <section class="py-24 sm:py-32" id="community">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> In real life
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Out in London
         </p>
         <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Founders, actually meeting up.</h2>
         <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Not stock photos - our members, at meetups that actually happen, every week.</p>
@@ -651,7 +648,7 @@
       const PRICING = _V.pricing;
       // Universal objection-handlers appended to every variant's own FAQ.
       const SHARED_FAQ = [
-        { q: 'Is it really free to apply?', a: 'Yes. Applying costs nothing - we only take payment if you are accepted. Cancel any time after that, no lock-in.' },
+        { q: 'Is applying actually free?', a: 'Yes. Applying costs nothing - we only take payment if you are accepted. Cancel any time after that, no lock-in.' },
         { q: "What if it's not for me?", a: 'Your first month is covered by a 30-day money-back guarantee. If it is not worth it, email us and we will refund you in full, no questions asked.' },
         { q: 'Why London only?', a: 'We are starting in London to keep the network dense - better to be deep in one city than thin across ten. More cities later.' },
       ];
@@ -669,10 +666,10 @@
       // "What you get" - universal benefits that hold across every variant
       // (the 1-on-1, the ladder, the chat, the sport groups).
       const BENEFITS = [
-        { title: 'People who get it', body: "Founders at your stage and in your fight, not advice from the cheap seats." },
-        { title: 'Honest, fast answers', body: "Ask the thing you can't ask your team or your investors, and get a straight reply." },
-        { title: 'Intros that matter', body: 'One warm introduction to the right person beats a hundred cold emails.' },
-        { title: 'A network that compounds', body: 'Relationships with serious founders that pay off for years, not one coffee.' },
+        { title: 'People who get it', body: "Founders at your stage and in your fight, not advice from the cheap seats.", icon: 'M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z' },
+        { title: 'Honest, fast answers', body: "Ask the thing you can't ask your team or your investors, and get a straight reply.", icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z' },
+        { title: 'Intros that matter', body: 'One warm introduction to the right person beats a hundred cold emails.', icon: 'M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244' },
+        { title: 'A network that compounds', body: 'Relationships with serious founders that pay off for years, not one coffee.', icon: 'M2.25 18 9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.28m5.94 2.28-2.28 5.941' },
       ];
 
       // Real FSC member base (draft copy - may change). Photos are PLACEHOLDERS
@@ -704,9 +701,9 @@
       ];
 
       const VETTING = [
-        { title: 'Stage', body: 'Are you actually building, with revenue or genuine traction?' },
-        { title: 'Intent', body: 'Are you here to give as much as you take, not to sell?' },
-        { title: 'Fit', body: 'Would the other founders be glad you turned up?' },
+        { title: 'Stage', body: 'Are you actually building, with revenue or genuine traction?', icon: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z' },
+        { title: 'Intent', body: 'Are you here to give as much as you take, not to sell?', icon: 'M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z' },
+        { title: 'Fit', body: 'Would the other founders be glad you turned up?', icon: 'M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z' },
       ];
 
       // Who it's for (left column) vs not for (right column) - side-by-side checklist.
@@ -837,6 +834,9 @@
       // What you get (benefit cards)
       document.querySelector('[data-benefits]').innerHTML = BENEFITS.map((b, i) => `
         <div class="reveal card rounded-2xl p-7" style="transition-delay:${i * 70}ms">
+          <div class="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 text-gold">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="${b.icon}" /></svg>
+          </div>
           <h3 class="text-lg font-semibold tracking-tight text-cream">${esc(b.title)}</h3>
           <p class="mt-3 leading-relaxed text-muted">${esc(b.body)}</p>
         </div>
@@ -884,6 +884,9 @@
       // Vetting
       document.querySelector('[data-vetting]').innerHTML = VETTING.map((v) => `
         <div class="reveal bg-surface p-7 sm:p-8">
+          <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 text-gold">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="${v.icon}" /></svg>
+          </div>
           <h3 class="text-lg font-semibold tracking-tight text-cream">${esc(v.title)}</h3>
           <p class="mt-2 leading-relaxed text-muted">${esc(v.body)}</p>
         </div>
