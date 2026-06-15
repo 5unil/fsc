@@ -175,8 +175,8 @@
             <dd class="mt-1.5 text-[0.7rem] uppercase tracking-eyebrow text-muted sm:text-xs">applications accepted</dd>
           </div>
           <div class="py-7 text-center sm:py-8">
-            <dt class="text-3xl font-semibold tracking-tight text-gold sm:text-4xl">£0</dt>
-            <dd class="mt-1.5 text-[0.7rem] uppercase tracking-eyebrow text-muted sm:text-xs">to apply</dd>
+            <dt class="text-3xl font-semibold tracking-tight text-gold sm:text-4xl">13 hrs</dt>
+            <dd class="mt-1.5 text-[0.7rem] uppercase tracking-eyebrow text-muted sm:text-xs">average match time</dd>
           </div>
         </dl>
       </div>
@@ -468,7 +468,7 @@
         headline: 'The one founder you need this week. Picked for you.',
         accentWord: 'you need',
         subhead: 'Every Monday we hand-pick the one founder in London who can actually move your business forward - someone a step ahead who gets exactly what you are building. A walk, a coffee, 60 minutes.',
-        splash: 'images/ugc/ugc-4.jpg',
+        splash: 'images/hero-one.jpg',
         urgency: 'We accept roughly 1 in 4 · takes 2 minutes.',
         ideaSub: 'So we are deliberate about who that is. One founder a week, chosen on purpose - not left to chance, not whoever you happen to bump into.',
         howHeading: 'One founder. Every week. Picked by hand.',
@@ -925,10 +925,13 @@
 
       // FAQ
       document.querySelector('[data-faq]').innerHTML = FAQ.map((f, i) => `
-        <div class="reveal border-b border-white/10 pb-10 last:border-0 last:pb-0" style="transition-delay:${i * 70}ms">
-          <h3 class="text-lg font-semibold tracking-tight text-cream sm:text-xl">${esc(f.q)}</h3>
+        <details class="reveal group border-b border-white/10 py-5 first:pt-0" style="transition-delay:${i * 70}ms">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold tracking-tight text-cream sm:text-xl [&::-webkit-details-marker]:hidden">
+            <span>${esc(f.q)}</span>
+            <svg class="h-5 w-5 shrink-0 text-muted transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+          </summary>
           <p class="mt-3 max-w-2xl leading-relaxed text-muted">${esc(f.a)}</p>
-        </div>
+        </details>
       `).join('');
 
       /* ---------------------------- NAV ON SCROLL ---------------------------- */
