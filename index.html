@@ -209,6 +209,25 @@
       </div>
     </section>
 
+    <!-- ============================ THE MATCHING ENGINE ============================ -->
+    <section class="border-t border-white/10 bg-surface py-24 sm:py-32">
+      <div class="mx-auto grid max-w-content grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-7">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> The matching engine
+          </p>
+          <h2 class="reveal mt-5 max-w-xl text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Not a directory. A system that decides who you meet.</h2>
+          <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">We score every founder in London on stage, intent, and what they're building - then put the right people in front of each other on purpose. Nothing here is random, and the more it learns, the sharper it gets.</p>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="reveal card rounded-2xl p-10 text-center" style="transition-delay:120ms">
+            <p class="text-6xl font-medium tracking-tight text-gold sm:text-7xl">13 hrs</p>
+            <p class="mt-4 text-sm uppercase tracking-eyebrow text-muted">average time to match a new member</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============================ MATCHING TIERS ============================ -->
     <section class="py-24 sm:py-32" id="tiers">
       <div class="mx-auto max-w-content px-5 sm:px-8">
@@ -261,6 +280,20 @@
       </div>
     </section>
 
+    <!-- ============================ COMMUNITY / UGC ============================ -->
+    <section class="py-24 sm:py-32" id="community">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> In real life
+        </p>
+        <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Founders, actually meeting up.</h2>
+        <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Not stock photos - real members at real meetups, happening every week.</p>
+      </div>
+      <div class="reveal mt-12" style="transition-delay:80ms">
+        <div class="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-5 pb-2 sm:px-8" data-ugc></div>
+      </div>
+    </section>
+
     <!-- ============================ VETTING ============================ -->
     <section class="border-t border-white/10 bg-surface py-24 sm:py-32" id="vetting">
       <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
@@ -269,7 +302,7 @@
             <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Vetting
           </p>
           <h2 class="reveal mt-5 text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">We reject more than we accept.</h2>
-          <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">Every application is hand-screened. No bots, no auto-approve. Roughly 1 in 4 get through.</p>
+          <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">Every application is read by a person - no bots, no auto-approve. We turn away roughly 3 in 4, including founders we like, to keep the room worth being in.</p>
 
           <div class="reveal mt-8" style="transition-delay:180ms">
             <p class="text-xs font-semibold uppercase tracking-eyebrow text-muted">Not for</p>
@@ -301,6 +334,11 @@
         <p class="reveal mx-auto mt-8 max-w-lg text-center text-sm text-muted" style="transition-delay:80ms">
           <span class="font-semibold text-cream">London only.</span> We run in <span data-live-cities></span> for now. No charge until you're in.
         </p>
+
+        <div class="reveal mx-auto mt-6 flex max-w-lg items-start gap-3 rounded-2xl border border-gold/30 bg-gold/[0.05] p-5" style="transition-delay:120ms">
+          <svg class="mt-0.5 h-5 w-5 shrink-0 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+          <p class="text-sm leading-relaxed text-cream"><span class="font-semibold">30-day money-back guarantee.</span> Try your first month. If it isn't worth it, email us and we'll refund you in full - no questions asked.</p>
+        </div>
       </div>
     </section>
 
@@ -404,6 +442,7 @@
           'Matched within your tier',
           'Founding London member - rate locked in',
           'Vetted founders only',
+          'The private member group chat, always on',
           'Cancel anytime',
         ],
         faq: [
@@ -486,6 +525,7 @@
             'A same-stage peer, plus a mentor and mentee a step away',
             'Matched within your tier',
             'Vetted founders only',
+            'The private member group chat, always on',
             'Cancel anytime',
           ],
           faq: [
@@ -524,6 +564,7 @@
             'Same-stage matching (Builder, Operator, or Scale)',
             'Play any sport we run in London',
             'Vetted founders only',
+            'The private member group chat, always on',
             'Cancel anytime',
           ],
           faq: [
@@ -605,8 +646,7 @@
         { name: 'Gabrielle Bufrem', company: 'Founder + angel', city: 'NYC', revenue: '£500k-£1M/yr', tag: 'Coaching founders and product teams; building an angel portfolio on the side.', img: 'images/members/gabrielle.jpg' },
       ];
 
-      // TODO: drop in the figure once Mo pulls combined revenue across the FF + FSC paying base.
-      const CREDIBILITY_STAT = "Members include founders who've exited companies and built businesses doing £1M-£10M+ a year.";
+      const CREDIBILITY_STAT = "1,200+ vetted founders in London - many have exited companies or run businesses doing £1M-£10M+ a year.";
 
       // Live cities + waitlist transparency.
       const LIVE_CITIES = ['London'];
@@ -756,6 +796,15 @@
             </span>
           </figcaption>
         </figure>
+      `).join('');
+
+      // Community / UGC photo reel - real member meetups (photos supplied by the team).
+      const UGC = ['ugc-1', 'ugc-2', 'ugc-3', 'ugc-4', 'ugc-5', 'ugc-6', 'ugc-7', 'ugc-8', 'ugc-9'];
+      const ugcEl = document.querySelector('[data-ugc]');
+      if (ugcEl) ugcEl.innerHTML = UGC.map((id) => `
+        <div class="h-64 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:h-72">
+          <img src="images/ugc/${id}.jpg" alt="Meet Founders members at a meetup" loading="lazy" class="h-full w-auto max-w-none object-cover" />
+        </div>
       `).join('');
 
       // Anti-criteria
