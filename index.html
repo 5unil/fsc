@@ -255,10 +255,22 @@
     <!-- ============================ COMMUNITY / UGC ============================ -->
     <section class="py-20 sm:py-24" id="community">
       <div class="mx-auto max-w-content px-5 sm:px-8">
-        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Out in London
-        </p>
-        <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Founders, actually meeting up.</h2>
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Out in London
+            </p>
+            <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Founders, actually meeting up.</h2>
+          </div>
+          <div class="reveal hidden shrink-0 gap-2 sm:flex" style="transition-delay:120ms">
+            <button type="button" data-ugc-prev aria-label="Previous photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button type="button" data-ugc-next aria-label="Next photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream transition-colors hover:bg-white/10">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        </div>
         <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Not stock photos - our members, at meetups that actually happen, every week.</p>
       </div>
       <div class="reveal mt-12" style="transition-delay:80ms">
@@ -864,6 +876,17 @@
           <img src="images/ugc/${id}.jpg" alt="Founder Meets members at a meetup" loading="lazy" class="h-full w-auto max-w-none object-cover" />
         </div>
       `).join('');
+
+      const ugcPrev = document.querySelector('[data-ugc-prev]');
+      const ugcNext = document.querySelector('[data-ugc-next]');
+      const scrollUgc = (dir) => {
+        if (!ugcEl) return;
+        const card = ugcEl.querySelector(':scope > div');
+        const amount = card ? card.getBoundingClientRect().width + 16 : 280;
+        ugcEl.scrollBy({ left: dir * amount, behavior: 'smooth' });
+      };
+      if (ugcPrev) ugcPrev.addEventListener('click', () => scrollUgc(-1));
+      if (ugcNext) ugcNext.addEventListener('click', () => scrollUgc(1));
 
       // Who it's for / not for (side-by-side checklist)
       const forEl = document.querySelector('[data-for]');
