@@ -47,7 +47,7 @@ async function createSession(params, env, origin) {
   // submission through a single host. Falls back to the request origin off the
   // production domain (localhost / *.workers.dev) or when the variant is unknown.
   const variant = (params.get('variant') || '').toLowerCase();
-  const slugs = ['one', 'ladder', 'chat', 'sport'];
+  const slugs = ['one', 'chat', 'sport'];
   const base = slugs.includes(variant) && origin.endsWith('foundermeets.com') ? `https://${variant}.foundermeets.com` : origin;
 
   const form = new URLSearchParams();

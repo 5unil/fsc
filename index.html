@@ -555,48 +555,6 @@
           },
         },
 
-        // 'ladder' = the 3-level peer ladder: each month you're matched with
-        // three founders - one a step ahead (mentor), one at your level (peer),
-        // one a step behind (mentee). (MVP matches same-stage only; do not
-        // expose that here.) DRAFT copy adapted to London / £99.
-        ladder: {
-          ...BASE,
-          headline: 'Learn from one. Build with one. Lift one. Every month.',
-          accentWord: 'Every month',
-          subhead: 'Each month, we match you with three founders - one a step ahead, one at your level, one a step behind. Learn from one, build with another, give back to the third.',
-          splash: 'images/ugc/ugc-3.jpg',
-          ideaSub: 'So we are deliberate about who that is. Learn from people a step ahead, build with people alongside, give back to people a step behind - every month.',
-          howHeading: 'Three founders. Every month. Matched by hand.',
-          steps: [
-            { n: '1', title: 'Apply', body: 'Tell us your stage. We vet every applicant.' },
-            { n: '2', title: 'Match', body: "On the first Monday of each month, you're matched with three founders - one a step ahead of you, one at your level, one a step behind. We email you the intros." },
-            { n: '3', title: 'Meet', body: 'Walks or coffees, 60 minutes each. We help with the scheduling. One-tap reschedule within the month.' },
-          ],
-          stats: [
-            { figure: '1 in 4', label: 'applications accepted' },
-            { figure: '3 founders', label: 'mentor, peer, mentee' },
-            { figure: 'Monthly', label: 'matched by hand' },
-          ],
-          pricing: [
-            'Three curated matches a month: one mentor, one peer, one mentee',
-            'A same-stage peer, plus a mentor and mentee a step away',
-            'Matched within your tier',
-            'Vetted founders only',
-            'The private member group chat, always on',
-            'Cancel anytime',
-          ],
-          faq: [
-            { q: 'How do you decide who is ahead, at, or behind me?', a: 'You self-select your stage when you apply, and we verify your business so the matching routes accurately: each month, one founder a step ahead, one at your level, one a step behind.' },
-            { q: "What if I can't fit three meetups in a month?", a: 'You can reschedule once per match within the month. Skipping has no penalty, but a skipped match costs the founder on the other side, so we ask members to commit before locking in.' },
-            { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
-            { q: "What if you can't match me across all three?", a: 'We only charge once we can match you across all three stages. If London is light at a stage, you wait, free, until we can.' },
-          ],
-          seo: {
-            title: 'Meet Founders - one mentor, one peer, one mentee, every month',
-            description: 'Each month, we match you with three founders: one a step ahead, one at your level, one a step behind. Learn, build, give back.',
-          },
-        },
-
         // 'sport' = the legacy FSC product: weekly small-group SPORT matching.
         // London-only and £99 like the others - only the product shape differs.
         sport: {
@@ -638,7 +596,7 @@
         },
       };
 
-      // Variant is chosen by subdomain (one/ladder/chat/sport), then ?variant=,
+      // Variant is chosen by subdomain (one/chat/sport), then ?variant=,
       // then defaults to 'one'. The subdomain slug IS the variant key.
       function detectVariant() {
         const sub = location.hostname.toLowerCase().split('.')[0];
@@ -687,7 +645,7 @@
       const TIERS_NOTE = 'One membership, one price across every tier, so you are always among founders at your level.';
 
       // "What you get" - universal benefits that hold across every variant
-      // (the 1-on-1, the ladder, the chat, the sport groups).
+      // (the 1-on-1, the chat, the sport groups).
       const BENEFITS = [
         { title: 'People who get it', body: "Founders at your stage and in your fight, not advice from the cheap seats.", icon: 'M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z' },
         { title: 'Honest, fast answers', body: "Ask the thing you can't ask your team or your investors, and get a straight reply.", icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z' },
