@@ -142,7 +142,10 @@
           <p class="reveal mt-5 text-sm text-muted" style="transition-delay:300ms" data-hero-urgency></p>
 
           <!-- Trust strip: fills the hero space below the CTA with the key signals. -->
-          <div class="reveal mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm font-medium text-cream/90" style="transition-delay:360ms" data-trustbar></div>
+          <div class="reveal mt-10" style="transition-delay:360ms">
+            <p class="text-sm font-semibold text-cream">Hand-matched by a person, not an algorithm.</p>
+            <div class="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm font-medium text-cream/90" data-trustbar></div>
+          </div>
         </div>
       </div>
     </section>
@@ -184,7 +187,7 @@
     <section class="py-28 text-center sm:py-36">
       <div class="mx-auto max-w-4xl px-5 sm:px-8">
         <p class="reveal flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> The idea
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Why you'll love it
         </p>
         <p class="reveal mt-7 text-4xl font-light leading-[1.15] tracking-tight text-cream sm:text-5xl lg:text-6xl" style="transition-delay:60ms">
           You become the people you <span class="text-gold">spend your time with</span>.
@@ -263,13 +266,25 @@
       </div>
     </section>
 
-    <!-- ============================ WHO IT'S FOR ============================ -->
-    <section class="border-y border-white/10 bg-surface py-28 sm:py-36">
-      <div class="mx-auto max-w-4xl px-5 text-center sm:px-8">
-        <p class="reveal text-3xl font-light leading-[1.3] tracking-tight text-cream sm:text-[2.5rem] sm:leading-[1.25]">
-          For founders building companies that actually make money. Not networkers. Not pitch-deck collectors.
-          <span class="text-muted">All substance, no noise.</span>
-        </p>
+    <!-- ============================ WHO IT'S FOR / NOT FOR ============================ -->
+    <section class="border-y border-white/10 bg-surface py-24 sm:py-32" id="who">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Who it's for
+          </p>
+          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Built for founders. Not for everyone.</h2>
+        </div>
+        <div class="mt-14 grid gap-6 md:grid-cols-2">
+          <div class="reveal card rounded-2xl p-8 sm:p-9">
+            <p class="text-sm font-semibold uppercase tracking-eyebrow text-gold">For you if you're</p>
+            <ul class="mt-6 space-y-4" data-for></ul>
+          </div>
+          <div class="reveal card rounded-2xl p-8 sm:p-9" style="transition-delay:80ms">
+            <p class="text-sm font-semibold uppercase tracking-eyebrow text-muted">Not for</p>
+            <ul class="mt-6 space-y-4" data-notfor></ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -306,11 +321,6 @@
           </p>
           <h2 class="reveal mt-5 text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">We reject more than we accept.</h2>
           <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">Every application is read by a person - no bots, no auto-approve. We turn away roughly 3 in 4, including founders we like, to keep the bar high for everyone already in.</p>
-
-          <div class="reveal mt-8" style="transition-delay:180ms">
-            <p class="text-xs font-semibold uppercase tracking-eyebrow text-muted">Not for</p>
-            <ul class="mt-4 space-y-3" data-anti></ul>
-          </div>
         </div>
         <div class="lg:col-span-6">
           <div class="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10" data-vetting></div>
@@ -327,6 +337,7 @@
             <span class="text-6xl font-medium tracking-tight text-cream sm:text-7xl">£99</span>
             <span class="text-lg text-muted">/ month</span>
           </p>
+          <p class="mt-2 text-sm text-muted">Works out about £23 a week.</p>
 
           <ul class="mt-9 space-y-4" data-pricing></ul>
 
@@ -417,15 +428,15 @@
       // copy. Shared sections (members, gallery, vetting, footer) live outside.
       const BASE = {
         eyebrow: 'London only',
-        headline: 'Meet one founder. Every Monday. Picked for you.',
-        accentWord: 'Monday',
-        subhead: 'We match you with the one founder in London you most need to meet this week. A walk, a coffee, 60 minutes.',
+        headline: 'The one founder you need this week. Picked for you.',
+        accentWord: 'you need',
+        subhead: 'Every Monday we hand-pick the one founder in London who can actually move your business forward - someone a step ahead who gets exactly what you are building. A walk, a coffee, 60 minutes.',
         urgency: 'We accept roughly 1 in 4 · takes 2 minutes.',
         ideaSub: 'So we are deliberate about who that is. One founder a week, chosen on purpose - not left to chance, not whoever you happen to bump into.',
         howHeading: 'One founder. Every week. Picked by hand.',
         steps: [
           { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-          { n: '2', title: 'Match', body: "Every Monday, we send you one founder to meet - walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
+          { n: '2', title: 'Match', body: "Every Monday, we send one founder straight to your inbox to meet - walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
           { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
         ],
         stats: [
@@ -439,7 +450,7 @@
           { name: 'Scale', range: '£1M+ a year', body: 'Running a sizeable business, among founders in the same league.', highlight: true },
         ],
         matchLine: 'The right people. In your corner.',
-        matchSub: 'Nothing complicated. Vetted founders in London, when it counts.',
+        matchSub: 'Make years of progress in one conversation - by asking the right people what you cannot ask anyone else.',
         pricing: [
           'One curated match per week',
           'Matched within your tier',
@@ -468,9 +479,9 @@
         // founder chat. Drop in, suggest meetups, attend events. DRAFT copy.
         chat: {
           ...BASE,
-          headline: 'Join the group chat to get access.',
-          accentWord: 'group chat',
-          subhead: 'A private channel of vetted founders in London. Drop in when you want. Meet up when it makes sense.',
+          headline: 'The founders you need, one message away.',
+          accentWord: 'one message away',
+          subhead: 'A private channel of vetted London founders. Ask the thing you are stuck on, get a straight answer, and meet up when it makes sense - the right people, one message away.',
           ideaSub: 'So we are deliberate about who that is. A small, vetted channel of founders in London - the right people, one tap away, no scheduled meetups required.',
           howHeading: 'Vetted founders. One private chat. Hand-screened.',
           steps: [
@@ -508,14 +519,14 @@
         // expose that here.) DRAFT copy adapted to London / £99.
         ladder: {
           ...BASE,
-          headline: 'One mentor. One peer. One mentee. Every month.',
+          headline: 'Learn from one. Build with one. Lift one. Every month.',
           accentWord: 'Every month',
           subhead: 'Each month, we match you with three founders - one a step ahead, one at your level, one a step behind. Learn from one, build with another, give back to the third.',
           ideaSub: 'So we are deliberate about who that is. Learn from people a step ahead, build with people alongside, give back to people a step behind - every month.',
           howHeading: 'Three founders. Every month. Matched by hand.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your stage. We vet every applicant.' },
-            { n: '2', title: 'Match', body: "On the first Monday of each month, you're matched with three founders - one a step ahead of you, one at your level, one a step behind." },
+            { n: '2', title: 'Match', body: "On the first Monday of each month, you're matched with three founders - one a step ahead of you, one at your level, one a step behind. We email you the intros." },
             { n: '3', title: 'Meet', body: 'Walks or coffees, 60 minutes each. We help with the scheduling. One-tap reschedule within the month.' },
           ],
           stats: [
@@ -547,14 +558,14 @@
         // London-only and £99 like the others - only the product shape differs.
         sport: {
           ...BASE,
-          headline: 'Play sport with founders in London.',
-          accentWord: 'sport',
-          subhead: 'Each week we match you with a small group of founders in London to play a sport together. Padel, tennis, table tennis, running - whatever your thing is.',
+          headline: 'Make founder friends doing the sport you already love.',
+          accentWord: 'founder friends',
+          subhead: 'Every week we match you into a small group of founders in London for the sport you love - padel, tennis, running, whatever your thing is. Compete, build, and meet the people you would never cross paths with otherwise.',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London, matched on purpose - playing the sport you love, not left to chance.',
           howHeading: 'A new group. Every week. Matched by hand.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
-            { n: '2', title: 'Match', body: 'Each week, we put you into a small group of 4-6 founders in London who play your sport. Same stage. Same intent.' },
+            { n: '2', title: 'Match', body: 'Each week, we put you into a small group of 4-6 founders in London who play your sport. Same stage. Same intent. We email you your group each week.' },
             { n: '3', title: 'Play', body: 'Your group picks a time and place that works. We help you book the venue.' },
           ],
           stats: [
@@ -614,7 +625,13 @@
       const MATCH_LINE = _V.matchLine;
       const MATCH_SUB = _V.matchSub;
       const PRICING = _V.pricing;
-      const FAQ = _V.faq;
+      // Universal objection-handlers appended to every variant's own FAQ.
+      const SHARED_FAQ = [
+        { q: 'Is it really free to apply?', a: 'Yes. Applying costs nothing - we only take payment if you are accepted. Cancel any time after that, no lock-in.' },
+        { q: "What if it's not for me?", a: 'Your first month is covered by a 30-day money-back guarantee. If it is not worth it, email us and we will refund you in full, no questions asked.' },
+        { q: 'Why London only?', a: 'We are starting in London to keep the network dense - better to be deep in one city than thin across ten. More cities later.' },
+      ];
+      const FAQ = [..._V.faq, ...SHARED_FAQ];
       const SEO = _V.seo;
 
       /* ---- Shared copy (edit freely; not variant-specific) ---- */
@@ -668,10 +685,19 @@
         { title: 'Fit', body: 'Would the other founders be glad you turned up?' },
       ];
 
+      // Who it's for (left column) vs not for (right column) - side-by-side checklist.
+      const FOR_CRITERIA = [
+        'Building a company right now, with revenue or traction',
+        'Have started or sold a business before',
+        'Here to give as much as you take',
+        'In London, or here often',
+      ];
+
       const ANTI_CRITERIA = [
         'Investors looking for deal flow',
         'Coaches selling courses',
         'Anyone with a pitch deck in their back pocket',
+        'Here to take without giving',
       ];
 
       /* ---------------------------- RENDER ---------------------------- */
@@ -819,10 +845,18 @@
         </div>
       `).join('');
 
-      // Anti-criteria
-      document.querySelector('[data-anti]').innerHTML = ANTI_CRITERIA.map((a) => `
+      // Who it's for / not for (side-by-side checklist)
+      const forEl = document.querySelector('[data-for]');
+      if (forEl) forEl.innerHTML = FOR_CRITERIA.map((a) => `
+        <li class="flex items-start gap-3 text-cream/90">
+          <svg class="mt-0.5 h-5 w-5 shrink-0 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+          ${esc(a)}
+        </li>
+      `).join('');
+      const notForEl = document.querySelector('[data-notfor]');
+      if (notForEl) notForEl.innerHTML = ANTI_CRITERIA.map((a) => `
         <li class="flex items-start gap-3 text-muted">
-          <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-white/30"></span>
+          <svg class="mt-0.5 h-5 w-5 shrink-0 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
           ${esc(a)}
         </li>
       `).join('');
