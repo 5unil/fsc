@@ -90,9 +90,26 @@ async function createSession(params, env, origin) {
   return Response.redirect(session.url, 303);
 }
 
+const VARIANT_SLUGS = ['one', 'ladder', 'chat', 'sport'];
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const host = url.hostname.toLowerCase();
+
+    // Apex / www: don't serve a variant here (it would bias the test). Send the
+    // visitor to a variant subdomain - sticky to the one they first saw (the
+    // mf_variant cookie), or a random one for a brand-new visitor (even split).
+    if (host === 'foundermeets.com' || host === 'www.foundermeets.com') {
+      const cookie = (request.headers.get('Cookie') || '').match(/(?:^|;\s*)mf_variant=([a-z]+)/);
+      let v = cookie && VARIANT_SLUGS.includes(cookie[1]) ? cookie[1] : null;
+      const isNew = !v;
+      if (!v) v = VARIANT_SLUGS[Math.floor(Math.random() * VARIANT_SLUGS.length)];
+      const headers = { Location: `https://${v}.foundermeets.com${url.pathname}${url.search}` };
+      // Make a newly-assigned visitor sticky from the first hit.
+      if (isNew) headers['Set-Cookie'] = `mf_variant=${v}; Domain=.foundermeets.com; Path=/; Max-Age=2592000; SameSite=Lax; Secure`;
+      return new Response(null, { status: 302, headers });
+    }
 
     if (url.pathname === '/api/checkout') {
       if (request.method === 'GET') {

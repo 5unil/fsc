@@ -549,6 +549,14 @@
       }
       const VARIANT = detectVariant();
       const _V = VARIANTS[VARIANT] || VARIANTS.one;
+
+      // Remember the variant this visitor saw, so the apex (foundermeets.com)
+      // can send them back to it next time. Functional cookie, *.foundermeets.com.
+      try {
+        if (location.hostname.endsWith('foundermeets.com')) {
+          document.cookie = 'mf_variant=' + VARIANT + '; domain=.foundermeets.com; path=/; max-age=2592000; SameSite=Lax; Secure';
+        }
+      } catch (e) {}
       const HERO_EYEBROW = _V.eyebrow;
       const HEADLINE = _V.headline;
       const ACCENT_WORD = _V.accentWord;
