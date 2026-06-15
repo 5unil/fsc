@@ -90,7 +90,9 @@ async function createSession(params, env, origin) {
   return Response.redirect(session.url, 303);
 }
 
-const VARIANT_SLUGS = ['one', 'ladder', 'chat', 'sport'];
+// 'ladder' retired: removed from the apex rotation so new/returning visitors are
+// only split across the live variants. Detach ladder.foundermeets.com in Cloudflare.
+const VARIANT_SLUGS = ['one', 'chat', 'sport'];
 
 export default {
   async fetch(request, env) {
