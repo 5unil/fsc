@@ -860,7 +860,10 @@
       `).join('');
 
       // Community / UGC photo reel - real member meetups (photos supplied by the team).
-      const UGC = ['ugc-1', 'ugc-2', 'ugc-3', 'ugc-4', 'ugc-5', 'ugc-6', 'ugc-7', 'ugc-8', 'ugc-9'];
+      // 1:1 variant shows the 2-person photos; the group variants (sport, chat) show the group shots.
+      const UGC_PAIRS = ['ugc-4', 'ugc-7', 'ugc-8'];
+      const UGC_GROUPS = ['ugc-1', 'ugc-2', 'ugc-3', 'ugc-5', 'ugc-6', 'ugc-9'];
+      const UGC = VARIANT === 'one' ? UGC_PAIRS : UGC_GROUPS;
       const ugcEl = document.querySelector('[data-ugc]');
       if (ugcEl) ugcEl.innerHTML = UGC.map((id) => `
         <div class="h-64 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:h-72">
