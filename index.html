@@ -181,7 +181,7 @@
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <dl class="grid grid-cols-3 divide-x divide-white/10">
           <div class="py-7 text-center sm:py-8">
-            <dt class="text-3xl font-semibold tracking-tight text-gold sm:text-4xl">1,200+</dt>
+            <dt class="text-3xl font-semibold tracking-tight text-gold sm:text-4xl">1,000+</dt>
             <dd class="mt-1.5 text-[0.7rem] uppercase tracking-eyebrow text-muted sm:text-xs">founders in London</dd>
           </div>
           <div class="py-7 text-center sm:py-8">
@@ -216,15 +216,10 @@
           </div>
         </div>
 
+        <p class="reveal mt-6 max-w-2xl text-xl font-light leading-relaxed text-cream sm:text-2xl" style="transition-delay:90ms">The average member is 28, running a $2M/yr online business. <span class="text-gold">Live, build and travel with them</span> - from castles in the French countryside to treehouses in the Costa Rican jungle.</p>
+
         <div class="reveal mt-12" style="transition-delay:80ms">
           <div class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2" data-members></div>
-        </div>
-
-        <!-- Aggregate credibility stat -->
-        <div class="reveal mt-12 border-t border-white/10 pt-8" style="transition-delay:80ms">
-          <p class="flex items-center justify-center gap-3 text-center text-xl font-light leading-relaxed text-cream sm:text-2xl" data-credibility>
-            <span class="inline-block h-2 w-2 shrink-0 rounded-full bg-gold"></span>
-          </p>
         </div>
       </div>
     </section>
@@ -269,7 +264,7 @@
             </button>
           </div>
         </div>
-        <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Not stock photos - our members, at meetups that actually happen, every week.</p>
+        <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Our members - from weekly London meetups to trips abroad.</p>
       </div>
       <div class="reveal mt-12" style="transition-delay:80ms">
         <div class="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-5 pb-2 sm:px-8" data-ugc></div>
@@ -303,12 +298,12 @@
             <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Meet Atlas
           </p>
           <h2 class="reveal mt-5 max-w-xl text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Atlas knows who you should meet next.</h2>
-          <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Atlas, our AI matching engine, scores every founder in London on stage, what they're building, and what they need - then pairs you with the people you'd gain most from meeting. The more it learns, the sharper it gets, so the right introductions stop coming down to luck.</p>
+          <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Atlas, our AI matching engine, deep-researches every founder in our 1,000+ London network - their stage, what they're building, what they need, what makes them tick - then finds the people you'd gain most from meeting. The more it learns, the sharper it gets.</p>
         </div>
         <div class="lg:col-span-5">
           <div class="reveal card rounded-2xl p-10 text-center" style="transition-delay:120ms">
             <p class="text-6xl font-medium tracking-tight text-gold sm:text-7xl">13 hrs</p>
-            <p class="mt-4 text-sm uppercase tracking-eyebrow text-muted">average time to match you</p>
+            <p class="mt-4 text-sm uppercase tracking-eyebrow text-muted">of research per match</p>
           </div>
         </div>
       </div>
@@ -696,8 +691,6 @@
         { name: 'Gabrielle Bufrem', company: 'Founder + angel', city: 'NYC', revenue: '£500k-£1M/yr', tag: 'Coaching founders and product teams; building an angel portfolio on the side.', img: 'images/members/gabrielle.jpg' },
       ];
 
-      const CREDIBILITY_STAT = "1,200+ vetted founders in London - many have exited companies or run businesses doing £1M-£10M+ a year.";
-
       // Live cities + waitlist transparency.
       const LIVE_CITIES = ['London'];
 
@@ -833,9 +826,6 @@
       };
       if (membersPrev) membersPrev.addEventListener('click', () => scrollMembers(-1));
       if (membersNext) membersNext.addEventListener('click', () => scrollMembers(1));
-
-      // Aggregate credibility stat
-      document.querySelector('[data-credibility]').insertAdjacentText('beforeend', ' ' + CREDIBILITY_STAT);
 
       // Live cities
       document.querySelector('[data-live-cities]').textContent = LIVE_CITIES.join(', ');
