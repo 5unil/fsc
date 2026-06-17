@@ -537,42 +537,45 @@
       const VARIANTS = {
         one: BASE,
 
-        // 'chat' = the community-led group chat: a private, vetted, London
-        // founder chat. Drop in, suggest meetups, attend events. DRAFT copy.
+        // 'chat' slug = FAST-MATCH SPORT: same sport product as 'sport', but you
+        // get matched into a group as soon as one is ready (ASAP), not on a weekly
+        // schedule. (Subdomain is still chat.foundermeets.com - rename in Cloudflare
+        // if you want the URL to match.)
         chat: {
           ...BASE,
-          headline: 'The founders you need, one message away.',
-          accentWord: 'one message away',
-          subhead: 'A private WhatsApp group of vetted London founders. Ask the thing you are stuck on, get a straight answer, and meet up when it makes sense - the right people, one message away.',
-          splash: 'images/ugc/ugc-1.jpg',
-          ideaSub: 'So we are deliberate about who that is. A small, vetted WhatsApp group of founders in London - the right people, one tap away, no scheduled meetups required.',
-          howHeading: 'Vetted founders. One WhatsApp group. Application only.',
+          headline: 'Play sport with founders - matched in days, not weeks.',
+          accentWord: 'days, not weeks',
+          subhead: 'We match you into a small group of founders in London for the sport you love - padel, tennis, running, whatever your thing is. The moment a group is ready, you are in. No waiting for a scheduled day.',
+          splash: 'images/ugc/ugc-5.jpg',
+          ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, matched on purpose - and the moment a group is ready, not weeks later.',
+          howHeading: 'A founder sport group. As soon as one is ready.',
           steps: [
-            { n: '1', title: 'Apply', body: 'Tell us your stage. Every application is screened.' },
-            { n: '2', title: 'Get in', body: "Once accepted, you're added to London's private WhatsApp group with other vetted founders." },
-            { n: '3', title: 'Show up', body: 'Suggest meetups, attend community events, or just be part of the conversation when it suits you.' },
+            { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
+            { n: '2', title: 'Match', body: 'The moment Atlas can form a group of 4-6 founders at your stage who play your sport, you are in - often within days, not weeks.' },
+            { n: '3', title: 'Play', body: 'Your group picks a time and place that works. We help you book the venue.' },
           ],
           stats: [
             { figure: '1 in 4', label: 'applications accepted' },
-            { figure: 'One group', label: 'vetted founders only' },
-            { figure: 'Any time', label: 'drop in when it suits' },
+            { figure: '4-6', label: 'founders in your group' },
+            { figure: 'ASAP', label: 'matched the moment a group forms' },
           ],
           pricing: [
-            'A private London WhatsApp group, vetted founders only',
-            'Member-suggested meetups',
-            'Curated London events',
-            'No scheduled 1-on-1s - drop in when it suits',
+            'Matched into a group of 4-6 founders the moment one is ready',
+            'Same-stage matching (Builder, Operator, or Scale)',
+            'Play any sport we run in London',
+            'Vetted founders only',
+            'The private member WhatsApp group, always on',
             'Cancel anytime',
           ],
           faq: [
-            { q: "What's actually in the group?", a: 'Other vetted founders in London - people posting what they are working on, asking questions, suggesting meetups, sharing intros. No auto-DMs, no spam. A quiet, high-quality group.' },
-            { q: 'How is this different from a free founder WhatsApp group?', a: 'Vetting. Every application is screened; around 1 in 4 get through. The result is a small, dense group of actual founders, not a noisy bulletin board.' },
+            { q: 'What sports can I play?', a: 'Padel, tennis, table tennis, running, golf, climbing, squash, and more. You pick when you apply.' },
+            { q: 'How fast will I get matched?', a: 'As soon as Atlas can form a group of founders at your stage who play your sport - often within days, not weeks. The bigger our London network gets, the faster it is. You are not charged until you are in a group.' },
             { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
-            { q: 'What if the group is quiet?', a: 'We only open the group once there are enough vetted founders in London to make it worth being in. You are not charged until then.' },
+            { q: "What if my group doesn't show up?", a: 'Groups are committed before they are confirmed: you opt in before the game, and skipped meetups get a strike. Three strikes and your membership is paused.' },
           ],
           seo: {
-            title: 'Founder Meets - a private WhatsApp group for founders in London',
-            description: 'A private WhatsApp group of vetted founders in London. Drop in, suggest meetups, attend events.',
+            title: 'Founder Meets - play sport with founders, matched fast',
+            description: 'Get matched into a small group of founders in London to play sport - as soon as a group is ready, not on a weekly schedule.',
           },
         },
 
