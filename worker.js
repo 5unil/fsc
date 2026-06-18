@@ -42,6 +42,16 @@ async function createSession(params, env, origin) {
     return new Response('Stripe is not configured (missing STRIPE_SECRET_KEY).', { status: 500 });
   }
 
+  const stripe = (path, body) =>
+    fetch('https://api.stripe.com/v1/' + path, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: body.toString(),
+    });
+
   // Send the applicant back to THEIR variant's subdomain for /welcome, so each
   // variant's funnel stays clean in analytics even though Tally redirects every
   // submission through a single host. Falls back to the request origin off the
@@ -50,19 +60,38 @@ async function createSession(params, env, origin) {
   const slugs = ['one', 'chat', 'sport'];
   const base = slugs.includes(variant) && origin.endsWith('foundermeets.com') ? `https://${variant}.foundermeets.com` : origin;
 
+  // Attribution (variant + UTM/fbclid), collected once so it can go on BOTH the
+  // customer (visible right on their Dashboard page) and the session.
+  const meta = new URLSearchParams();
+  for (const key of META_KEYS) {
+    const value = params.get(key);
+    if (value) meta.set(key, value);
+  }
+
+  // Pre-create the customer WITH the attribution metadata, then attach the setup
+  // session to it - so variant/UTM are stamped on the customer record, not just on
+  // the checkout session (which isn't browsable in the Dashboard).
+  const customerForm = new URLSearchParams();
+  const email = params.get('email');
+  if (email) customerForm.set('email', email);
+  for (const [key, value] of meta) customerForm.set(`metadata[${key}]`, value);
+
+  const customerResp = await stripe('customers', customerForm);
+  if (!customerResp.ok) {
+    return new Response(`Stripe error (customer): ${await customerResp.text()}`, { status: 502 });
+  }
+  const customer = (await customerResp.json()).id;
+
+  // Checkout session in setup mode: saves the card, charges £0, attached to the
+  // customer above. Nothing is charged here - charge the saved card manually from
+  // the Dashboard once the application is approved.
   const form = new URLSearchParams();
   form.set('mode', 'setup');
   form.set('payment_method_types[]', 'card');
   form.set('success_url', `${base}/welcome`);
   form.set('cancel_url', `${base}/?checkout=cancelled`);
-
-  const email = params.get('email');
-  if (email) form.set('customer_email', email);
-
-  for (const key of META_KEYS) {
-    const value = params.get(key);
-    if (value) form.set(`metadata[${key}]`, value);
-  }
+  form.set('customer', customer);
+  for (const [key, value] of meta) form.set(`metadata[${key}]`, value);
 
   // Setup mode has no line items, so the product name/price/description never
   // render. This message (above the submit button) gives the applicant context
@@ -72,15 +101,7 @@ async function createSession(params, env, origin) {
     '£99 per month. Cancel any time. You will only be charged if your application is successful.',
   );
 
-  const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${secret}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: form.toString(),
-  });
-
+  const resp = await stripe('checkout/sessions', form);
   if (!resp.ok) {
     return new Response(`Stripe error: ${await resp.text()}`, { status: 502 });
   }
