@@ -28,8 +28,6 @@
       h1 { font-size: 2rem; font-weight: 500; letter-spacing: -0.02em; margin: 2.25rem 0 0.5rem; }
       p.sub { color: #b3ad9e; margin: 0 0 1.75rem; line-height: 1.6; }
       iframe { width: 100%; border: 0; background: transparent; }
-      .fallback { color: #b3ad9e; font-size: 0.9rem; margin-top: 1.5rem; }
-      .fallback a { color: #fbe06c; }
     </style>
   </head>
   <body>
@@ -40,8 +38,6 @@
       <p class="sub">Takes 2 minutes. We accept roughly 1 in 4. You're only charged if you're accepted.</p>
 
       <iframe data-tally-src="" loading="lazy" height="600" title="Founder Meets application"></iframe>
-
-      <p class="fallback">Form not loading? <a id="direct-link" href="https://tally.so/r/44GQBo" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
     </div>
 
     <script>
@@ -62,29 +58,16 @@
 
         var iframe = document.querySelector('iframe[data-tally-src]');
         iframe.setAttribute('data-tally-src', src);
+        iframe.src = src; // set directly so the form always loads, regardless of embed.js timing
 
-        // Fallback "open in new tab" link carries the same params.
-        var direct = document.getElementById('direct-link');
-        if (direct) direct.href = 'https://tally.so/r/' + FORM_ID + (q ? '?' + q : '');
-
-        // Official Tally embed loader: resizes the iframe, handles the post-submit
-        // redirect (top window -> /api/checkout), and sets the src as a fallback.
-        var d = document, w = 'https://tally.so/widgets/embed.js';
-        var v = function () {
-          if (typeof Tally !== 'undefined') {
-            Tally.loadEmbeds();
-          } else {
-            d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
-              e.src = e.dataset.tallySrc;
-            });
-          }
-        };
-        if (typeof Tally !== 'undefined') {
-          v();
-        } else if (d.querySelector('script[src="' + w + '"]') == null) {
-          var s = d.createElement('script');
-          s.src = w; s.onload = v; s.onerror = v;
-          d.body.appendChild(s);
+        // Load Tally's embed script for dynamic resize + post-submit redirect handling.
+        var w = 'https://tally.so/widgets/embed.js';
+        if (!document.querySelector('script[src="' + w + '"]')) {
+          var s = document.createElement('script');
+          s.src = w; s.async = true;
+          document.body.appendChild(s);
+        } else if (typeof Tally !== 'undefined') {
+          Tally.loadEmbeds();
         }
       })();
     </script>
