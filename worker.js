@@ -98,7 +98,7 @@ async function createSession(params, env, origin) {
   // on what saving their card means.
   form.set(
     'custom_text[submit][message]',
-    '£99 per month. Cancel any time. You will only be charged if your application is successful.',
+    '£49 for your first month, then £99/month. Cancel any time. You will only be charged if your application is successful.',
   );
 
   const resp = await stripe('checkout/sessions', form);
