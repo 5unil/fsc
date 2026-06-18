@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- Dedicated application page. The CTAs on the landing page link here (same
+     subdomain) carrying the page's params + variant, so attribution survives into
+     the embedded Tally form -> Stripe -> /welcome, and this page view is tracked
+     per variant in analytics. The form's "redirect on completion" (set in Tally to
+     /api/checkout) still drives the Stripe step. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply - Founder Meets</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      body {
+        background: #0a0a0a;
+        color: #fff3d5;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+      }
+      .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      .brand {
+        display: inline-flex; align-items: center; gap: 0.6rem;
+        font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        color: #fff3d5; text-decoration: none; font-size: 0.95rem;
+      }
+      .dot { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: #fbe06c; }
+      h1 { font-size: 2rem; font-weight: 500; letter-spacing: -0.02em; margin: 2.25rem 0 0.5rem; }
+      p.sub { color: #b3ad9e; margin: 0 0 1.75rem; line-height: 1.6; }
+      iframe { width: 100%; border: 0; background: transparent; }
+      .fallback { color: #b3ad9e; font-size: 0.9rem; margin-top: 1.5rem; }
+      .fallback a { color: #fbe06c; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <a href="/" class="brand"><span class="dot"></span><span>founder meets</span></a>
+
+      <h1>Apply to join</h1>
+      <p class="sub">Takes 2 minutes. We accept roughly 1 in 4. You're only charged if you're accepted.</p>
+
+      <iframe data-tally-src="" loading="lazy" height="600" title="Founder Meets application"></iframe>
+
+      <p class="fallback">Form not loading? <a id="direct-link" href="https://tally.so/r/44GQBo" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+    </div>
+
+    <script>
+      (function () {
+        var FORM_ID = '44GQBo';
+
+        // Carry the landing page's params (utm_*, fbclid, ...) into the form as hidden
+        // fields. If `variant` isn't in the query, fall back to the subdomain slug.
+        var params = new URLSearchParams(location.search);
+        if (!params.get('variant')) {
+          var sub = location.hostname.toLowerCase().split('.')[0];
+          if (['one', 'chat', 'sport'].indexOf(sub) !== -1) params.set('variant', sub);
+        }
+
+        var opts = 'transparentBackground=1&dynamicHeight=1&hideTitle=1';
+        var q = params.toString();
+        var src = 'https://tally.so/embed/' + FORM_ID + '?' + opts + (q ? '&' + q : '');
+
+        var iframe = document.querySelector('iframe[data-tally-src]');
+        iframe.setAttribute('data-tally-src', src);
+
+        // Fallback "open in new tab" link carries the same params.
+        var direct = document.getElementById('direct-link');
+        if (direct) direct.href = 'https://tally.so/r/' + FORM_ID + (q ? '?' + q : '');
+
+        // Official Tally embed loader: resizes the iframe, handles the post-submit
+        // redirect (top window -> /api/checkout), and sets the src as a fallback.
+        var d = document, w = 'https://tally.so/widgets/embed.js';
+        var v = function () {
+          if (typeof Tally !== 'undefined') {
+            Tally.loadEmbeds();
+          } else {
+            d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
+              e.src = e.dataset.tallySrc;
+            });
+          }
+        };
+        if (typeof Tally !== 'undefined') {
+          v();
+        } else if (d.querySelector('script[src="' + w + '"]') == null) {
+          var s = d.createElement('script');
+          s.src = w; s.onload = v; s.onerror = v;
+          d.body.appendChild(s);
+        }
+      })();
+    </script>
+  </body>
+</html>
