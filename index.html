@@ -287,6 +287,10 @@
         <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-how-heading></h2>
 
         <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3" data-steps></div>
+
+        <div class="reveal mt-14 text-center" style="transition-delay:120ms">
+          <a href="#apply" data-cta="how" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
+        </div>
       </div>
     </section>
 
@@ -338,6 +342,10 @@
         </div>
 
         <div class="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" data-benefits></div>
+
+        <div class="reveal mt-16 text-center" style="transition-delay:120ms">
+          <a href="#apply" data-cta="value" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
+        </div>
       </div>
     </section>
 
@@ -956,7 +964,7 @@
       const track = (name) => {
         if (window.plausible) window.plausible(name, { props: { variant: VARIANT } });
       };
-      const CTA_EVENTS = { hero: 'CTA: Hero', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
+      const CTA_EVENTS = { hero: 'CTA: Hero', how: 'CTA: How', value: 'CTA: Value', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
 
       /* ---------------------------- APPLY (CTA -> /apply page) ---------------------------- */
       // CTAs navigate to the on-site /apply page on the SAME subdomain
