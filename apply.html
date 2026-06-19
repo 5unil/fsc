@@ -62,7 +62,7 @@
           if (['one', 'chat', 'sport'].indexOf(sub) !== -1) params.set('variant', sub);
         }
 
-        var opts = 'transparentBackground=1&dynamicHeight=1&hideTitle=1';
+        var opts = 'transparentBackground=1&dynamicHeight=1&hideTitle=1&formEventsForwarding=1';
         var q = params.toString();
         var src = 'https://tally.so/embed/' + FORM_ID + '?' + opts + (q ? '&' + q : '');
 
@@ -79,6 +79,18 @@
         } else if (typeof Tally !== 'undefined') {
           Tally.loadEmbeds();
         }
+
+        // formEventsForwarding=1 makes Tally post its events to THIS (parent) window
+        // rather than firing a pixel inside the iframe. Fire the Meta event from here
+        // (foundermeets.com) on submit - reliable + correctly attributed. (Make sure the
+        // native Meta Pixel integration is turned OFF in Tally so it doesn't double-fire.)
+        window.addEventListener('message', function (e) {
+          var d = e.data;
+          if (typeof d === 'string') { try { d = JSON.parse(d); } catch (_) { return; } }
+          if (d && d.event === 'Tally.FormSubmitted' && typeof fbq === 'function') {
+            fbq('track', 'Lead');
+          }
+        });
       })();
     </script>
   </body>
