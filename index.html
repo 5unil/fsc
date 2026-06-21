@@ -143,6 +143,14 @@
       }
       @media (prefers-reduced-motion: reduce) { .accent { animation: none; } }
 
+      /* Serif-italic amber accent for headings on LIGHT sections. */
+      .accent-ink {
+        font-family: 'Newsreader', Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        color: #a8761f;
+      }
+
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -245,18 +253,23 @@
 
     <!-- ============================ HOW IT WORKS ============================ -->
     <section class="border-b border-coffee/10 bg-surface py-24 sm:py-32" id="how">
-      <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-5">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="max-w-xl">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
             <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> How it works
           </p>
           <h2 class="reveal mt-5 text-4xl font-medium leading-[1.1] tracking-tight text-coffee sm:text-5xl" style="transition-delay:60ms" data-how-heading></h2>
-          <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-how-body></p>
+          <p class="reveal mt-6 text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-how-body></p>
           <div class="reveal mt-9" style="transition-delay:160ms">
-            <a href="#apply" data-cta="how" class="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+            <a href="#apply" data-cta="how" class="group inline-flex items-center gap-3 rounded-full bg-ink py-2 pl-7 pr-2 text-base font-semibold text-cream transition-colors duration-200 hover:bg-ink2">
+              Apply to join
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-ink transition-transform duration-200 group-hover:translate-x-0.5">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+              </span>
+            </a>
           </div>
         </div>
-        <div class="space-y-4 lg:col-span-7" data-steps></div>
+        <div class="mt-14 grid gap-6 sm:grid-cols-3" data-steps></div>
       </div>
     </section>
 
@@ -280,37 +293,11 @@
           </div>
         </div>
 
-        <p class="reveal mt-6 max-w-2xl text-xl font-light leading-relaxed text-coffee sm:text-2xl" style="transition-delay:90ms">The average member is 28, running a $2M/yr online business. <span class="text-gold-ink">The kind of founder you'd never normally meet</span> – now one match away.</p>
+        <p class="reveal mt-6 max-w-2xl text-xl font-light leading-relaxed text-coffee sm:text-2xl" style="transition-delay:90ms">The average member is 28, running a $2M/yr online business. <span class="accent-ink">The kind of founder you'd never normally meet</span> – now one match away.</p>
 
         <div class="reveal mt-12" style="transition-delay:80ms">
           <div class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2" data-members></div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============================ COMMUNITY / UGC ============================ -->
-    <section class="py-20 sm:py-24" id="community">
-      <div class="mx-auto max-w-content px-5 sm:px-8">
-        <div class="flex items-end justify-between gap-4">
-          <div>
-            <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Out in London
-            </p>
-            <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-coffee sm:text-5xl" style="transition-delay:60ms">Founders, actually meeting up.</h2>
-          </div>
-          <div class="reveal hidden shrink-0 gap-2 sm:flex" style="transition-delay:120ms">
-            <button type="button" data-ugc-prev aria-label="Previous photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-coffee/10 bg-coffee/5 text-coffee transition-colors hover:bg-coffee/10">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button type="button" data-ugc-next aria-label="Next photo" class="flex h-11 w-11 items-center justify-center rounded-full border border-coffee/10 bg-coffee/5 text-coffee transition-colors hover:bg-coffee/10">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
-        </div>
-        <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-muted" style="transition-delay:120ms">Our members, at meetups across London, every week.</p>
-      </div>
-      <div class="reveal mt-12" style="transition-delay:80ms">
-        <div class="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-5 pb-2 sm:px-8" data-ugc></div>
       </div>
     </section>
 
@@ -321,7 +308,7 @@
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-creammuted">
             <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Meet Atlas
           </p>
-          <h2 class="reveal mt-5 max-w-xl text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Atlas knows who you should meet next.</h2>
+          <h2 class="reveal mt-5 max-w-xl text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Atlas knows who you should <span class="accent">meet next.</span></h2>
           <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-creammuted" style="transition-delay:120ms">Atlas, our AI matching engine, deep-researches every founder in our London network – their stage, what they're building, what they need, what makes them tick – then finds the people you'd gain most from meeting. The more it learns, the sharper it gets.</p>
         </div>
         <div class="lg:col-span-5">
@@ -346,11 +333,7 @@
           <p class="reveal mx-auto mt-5 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-match-sub></p>
         </div>
 
-        <div class="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" data-benefits></div>
-
-        <div class="reveal mt-16 text-center" style="transition-delay:120ms">
-          <a href="#apply" data-cta="value" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Get matched</a>
-        </div>
+        <div class="mt-16 grid gap-x-12 gap-y-12 sm:grid-cols-2" data-benefits></div>
       </div>
     </section>
 
@@ -378,14 +361,14 @@
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
             <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Who it's for
           </p>
-          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-coffee sm:text-5xl" style="transition-delay:60ms">Built for founders. Not for everyone.</h2>
+          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-coffee sm:text-5xl" style="transition-delay:60ms">Built for founders. <span class="accent-ink">Not for everyone.</span></h2>
         </div>
         <div class="mt-14 grid gap-6 md:grid-cols-2">
           <div class="reveal card rounded-2xl p-8 sm:p-9">
-            <p class="text-sm font-semibold uppercase tracking-eyebrow text-gold">For you if you're</p>
+            <p class="text-sm font-semibold uppercase tracking-eyebrow text-gold-ink">For you if you're</p>
             <ul class="mt-6 space-y-4" data-for></ul>
           </div>
-          <div class="reveal card rounded-2xl p-8 sm:p-9" style="transition-delay:80ms">
+          <div class="reveal rounded-2xl border border-coffee/15 p-8 sm:p-9" style="transition-delay:80ms">
             <p class="text-sm font-semibold uppercase tracking-eyebrow text-muted">Not for</p>
             <ul class="mt-6 space-y-4" data-notfor></ul>
           </div>
@@ -396,7 +379,7 @@
     <!-- ============================ PRICING ============================ -->
     <section class="py-24 sm:py-32" id="pricing">
       <div class="mx-auto max-w-content px-5 sm:px-8">
-        <div class="reveal card mx-auto max-w-lg rounded-2xl p-9 sm:p-12">
+        <div class="reveal card mx-auto max-w-lg rounded-2xl p-9 shadow-xl shadow-coffee/5 sm:p-12">
           <p class="text-xs font-semibold uppercase tracking-eyebrow text-muted">Membership</p>
           <p class="mt-5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
             <span class="text-2xl font-medium text-muted line-through decoration-muted/50 sm:text-3xl">£99</span>
@@ -415,7 +398,7 @@
           <span class="font-semibold text-coffee">London only.</span> We run in <span data-live-cities></span> for now.
         </p>
 
-        <div class="reveal mx-auto mt-6 flex max-w-lg items-start gap-3 rounded-2xl border border-gold/30 bg-gold/[0.05] p-5" style="transition-delay:120ms">
+        <div class="reveal mx-auto mt-6 flex max-w-lg items-start gap-3 rounded-2xl border border-coffee/10 bg-paper p-5" style="transition-delay:120ms">
           <svg class="mt-0.5 h-5 w-5 shrink-0 text-gold-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
           <p class="text-sm leading-relaxed text-coffee"><span class="font-semibold">30-day money-back guarantee.</span> Try your first month. If it isn't worth it, email us and we'll refund you in full – no questions asked.</p>
         </div>
@@ -423,14 +406,14 @@
     </section>
 
     <!-- ============================ FAQ ============================ -->
-    <section class="border-t border-coffee/10 bg-surface py-24 sm:py-32" id="faq">
+    <section class="bg-ink py-24 sm:py-32" id="faq">
       <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
-          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-creammuted">
             <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Questions
           </p>
-          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-coffee sm:text-5xl" style="transition-delay:60ms">Good to know</h2>
-          <p class="reveal mt-6 text-base leading-relaxed text-muted" style="transition-delay:120ms">
+          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Good to know</h2>
+          <p class="reveal mt-6 text-base leading-relaxed text-creammuted" style="transition-delay:120ms">
             Still have a question? Email<br class="hidden sm:block" />
             <a href="mailto:team@foundermeets.com" class="text-lg font-semibold text-gold transition-colors hover:text-gold-soft">team@foundermeets.com</a>
           </p>
@@ -440,13 +423,13 @@
     </section>
 
     <!-- ============================ FINAL CTA ============================ -->
-    <section class="bg-surface2 py-28 sm:py-36" id="apply">
+    <section class="bg-ink pb-28 pt-4 sm:pb-36" id="apply">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="reveal mx-auto max-w-2xl text-center">
-          <h2 class="text-5xl font-medium tracking-tight text-coffee sm:text-6xl" data-final-heading>Ready to meet your one founder?</h2>
-          <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted">Applications take 2 minutes and are reviewed weekly. We'll be in touch within 7 days.</p>
+          <h2 class="text-5xl font-medium tracking-tight text-cream sm:text-6xl" data-final-heading>Ready to meet your one founder?</h2>
+          <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-creammuted">Applications take 2 minutes and are reviewed weekly. We'll be in touch within 7 days.</p>
           <a href="#" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Get matched</a>
-          <p class="mt-6 text-sm text-muted">We accept roughly 1 in 4 applications · 30-day money-back guarantee.</p>
+          <p class="mt-6 text-sm text-creammuted">We accept roughly 1 in 4 applications · 30-day money-back guarantee.</p>
         </div>
       </div>
     </section>
@@ -500,6 +483,7 @@
         splash: 'images/hero-one.jpg',
         urgency: 'Apply in 2 minutes · we accept 1 in 4',
         finalHeading: 'Ready to meet your one founder?',
+        finalAccent: 'your one founder?',
         ideaSub: 'So we are deliberate about who that is. One founder a week, chosen on purpose – not left to chance, not whoever you happen to bump into.',
         howHeading: 'One match. Once a week. Lasting impact.',
         howBody: 'We keep it deliberate so you can focus on building. No endless swiping. No awkward networking events. One founder, chosen on purpose.',
@@ -556,6 +540,7 @@
           splash: 'images/ugc/ugc-2.jpg',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, matched on purpose – often as soon as tomorrow, not weeks later.',
           finalHeading: 'Ready to play?',
+          finalAccent: 'play?',
           howHeading: 'A founder sport group. As soon as tomorrow.',
           howBody: 'We keep it deliberate. No scheduled day to wait for, no awkward networking events – just a small group of founders who play your sport, matched on purpose.',
           steps: [
@@ -598,6 +583,7 @@
           splash: 'images/ugc/ugc-2.jpg',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London, matched on purpose – playing the sport you love, not left to chance.',
           finalHeading: 'Ready to play?',
+          finalAccent: 'play?',
           howHeading: 'A new group. Every week. Matched by Atlas.',
           howBody: 'We keep it deliberate. No awkward networking events – just a small group of founders who play your sport, a fresh group matched on purpose every week.',
           steps: [
@@ -658,6 +644,7 @@
       const HOW_HEADING = _V.howHeading;
       const HOW_BODY = _V.howBody;
       const FINAL_HEADING = _V.finalHeading;
+      const FINAL_ACCENT = _V.finalAccent;
       const STEPS = _V.steps;
       const STATS = _V.stats;
       const TIERS = _V.tiers;
@@ -761,8 +748,17 @@
       setText('[data-idea-sub]', IDEA_SUB);
       setText('[data-how-heading]', HOW_HEADING);
       setText('[data-how-body]', HOW_BODY);
-      setText('[data-final-heading]', FINAL_HEADING);
-      setText('[data-match-line]', MATCH_LINE);
+      // Render a heading with a serif-italic accent on a given phrase.
+      const setAccent = (sel, text, accent, cls) => {
+        const el = document.querySelector(sel);
+        if (!el || !text) return;
+        const at = accent ? text.indexOf(accent) : -1;
+        if (at !== -1) {
+          el.innerHTML = esc(text.slice(0, at)) + '<span class="' + cls + '">' + esc(accent) + '</span>' + esc(text.slice(at + accent.length));
+        } else { el.textContent = text; }
+      };
+      setAccent('[data-final-heading]', FINAL_HEADING, FINAL_ACCENT, 'accent');
+      setAccent('[data-match-line]', MATCH_LINE, 'In your corner.', 'accent-ink');
       setText('[data-match-sub]', MATCH_SUB);
 
       // Per-variant SEO / social meta.
@@ -796,25 +792,27 @@
       document.querySelector('[data-tiers-headline]').textContent = TIERS_HEADLINE;
       document.querySelector('[data-tiers-subhead]').textContent = TIERS_SUBHEAD;
       document.querySelector('[data-tiers-note]').textContent = TIERS_NOTE;
-      const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
       document.querySelector('[data-tiers]').innerHTML = TIERS.map((t, i) => `
-        <div class="reveal flex h-full flex-col rounded-2xl border p-8 ${t.highlight ? 'border-gold/40 bg-surface2' : 'card'}" style="transition-delay:${i * 90}ms">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold uppercase tracking-eyebrow ${t.highlight ? 'text-gold-ink' : 'text-muted'}">Tier ${ROMAN[i]}</span>
-            ${t.highlight ? '<span class="rounded-full bg-gold px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-ink">Most members</span>' : ''}
+        <div class="reveal flex h-full flex-col rounded-2xl p-8 ${t.highlight ? 'card-dark' : 'card'}" style="transition-delay:${i * 90}ms">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-2xl font-medium tracking-tight ${t.highlight ? 'text-gold' : 'text-coffee'}">${esc(t.name)}</h3>
+            ${t.highlight ? '<span class="shrink-0 rounded-full bg-gold px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-wide text-ink">Most members</span>' : ''}
           </div>
-          <h3 class="mt-5 text-2xl font-medium tracking-tight text-coffee">${esc(t.name)}</h3>
-          <p class="mt-2 text-lg font-medium ${t.highlight ? 'text-gold-ink' : 'text-coffee/80'}">${esc(t.range)}</p>
-          <p class="mt-4 leading-relaxed text-muted">${esc(t.body)}</p>
+          <p class="mt-3 text-xs font-semibold uppercase tracking-eyebrow ${t.highlight ? 'text-gold' : 'text-gold-ink'}">${esc(t.range)}</p>
+          <p class="mt-4 leading-relaxed ${t.highlight ? 'text-creammuted' : 'text-muted'}">${esc(t.body)}</p>
         </div>
       `).join('');
 
-      // How-it-works steps (stacked rows: big number + title/body).
+      // How-it-works steps: photo card + number badge + title/body.
+      const STEP_IMGS = VARIANT === 'one' ? ['ugc-4', 'ugc-7', 'ugc-8'] : ['ugc-1', 'ugc-2', 'ugc-3'];
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => `
-        <div class="reveal flex gap-6 rounded-2xl border border-coffee/10 bg-paper p-7 sm:p-8" style="transition-delay:${i * 100}ms">
-          <span class="text-3xl font-light leading-none text-gold-ink sm:text-4xl">${esc(s.n)}</span>
-          <div>
-            <h3 class="text-xl font-semibold tracking-tight text-coffee">${esc(s.title)}</h3>
+        <div class="reveal overflow-hidden rounded-2xl border border-coffee/10 bg-paper" style="transition-delay:${i * 100}ms">
+          <div class="relative">
+            <img src="images/ugc/${STEP_IMGS[i % STEP_IMGS.length]}.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" class="h-44 w-full object-cover" />
+            <span class="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-gold text-sm font-semibold text-ink">${esc(s.n)}</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-semibold tracking-tight text-coffee">${esc(s.title)}</h3>
             <p class="mt-2 leading-relaxed text-muted">${esc(s.body)}</p>
           </div>
         </div>
@@ -824,14 +822,16 @@
       const VERIFIED_BADGE = '<svg class="ml-1 inline-block h-4 w-4 -translate-y-px" viewBox="0 0 24 24" fill="#3d9bff" aria-label="Verified"><path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" /></svg>';
       const membersEl = document.querySelector('[data-members]');
       membersEl.innerHTML = MEMBERS.map((m) => `
-        <div class="w-56 shrink-0 snap-start sm:w-60">
-          <div class="overflow-hidden rounded-2xl border border-coffee/10 bg-coffee/5">
-            <img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy" class="aspect-[4/5] w-full object-cover" />
+        <div class="w-72 shrink-0 snap-start overflow-hidden rounded-2xl border border-coffee/10 bg-paper sm:w-80">
+          <img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy" class="aspect-[4/5] w-full object-cover" />
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <p class="font-semibold tracking-tight text-coffee">${esc(m.name)}</p>
+              ${m.revenue ? `<span class="mt-0.5 shrink-0 rounded-full border border-coffee/15 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-gold-ink">${esc(m.revenue)}</span>` : ''}
+            </div>
+            <p class="mt-1 text-sm text-muted">${esc(m.company)} · ${esc(m.city)}</p>
+            <p class="mt-3 text-sm leading-relaxed text-muted">${esc(m.tag)}</p>
           </div>
-          <p class="mt-4 font-semibold tracking-tight text-coffee">${esc(m.name)}${VERIFIED_BADGE}</p>
-          <p class="mt-0.5 text-sm text-muted">${esc(m.company)}</p>
-          ${m.revenue ? `<p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gold-ink">${esc(m.revenue)}</p>` : ''}
-          <p class="mt-1.5 text-sm italic text-muted/70">${esc(m.tag)}</p>
         </div>
       `).join('');
 
@@ -851,12 +851,12 @@
       // Photo gallery carousel
       // What you get (benefit cards)
       document.querySelector('[data-benefits]').innerHTML = BENEFITS.map((b, i) => `
-        <div class="reveal text-center" style="transition-delay:${i * 70}ms">
-          <div class="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold-ink">
+        <div class="reveal" style="transition-delay:${i * 70}ms">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold-ink">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="${b.icon}" /></svg>
           </div>
           <h3 class="mt-5 text-xl font-semibold tracking-tight text-coffee">${esc(b.title)}</h3>
-          <p class="mx-auto mt-2 max-w-xs leading-relaxed text-muted">${esc(b.body)}</p>
+          <p class="mt-2 max-w-sm leading-relaxed text-muted">${esc(b.body)}</p>
         </div>
       `).join('');
 
@@ -917,19 +917,19 @@
       // Pricing list
       document.querySelector('[data-pricing]').innerHTML = PRICING.map((p) => `
         <li class="flex items-start gap-3 text-coffee/90">
-          <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gold"></span>
+          <svg class="mt-0.5 h-5 w-5 shrink-0 text-gold-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
           ${esc(p)}
         </li>
       `).join('');
 
       // FAQ
       document.querySelector('[data-faq]').innerHTML = FAQ.map((f, i) => `
-        <details class="reveal group border-b border-coffee/10 py-5 first:pt-0" style="transition-delay:${i * 70}ms">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold tracking-tight text-coffee sm:text-xl [&::-webkit-details-marker]:hidden">
+        <details class="reveal group border-b border-cream/10 py-5 first:pt-0" style="transition-delay:${i * 70}ms">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold tracking-tight text-cream sm:text-xl [&::-webkit-details-marker]:hidden">
             <span>${esc(f.q)}</span>
-            <svg class="h-5 w-5 shrink-0 text-muted transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+            <svg class="h-5 w-5 shrink-0 text-gold transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
           </summary>
-          <p class="mt-3 max-w-2xl leading-relaxed text-muted">${esc(f.a)}</p>
+          <p class="mt-3 max-w-2xl leading-relaxed text-creammuted">${esc(f.a)}</p>
         </details>
       `).join('');
 
