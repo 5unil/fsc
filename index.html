@@ -189,7 +189,7 @@
             <span class="inline-block h-3 w-3 rounded-full bg-gold"></span>
             <span class="text-lg font-semibold uppercase tracking-wide text-cream" data-brand>founder meets</span>
           </a>
-          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Get matched</a>
+          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
         </div>
       </div>
     </nav>
@@ -199,7 +199,7 @@
     <!-- ============================ HERO ============================ -->
     <section class="relative flex min-h-screen items-end overflow-hidden">
       <!-- Full-bleed splash (swap per variant via the `splash` field). -->
-      <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover" />
+      <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover object-[center_25%]" />
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/25 to-transparent"></div>
 
@@ -215,7 +215,7 @@
 
           <div class="reveal mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center" style="transition-delay:240ms">
             <a href="#apply" data-cta="hero" class="group inline-flex items-center gap-3 rounded-full bg-gold py-2 pl-7 pr-2 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">
-              Get matched
+              Apply to join
               <span class="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-gold transition-transform duration-200 group-hover:translate-x-0.5">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
               </span>
@@ -252,7 +252,7 @@
     </section>
 
     <!-- ============================ HOW IT WORKS ============================ -->
-    <section class="border-b border-coffee/10 bg-surface py-24 sm:py-32" id="how">
+    <section class="border-b border-coffee/10 bg-surface py-16 sm:py-24" id="how">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="max-w-xl">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
@@ -274,7 +274,7 @@
     </section>
 
     <!-- ============================ MEMBER SHOWCASE ============================ -->
-    <section class="py-20 sm:py-24" id="members">
+    <section class="py-14 sm:py-20" id="members">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="flex items-end justify-between gap-4">
           <div>
@@ -298,11 +298,15 @@
         <div class="reveal mt-12" style="transition-delay:80ms">
           <div class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2" data-members></div>
         </div>
+
+        <div class="reveal mt-12" style="transition-delay:120ms">
+          <a href="#apply" data-cta="members" class="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+        </div>
       </div>
     </section>
 
     <!-- ============================ THE MATCHING ENGINE ============================ -->
-    <section class="bg-ink2 py-24 sm:py-32">
+    <section class="bg-ink2 py-16 sm:py-24">
       <div class="mx-auto grid max-w-content grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-7">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-creammuted">
@@ -326,11 +330,11 @@
       <img data-quote-img alt="" class="absolute inset-0 h-full w-full object-cover" />
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/65 to-ink/20"></div>
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/30 to-transparent"></div>
-      <figure class="reveal relative mx-auto flex min-h-[26rem] max-w-content flex-col justify-end px-5 py-14 sm:min-h-[32rem] sm:px-8 sm:py-20" data-atlas-quote></figure>
+      <figure class="reveal relative mx-auto flex min-h-[20rem] max-w-content flex-col justify-end px-5 py-12 sm:min-h-[26rem] sm:px-8 sm:py-16" data-atlas-quote></figure>
     </section>
 
     <!-- ============================ WHAT YOU GET ============================ -->
-    <section class="py-24 sm:py-32">
+    <section class="py-16 sm:py-24">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="mx-auto max-w-2xl text-center">
           <p class="reveal flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
@@ -341,11 +345,15 @@
         </div>
 
         <div class="mt-16 grid gap-x-12 gap-y-12 sm:grid-cols-2" data-benefits></div>
+
+        <div class="reveal mt-14 text-center" style="transition-delay:120ms">
+          <a href="#apply" data-cta="value" class="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+        </div>
       </div>
     </section>
 
     <!-- ============================ MATCHING TIERS ============================ -->
-    <section class="border-t border-coffee/10 py-24 sm:py-32" id="tiers">
+    <section class="border-t border-coffee/10 py-16 sm:py-24" id="tiers">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="max-w-2xl">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
@@ -362,7 +370,7 @@
     </section>
 
     <!-- ============================ WHO IT'S FOR / NOT FOR ============================ -->
-    <section class="border-t border-coffee/10 bg-surface py-24 sm:py-32" id="who">
+    <section class="border-t border-coffee/10 bg-surface py-16 sm:py-24" id="who">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="max-w-2xl">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
@@ -380,11 +388,15 @@
             <ul class="mt-6 space-y-4" data-notfor></ul>
           </div>
         </div>
+
+        <div class="reveal mt-12 text-center" style="transition-delay:120ms">
+          <a href="#apply" data-cta="who" class="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+        </div>
       </div>
     </section>
 
     <!-- ============================ PRICING ============================ -->
-    <section class="py-24 sm:py-32" id="pricing">
+    <section class="py-16 sm:py-24" id="pricing">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="reveal card mx-auto max-w-lg rounded-2xl p-9 shadow-xl shadow-coffee/5 sm:p-12">
           <p class="text-xs font-semibold uppercase tracking-eyebrow text-muted">Membership</p>
@@ -397,7 +409,7 @@
 
           <ul class="mt-9 space-y-4" data-pricing></ul>
 
-          <a href="#apply" data-cta="pricing" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Get matched</a>
+          <a href="#apply" data-cta="pricing" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
           <p class="mt-5 text-center text-sm text-muted">You only pay if you're accepted. Cancel any time.</p>
         </div>
 
@@ -413,7 +425,7 @@
     </section>
 
     <!-- ============================ FAQ ============================ -->
-    <section class="bg-ink py-24 sm:py-32" id="faq">
+    <section class="bg-ink py-16 sm:py-24" id="faq">
       <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-creammuted">
@@ -430,12 +442,12 @@
     </section>
 
     <!-- ============================ FINAL CTA ============================ -->
-    <section class="bg-ink pb-28 pt-4 sm:pb-36" id="apply">
+    <section class="bg-ink pb-20 pt-2 sm:pb-28" id="apply">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="reveal mx-auto max-w-2xl text-center">
           <h2 class="text-5xl font-medium tracking-tight text-cream sm:text-6xl" data-final-heading>Ready to meet your one founder?</h2>
           <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-creammuted">Applications take 2 minutes and are reviewed weekly. We'll be in touch within 7 days.</p>
-          <a href="#" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Get matched</a>
+          <a href="#" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
           <p class="mt-6 text-sm text-creammuted">We accept roughly 1 in 4 applications · 30-day money-back guarantee.</p>
         </div>
       </div>
@@ -513,7 +525,7 @@
         matchSub: 'Make years of progress in one conversation – by asking the right people what you cannot ask anyone else.',
         pricing: [
           'One curated 1-on-1 match every week',
-          'Matched within your tier',
+          'Placed within your tier, always at your level',
           'Founding London member – rate locked in',
           'Vetted founders only',
           'The private member WhatsApp group, always on',
@@ -545,11 +557,11 @@
           accentWord: 'as soon as tomorrow',
           subhead: 'We match you into a small group of founders in London for the sport you love – padel, tennis, running, whatever your thing is. No fixed schedule – we get your group together fast, so you could be playing as soon as tomorrow.',
           splash: 'images/ugc/ugc-2.jpg',
-          ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, matched on purpose – often as soon as tomorrow, not weeks later.',
+          ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, chosen on purpose – often as soon as tomorrow, not weeks later.',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
           howHeading: 'A founder sport group. As soon as tomorrow.',
-          howBody: 'We keep it deliberate. No scheduled day to wait for, no awkward networking events – just a small group of founders who play your sport, matched on purpose.',
+          howBody: 'We keep it deliberate. No scheduled day to wait for, no awkward networking events – just a small group of founders who play your sport, chosen on purpose.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
             { n: '2', title: 'Match', body: 'Atlas forms a group of 4-6 founders at your stage who play your sport, usually within days – no waiting for a set day.' },
@@ -561,7 +573,7 @@
             { figure: 'Tomorrow', label: 'you could be playing' },
           ],
           pricing: [
-            'Matched into a group of 4-6 founders fast – as soon as tomorrow',
+            'Placed in a group of 4-6 founders fast – as soon as tomorrow',
             'Same-stage matching (Builder, Operator, or Scale)',
             'Play any sport we run in London',
             'Vetted founders only',
@@ -570,13 +582,13 @@
           ],
           faq: [
             { q: 'What sports can I play?', a: 'Padel, tennis, table tennis, running, golf, climbing, squash, and more. You pick when you apply.' },
-            { q: 'How fast will I get matched?', a: 'There is no scheduled day to wait for – we form your group as soon as we can, often within days. The bigger our London network gets, the faster you are playing. You are not charged until you are in a group.' },
+            { q: 'How fast will I get a group?', a: 'There is no scheduled day to wait for – we form your group as soon as we can, often within days. The bigger our London network gets, the faster you are playing. You are not charged until you are in a group.' },
             { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
             { q: "What if my group doesn't show up?", a: 'Groups are committed before they are confirmed: you opt in before the game, and skipped meetups get a strike. Three strikes and your membership is paused.' },
           ],
           seo: {
-            title: 'Founder Meets – play sport with founders, matched fast',
-            description: 'Get matched into a small group of founders in London to play sport – as soon as tomorrow, with no scheduled day to wait for.',
+            title: 'Founder Meets – play sport with founders, fast',
+            description: 'Join a small group of founders in London to play sport – as soon as tomorrow, with no scheduled day to wait for.',
           },
         },
 
@@ -588,11 +600,11 @@
           accentWord: 'founder friends',
           subhead: 'Every week we match you into a small group of founders in London for the sport you love – padel, tennis, running, whatever your thing is. Compete, build, and meet the people you would never cross paths with otherwise.',
           splash: 'images/ugc/ugc-2.jpg',
-          ideaSub: 'So we are deliberate about who that is. A small group of founders in London, matched on purpose – playing the sport you love, not left to chance.',
+          ideaSub: 'So we are deliberate about who that is. A small group of founders in London, chosen on purpose – playing the sport you love, not left to chance.',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
-          howHeading: 'A new group. Every week. Matched by Atlas.',
-          howBody: 'We keep it deliberate. No awkward networking events – just a small group of founders who play your sport, a fresh group matched on purpose every week.',
+          howHeading: 'A new group. Every week. Picked by Atlas.',
+          howBody: 'We keep it deliberate. No awkward networking events – just a small group of founders who play your sport, a fresh group chosen on purpose every week.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
             { n: '2', title: 'Match', body: 'Each week, we put you into a small group of 4-6 founders in London who play your sport. Same stage. Same intent. We email you your group each week.' },
@@ -619,7 +631,7 @@
           ],
           seo: {
             title: 'Founder Meets – play sport with founders in London',
-            description: 'Each week, get matched with a small group of founders in London to play sport together. Padel, tennis, table tennis, running.',
+            description: 'Each week, join a small group of founders in London to play sport together. Padel, tennis, table tennis, running.',
           },
         },
       };
@@ -800,13 +812,13 @@
       document.querySelector('[data-tiers-subhead]').textContent = TIERS_SUBHEAD;
       document.querySelector('[data-tiers-note]').textContent = TIERS_NOTE;
       document.querySelector('[data-tiers]').innerHTML = TIERS.map((t, i) => `
-        <div class="reveal flex h-full flex-col rounded-2xl p-8 ${t.highlight ? 'card-dark' : 'card'}" style="transition-delay:${i * 90}ms">
+        <div class="reveal flex h-full flex-col rounded-2xl p-8 ${t.highlight ? 'border-2 border-gold bg-gold/10' : 'card'}" style="transition-delay:${i * 90}ms">
           <div class="flex items-center justify-between gap-3">
-            <h3 class="text-2xl font-medium tracking-tight ${t.highlight ? 'text-gold' : 'text-coffee'}">${esc(t.name)}</h3>
+            <h3 class="text-2xl font-medium tracking-tight text-coffee">${esc(t.name)}</h3>
             ${t.highlight ? '<span class="shrink-0 rounded-full bg-gold px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-wide text-ink">Most members</span>' : ''}
           </div>
-          <p class="mt-3 text-xs font-semibold uppercase tracking-eyebrow ${t.highlight ? 'text-gold' : 'text-gold-ink'}">${esc(t.range)}</p>
-          <p class="mt-4 leading-relaxed ${t.highlight ? 'text-creammuted' : 'text-muted'}">${esc(t.body)}</p>
+          <p class="mt-3 text-xs font-semibold uppercase tracking-eyebrow text-gold-ink">${esc(t.range)}</p>
+          <p class="mt-4 leading-relaxed text-muted">${esc(t.body)}</p>
         </div>
       `).join('');
 
@@ -969,7 +981,7 @@
       const track = (name) => {
         if (window.plausible) window.plausible(name, { props: { variant: VARIANT } });
       };
-      const CTA_EVENTS = { hero: 'CTA: Hero', how: 'CTA: How', value: 'CTA: Value', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
+      const CTA_EVENTS = { hero: 'CTA: Hero', how: 'CTA: How', members: 'CTA: Members', value: 'CTA: Value', who: 'CTA: Who', pricing: 'CTA: Pricing', final: 'CTA: Final', nav: 'CTA: Nav' };
 
       /* ---------------------------- APPLY (CTA -> /apply page) ---------------------------- */
       // CTAs navigate to the on-site /apply page on the SAME subdomain
