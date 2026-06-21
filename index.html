@@ -37,7 +37,7 @@
     <!-- Handwriting font for the founders' note signature -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -49,6 +49,7 @@
             fontFamily: {
               sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
               display: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+              serif: ['Playfair Display', 'Georgia', 'serif'],
               signature: ['Caveat', 'cursive'],
             },
             colors: {
@@ -111,6 +112,21 @@
         100% { background-position: -150% 0; }
       }
 
+      /* Serif-italic gold accent for the hero headline tagline (carries the gold shimmer). */
+      .accent {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        background: linear-gradient(100deg, #fbe06c 0%, #fbe06c 35%, #fff6cf 50%, #fbe06c 65%, #fbe06c 100%);
+        background-size: 250% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: shimmer 5s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) { .accent { animation: none; } }
+
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -147,7 +163,7 @@
             <span class="inline-block h-3 w-3 rounded-full bg-gold"></span>
             <span class="text-lg font-semibold uppercase tracking-wide text-cream" data-brand>founder meets</span>
           </a>
-          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply</a>
+          <a href="#apply" data-cta="nav" class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Get matched</a>
         </div>
       </div>
     </nav>
@@ -155,31 +171,35 @@
     <span id="top"></span>
 
     <!-- ============================ HERO ============================ -->
-    <section class="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20">
-      <div class="mx-auto w-full max-w-content px-5 sm:px-8">
-        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div class="max-w-xl">
-            <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted" data-hero-eyebrow>
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span>
-            </p>
+    <section class="relative flex min-h-screen items-end overflow-hidden">
+      <!-- Full-bleed splash (swap per variant via the `splash` field). -->
+      <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover" />
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/25 to-transparent"></div>
 
-            <h1 class="reveal mt-7 pb-1 text-[2.75rem] font-medium leading-[1.1] tracking-tight text-cream sm:text-6xl lg:text-6xl" data-hero-headline style="transition-delay:80ms"></h1>
+      <div class="relative mx-auto w-full max-w-content px-5 pb-16 pt-36 sm:px-8 sm:pb-24">
+        <div class="max-w-2xl">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-gold/90" data-hero-eyebrow>
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span>
+          </p>
 
-            <p class="reveal mt-8 text-lg leading-relaxed text-muted sm:text-xl" data-hero-subhead style="transition-delay:160ms"></p>
+          <h1 class="reveal mt-7 pb-1 text-[2.75rem] font-medium leading-[1.05] tracking-tight text-cream sm:text-6xl lg:text-7xl" data-hero-headline style="transition-delay:80ms"></h1>
 
-            <div class="reveal mt-10" style="transition-delay:240ms">
-              <a href="#apply" data-cta="hero" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
-            </div>
+          <p class="reveal mt-8 max-w-xl text-lg leading-relaxed text-cream/80 sm:text-xl" data-hero-subhead style="transition-delay:160ms"></p>
 
-            <p class="reveal mt-5 text-sm text-muted" style="transition-delay:300ms" data-hero-urgency></p>
+          <div class="reveal mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center" style="transition-delay:240ms">
+            <a href="#apply" data-cta="hero" class="group inline-flex items-center gap-3 rounded-full bg-gold py-2 pl-7 pr-2 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">
+              Get matched
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-gold transition-transform duration-200 group-hover:translate-x-0.5">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+              </span>
+            </a>
+            <p class="text-sm text-cream/70" data-hero-urgency></p>
           </div>
 
-          <!-- Splash image (template - swap per variant via the `splash` field). -->
-          <div class="reveal lg:order-last" style="transition-delay:200ms">
-            <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/50">
-              <img data-splash alt="Founders meeting up in London" class="aspect-[4/5] w-full object-cover" />
-              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent"></div>
-            </div>
+          <div class="reveal mt-10 flex items-center gap-4" style="transition-delay:300ms">
+            <div class="flex items-center" data-hero-avatars></div>
+            <p class="text-sm leading-snug text-cream/70">Join <span class="font-semibold text-cream">1,000+ founders</span> building<br class="hidden sm:block" /> better together in London.</p>
           </div>
         </div>
       </div>
@@ -202,6 +222,23 @@
             <dd class="mt-1.5 text-[0.7rem] uppercase tracking-eyebrow text-muted sm:text-xs">money-back guarantee</dd>
           </div>
         </dl>
+      </div>
+    </section>
+
+    <!-- ============================ HOW IT WORKS ============================ -->
+    <section class="border-b border-white/10 bg-surface py-24 sm:py-32" id="how">
+      <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> How it works
+          </p>
+          <h2 class="reveal mt-5 text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-how-heading></h2>
+          <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-how-body></p>
+          <div class="reveal mt-9" style="transition-delay:160ms">
+            <a href="#apply" data-cta="how" class="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+          </div>
+        </div>
+        <div class="space-y-4 lg:col-span-7" data-steps></div>
       </div>
     </section>
 
@@ -233,27 +270,6 @@
       </div>
     </section>
 
-    <!-- ============================ A NOTE FROM OUR FOUNDERS ============================ -->
-    <section class="py-28 sm:py-36" id="note">
-      <div class="mx-auto max-w-3xl px-5 sm:px-8">
-        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> A note from our founders
-        </p>
-        <p class="reveal mt-7 text-3xl font-light leading-[1.25] tracking-tight text-cream sm:text-4xl" style="transition-delay:60ms">
-          You become the people you <span class="text-gold">spend your time with</span>.
-        </p>
-        <p class="reveal mt-6 max-w-2xl text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-idea-sub></p>
-
-        <div class="reveal mt-10 flex items-center gap-4" style="transition-delay:180ms">
-          <img src="images/members/jai.jpg" alt="Jai, Founder Meets" loading="lazy" class="h-14 w-14 shrink-0 rounded-full border border-white/10 object-cover" />
-          <div>
-            <p class="font-signature text-4xl leading-none text-gold">Jai</p>
-            <p class="mt-1.5 text-sm text-muted">Jai &amp; the Founder Meets team</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ============================ COMMUNITY / UGC ============================ -->
     <section class="py-20 sm:py-24" id="community">
       <div class="mx-auto max-w-content px-5 sm:px-8">
@@ -280,29 +296,6 @@
       </div>
     </section>
 
-    <!-- ============================ STATS ============================ -->
-    <section class="py-20 sm:py-24">
-      <div class="mx-auto max-w-content px-5 sm:px-8">
-        <div class="grid grid-cols-1 gap-10 sm:grid-cols-3" data-stats></div>
-      </div>
-    </section>
-
-    <!-- ============================ HOW IT WORKS ============================ -->
-    <section class="border-t border-white/10 bg-surface py-24 sm:py-32" id="how">
-      <div class="mx-auto max-w-content px-5 sm:px-8">
-        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> How it works
-        </p>
-        <h2 class="reveal mt-5 max-w-2xl text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-how-heading></h2>
-
-        <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3" data-steps></div>
-
-        <div class="reveal mt-14 text-center" style="transition-delay:120ms">
-          <a href="#apply" data-cta="how" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
-        </div>
-      </div>
-    </section>
-
     <!-- ============================ THE MATCHING ENGINE ============================ -->
     <section class="border-t border-white/10 bg-surface py-24 sm:py-32">
       <div class="mx-auto grid max-w-content grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
@@ -320,23 +313,8 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ============================ MATCHING TIERS ============================ -->
-    <section class="py-24 sm:py-32" id="tiers">
-      <div class="mx-auto max-w-content px-5 sm:px-8">
-        <div class="max-w-2xl">
-          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> <span data-tiers-eyebrow></span>
-          </p>
-          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-tiers-headline></h2>
-          <p class="reveal mt-6 text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-tiers-subhead></p>
-        </div>
-
-        <div class="mt-14 grid gap-6 md:grid-cols-3" data-tiers></div>
-
-        <p class="reveal mt-8 text-sm text-muted" style="transition-delay:80ms" data-tiers-note></p>
-      </div>
+      <figure class="reveal mx-auto mt-16 max-w-3xl px-5 text-center sm:mt-20 sm:px-8" data-atlas-quote></figure>
     </section>
 
     <!-- ============================ WHAT YOU GET ============================ -->
@@ -353,8 +331,25 @@
         <div class="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" data-benefits></div>
 
         <div class="reveal mt-16 text-center" style="transition-delay:120ms">
-          <a href="#apply" data-cta="value" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
+          <a href="#apply" data-cta="value" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Get matched</a>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================ MATCHING TIERS ============================ -->
+    <section class="border-t border-white/10 py-24 sm:py-32" id="tiers">
+      <div class="mx-auto max-w-content px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> <span data-tiers-eyebrow></span>
+          </p>
+          <h2 class="reveal mt-5 text-4xl font-medium tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-tiers-headline></h2>
+          <p class="reveal mt-6 text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-tiers-subhead></p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-3" data-tiers></div>
+
+        <p class="reveal mt-8 text-sm text-muted" style="transition-delay:80ms" data-tiers-note></p>
       </div>
     </section>
 
@@ -380,32 +375,6 @@
       </div>
     </section>
 
-    <!-- ============================ VETTING ============================ -->
-    <section class="border-y border-white/10 bg-surface py-24 sm:py-32" id="vetting">
-      <div class="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-6">
-          <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Vetting
-          </p>
-          <h2 class="reveal mt-5 text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">We reject more than we accept.</h2>
-          <p class="reveal mt-6 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms">We turn away roughly 3 in 4 applications to keep the standard high for everyone already in.</p>
-        </div>
-        <div class="lg:col-span-6">
-          <div class="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10" data-vetting></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ TESTIMONIALS ============================ -->
-    <section class="py-24 sm:py-32">
-      <div class="mx-auto max-w-content px-5 sm:px-8">
-        <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> What members say
-        </p>
-        <div class="mt-14 grid gap-6 md:grid-cols-3" data-testimonials></div>
-      </div>
-    </section>
-
     <!-- ============================ PRICING ============================ -->
     <section class="py-24 sm:py-32" id="pricing">
       <div class="mx-auto max-w-content px-5 sm:px-8">
@@ -420,7 +389,7 @@
 
           <ul class="mt-9 space-y-4" data-pricing></ul>
 
-          <a href="#apply" data-cta="pricing" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
+          <a href="#apply" data-cta="pricing" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Get matched</a>
           <p class="mt-5 text-center text-sm text-muted">You only pay if you're accepted. Cancel any time.</p>
         </div>
 
@@ -456,10 +425,10 @@
     <section class="bg-surface2 py-28 sm:py-36" id="apply">
       <div class="mx-auto max-w-content px-5 sm:px-8">
         <div class="reveal mx-auto max-w-2xl text-center">
-          <h2 class="text-5xl font-medium tracking-tight text-cream sm:text-6xl">Ready?</h2>
-          <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted">Applications take 2 minutes. Reviewed weekly. We'll be in touch within 7 days.</p>
-          <a href="#" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Apply to join</a>
-          <p class="mt-6 text-sm text-muted">We accept roughly 1 in 4 applications.</p>
+          <h2 class="text-5xl font-medium tracking-tight text-cream sm:text-6xl" data-final-heading>Ready to meet your one founder?</h2>
+          <p class="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted">Applications take 2 minutes and are reviewed weekly. We'll be in touch within 7 days.</p>
+          <a href="#" data-cta="final" class="mt-10 inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft sm:w-auto">Get matched</a>
+          <p class="mt-6 text-sm text-muted">We accept roughly 1 in 4 applications · 30-day money-back guarantee.</p>
         </div>
       </div>
     </section>
@@ -506,18 +475,20 @@
       // only what it changes; B/C inherit everything until they get their own
       // copy. Shared sections (members, gallery, vetting, footer) live outside.
       const BASE = {
-        eyebrow: 'London only',
+        eyebrow: 'London only · Private founder community',
         headline: 'The one founder you need this week. Picked for you.',
-        accentWord: 'you need',
+        accentWord: 'Picked for you.',
         subhead: 'Every Monday, Atlas - our AI matching engine - finds the one founder in London who can actually move your business forward. Someone at your level who gets exactly what you are building. A walk, a coffee, 60 minutes.',
         splash: 'images/hero-one.jpg',
-        urgency: 'We accept roughly 1 in 4 · takes 2 minutes.',
+        urgency: 'Apply in 2 minutes · we accept 1 in 4',
+        finalHeading: 'Ready to meet your one founder?',
         ideaSub: 'So we are deliberate about who that is. One founder a week, chosen on purpose - not left to chance, not whoever you happen to bump into.',
-        howHeading: 'One founder. Every week. Picked by Atlas.',
+        howHeading: 'One match. Once a week. Lasting impact.',
+        howBody: 'We keep it deliberate so you can focus on building. No endless swiping. No awkward networking events. One founder, chosen on purpose.',
         steps: [
-          { n: '1', title: 'Apply', body: 'We vet for serious founders only. Reviewed weekly.' },
-          { n: '2', title: 'Match', body: "Every Monday, we send one founder straight to your inbox to meet - walk or coffee, 60 minutes. You'll be matched within 7 days of acceptance; first match the following Monday." },
-          { n: '3', title: 'Reschedule if you need', body: 'One tap to shift your match anywhere in the week.' },
+          { n: '1', title: 'Atlas finds your match', body: 'Every Monday, Atlas analyses 1,000+ London founders to find the one you should meet.' },
+          { n: '2', title: 'We make the intro', body: 'Their profile and a warm introduction land in your inbox on Monday morning.' },
+          { n: '3', title: 'You meet. You grow.', body: 'A walk, a coffee, 60 minutes that could change everything.' },
         ],
         stats: [
           { figure: '1 in 4', label: 'applications accepted' },
@@ -532,7 +503,7 @@
         matchLine: 'The right people. In your corner.',
         matchSub: 'Make years of progress in one conversation - by asking the right people what you cannot ask anyone else.',
         pricing: [
-          'One curated match per week',
+          'One curated 1-on-1 match every week',
           'Matched within your tier',
           'Founding London member - rate locked in',
           'Vetted founders only',
@@ -566,7 +537,9 @@
           subhead: 'We match you into a small group of founders in London for the sport you love - padel, tennis, running, whatever your thing is. No fixed schedule - we get your group together fast, so you could be playing as soon as tomorrow.',
           splash: 'images/ugc/ugc-2.jpg',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, matched on purpose - often as soon as tomorrow, not weeks later.',
+          finalHeading: 'Ready to play?',
           howHeading: 'A founder sport group. As soon as tomorrow.',
+          howBody: 'We keep it deliberate. No scheduled day to wait for, no awkward networking events - just a small group of founders who play your sport, matched on purpose.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
             { n: '2', title: 'Match', body: 'Atlas forms a group of 4-6 founders at your stage who play your sport, usually within days - no waiting for a set day.' },
@@ -606,7 +579,9 @@
           subhead: 'Every week we match you into a small group of founders in London for the sport you love - padel, tennis, running, whatever your thing is. Compete, build, and meet the people you would never cross paths with otherwise.',
           splash: 'images/ugc/ugc-2.jpg',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London, matched on purpose - playing the sport you love, not left to chance.',
+          finalHeading: 'Ready to play?',
           howHeading: 'A new group. Every week. Matched by Atlas.',
+          howBody: 'We keep it deliberate. No awkward networking events - just a small group of founders who play your sport, a fresh group matched on purpose every week.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your sport and what stage you are at. We vet every applicant.' },
             { n: '2', title: 'Match', body: 'Each week, we put you into a small group of 4-6 founders in London who play your sport. Same stage. Same intent. We email you your group each week.' },
@@ -663,6 +638,8 @@
       const URGENCY = _V.urgency;
       const IDEA_SUB = _V.ideaSub;
       const HOW_HEADING = _V.howHeading;
+      const HOW_BODY = _V.howBody;
+      const FINAL_HEADING = _V.finalHeading;
       const STEPS = _V.steps;
       const STATS = _V.stats;
       const TIERS = _V.tiers;
@@ -765,6 +742,8 @@
 
       setText('[data-idea-sub]', IDEA_SUB);
       setText('[data-how-heading]', HOW_HEADING);
+      setText('[data-how-body]', HOW_BODY);
+      setText('[data-final-heading]', FINAL_HEADING);
       setText('[data-match-line]', MATCH_LINE);
       setText('[data-match-sub]', MATCH_SUB);
 
@@ -783,17 +762,15 @@
       if (ACCENT_WORD && HEADLINE.includes(ACCENT_WORD)) {
         const parts = HEADLINE.split(ACCENT_WORD);
         headlineEl.innerHTML =
-          esc(parts[0]) + '<span class="shimmer">' + esc(ACCENT_WORD) + '</span>' + esc(parts.slice(1).join(ACCENT_WORD));
+          esc(parts[0]) + '<span class="accent">' + esc(ACCENT_WORD) + '</span>' + esc(parts.slice(1).join(ACCENT_WORD));
       } else {
         headlineEl.textContent = HEADLINE;
       }
 
-      // Stats
-      document.querySelector('[data-stats]').innerHTML = STATS.map((s, i) => `
-        <div class="reveal text-center sm:text-left" style="transition-delay:${i * 80}ms">
-          <p class="text-5xl font-medium tracking-tight text-gold sm:text-6xl">${esc(s.figure)}</p>
-          <p class="mt-3 text-sm uppercase tracking-eyebrow text-muted">${esc(s.label)}</p>
-        </div>
+      // Hero avatar social-proof stack (first few member photos).
+      const heroAv = document.querySelector('[data-hero-avatars]');
+      if (heroAv) heroAv.innerHTML = MEMBERS.slice(0, 4).map((m, i) => `
+        <img src="${esc(m.img)}" alt="" loading="lazy" class="h-9 w-9 rounded-full border-2 border-ink object-cover ${i ? '-ml-2.5' : ''}" />
       `).join('');
 
       // Matching tiers
@@ -814,12 +791,14 @@
         </div>
       `).join('');
 
-      // How-it-works steps
+      // How-it-works steps (stacked rows: big number + title/body).
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => `
-        <div class="reveal bg-surface p-9 sm:p-10" style="transition-delay:${i * 100}ms">
-          <span class="text-5xl font-light text-gold">${esc(s.n)}</span>
-          <h3 class="mt-6 text-xl font-semibold tracking-tight text-cream">${esc(s.title)}</h3>
-          <p class="mt-3 leading-relaxed text-muted">${esc(s.body)}</p>
+        <div class="reveal flex gap-6 rounded-2xl border border-white/10 bg-ink/40 p-7 sm:p-8" style="transition-delay:${i * 100}ms">
+          <span class="text-3xl font-light leading-none text-gold sm:text-4xl">${esc(s.n)}</span>
+          <div>
+            <h3 class="text-xl font-semibold tracking-tight text-cream">${esc(s.title)}</h3>
+            <p class="mt-2 leading-relaxed text-muted">${esc(s.body)}</p>
+          </div>
         </div>
       `).join('');
 
@@ -863,24 +842,25 @@
         </div>
       `).join('');
 
-      // Testimonials
-      document.querySelector('[data-testimonials]').innerHTML = TESTIMONIALS.map((t, i) => `
-        <figure class="reveal card flex h-full flex-col rounded-2xl p-8" style="transition-delay:${i * 90}ms">
-          <blockquote class="text-xl font-light leading-relaxed text-cream">${esc(t.quote)}</blockquote>
-          <figcaption class="mt-7 flex items-center gap-4">
-            <img src="${esc(t.img)}" alt="${esc(t.name)}" loading="lazy" class="h-12 w-12 shrink-0 rounded-full border border-white/10 object-cover" />
-            <span class="text-sm leading-tight">
+      // Atlas pull-quote (single featured testimonial, below the matching engine).
+      const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
+      if (atlasQuoteEl && TESTIMONIALS[0]) {
+        const t = TESTIMONIALS[0];
+        atlasQuoteEl.innerHTML = `
+          <blockquote class="text-2xl font-light leading-relaxed text-cream sm:text-3xl">"${esc(t.quote)}"</blockquote>
+          <figcaption class="mt-7 flex items-center justify-center gap-3">
+            <img src="${esc(t.img)}" alt="${esc(t.name)}" loading="lazy" class="h-11 w-11 shrink-0 rounded-full border border-white/10 object-cover" />
+            <span class="text-left text-sm leading-tight">
               <span class="block font-semibold text-cream">${esc(t.name)}</span>
               <span class="block text-muted">${esc(t.company)}</span>
             </span>
-          </figcaption>
-        </figure>
-      `).join('');
+          </figcaption>`;
+      }
 
       // Community / UGC photo reel - real member meetups (photos supplied by the team).
       // 1:1 variant shows the 2-person photos; the group variants (sport, chat) show the group shots.
-      const UGC_PAIRS = ['ugc-4', 'ugc-7', 'ugc-8'];
-      const UGC_GROUPS = ['ugc-1', 'ugc-2', 'ugc-3', 'ugc-5', 'ugc-6', 'ugc-9'];
+      const UGC_PAIRS = ['ugc-4', 'ugc-7', 'ugc-8']; // + 'ugc-14','ugc-15' (Central Park + cafe) once those files are saved
+      const UGC_GROUPS = ['ugc-1', 'ugc-2', 'ugc-3', 'ugc-5', 'ugc-6', 'ugc-9', 'ugc-10', 'ugc-11', 'ugc-12', 'ugc-13'];
       const UGC = VARIANT === 'one' ? UGC_PAIRS : UGC_GROUPS;
       const ugcEl = document.querySelector('[data-ugc]');
       if (ugcEl) ugcEl.innerHTML = UGC.map((id) => `
@@ -914,17 +894,6 @@
           <svg class="mt-0.5 h-5 w-5 shrink-0 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
           ${esc(a)}
         </li>
-      `).join('');
-
-      // Vetting
-      document.querySelector('[data-vetting]').innerHTML = VETTING.map((v) => `
-        <div class="reveal bg-surface p-7 sm:p-8">
-          <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 text-gold">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="${v.icon}" /></svg>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-cream">${esc(v.title)}</h3>
-          <p class="mt-2 leading-relaxed text-muted">${esc(v.body)}</p>
-        </div>
       `).join('');
 
       // Pricing list
