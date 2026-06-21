@@ -319,7 +319,14 @@
         </div>
       </div>
 
-      <figure class="reveal mx-auto mt-16 max-w-3xl px-5 text-center sm:mt-20 sm:px-8" data-atlas-quote></figure>
+    </section>
+
+    <!-- ============================ TESTIMONIAL PHOTO BANNER ============================ -->
+    <section class="relative overflow-hidden bg-ink">
+      <img data-quote-img alt="" class="absolute inset-0 h-full w-full object-cover" />
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/65 to-ink/20"></div>
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/30 to-transparent"></div>
+      <figure class="reveal relative mx-auto flex min-h-[26rem] max-w-content flex-col justify-end px-5 py-14 sm:min-h-[32rem] sm:px-8 sm:py-20" data-atlas-quote></figure>
     </section>
 
     <!-- ============================ WHAT YOU GET ============================ -->
@@ -700,7 +707,7 @@
       // Real members with their real photos. NOTE: the quote WORDING is still
       // placeholder – get a real, approved quote from each member before launch.
       const TESTIMONIALS = [
-        { quote: "Two founders I met here became customers within a month – more than a year of events ever got me.", name: 'Max Hertan', company: 'Founder · longevity', img: 'images/members/max.jpg' },
+        { quote: "Two founders I met here became customers within a month – more than a year of events ever got me.", name: 'Max Hertan', company: 'Founder · two exits', img: 'images/members/max.jpg' },
         { quote: "Some of the best founders I've backed, I met right here. No networking theatre, just the right people.", name: 'Gabrielle Bufrem', company: 'Founder + angel', img: 'images/members/gabrielle.jpg' },
         { quote: "Met a founder here who'd solved the exact thing I was stuck on. One coffee saved me months.", name: 'Mathew Russell', company: 'Founder · Rosslyn Coffee', img: 'images/members/matt-russell.jpg' },
       ];
@@ -860,15 +867,17 @@
         </div>
       `).join('');
 
-      // Atlas pull-quote (single featured testimonial, below the matching engine).
+      // Featured testimonial: full-bleed photo banner with the quote overlaid.
+      const quoteImg = document.querySelector('[data-quote-img]');
+      if (quoteImg) quoteImg.src = VARIANT === 'one' ? 'images/ugc/ugc-8.jpg' : 'images/ugc/ugc-1.jpg';
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
         const t = TESTIMONIALS[0];
         atlasQuoteEl.innerHTML = `
-          <blockquote class="text-2xl font-light leading-relaxed text-cream sm:text-3xl">"${esc(t.quote)}"</blockquote>
-          <figcaption class="mt-7 flex items-center justify-center gap-3">
-            <img src="${esc(t.img)}" alt="${esc(t.name)}" loading="lazy" class="h-11 w-11 shrink-0 rounded-full border border-cream/10 object-cover" />
-            <span class="text-left text-sm leading-tight">
+          <blockquote class="max-w-2xl font-serif text-2xl font-light italic leading-snug text-cream sm:text-3xl">"${esc(t.quote)}"</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3">
+            <img src="${esc(t.img)}" alt="" class="h-11 w-11 shrink-0 rounded-full border border-cream/20 object-cover" />
+            <span class="text-sm leading-tight">
               <span class="block font-semibold text-cream">${esc(t.name)}</span>
               <span class="block text-creammuted">${esc(t.company)}</span>
             </span>
