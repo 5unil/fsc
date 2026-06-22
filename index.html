@@ -827,7 +827,7 @@
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => `
         <div class="reveal overflow-hidden rounded-2xl border border-coffee/10 bg-paper" style="transition-delay:${i * 100}ms">
           <div class="relative">
-            <img src="images/ugc/${STEP_IMGS[i % STEP_IMGS.length]}.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" class="h-44 w-full object-cover object-[center_30%]" />
+            <img src="images/ugc/${STEP_IMGS[i % STEP_IMGS.length]}.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" class="aspect-[4/3] w-full object-cover object-[center_25%]" />
             <span class="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-gold text-sm font-semibold text-ink">${esc(s.n)}</span>
           </div>
           <div class="p-6">
