@@ -20,23 +20,28 @@
 
     <title>Apply – Founder Meets</title>
     <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital@1&display=swap" rel="stylesheet" />
     <style>
       body {
-        background: #0a0a0a;
-        color: #fff3d5;
+        background: #f6efe1;
+        color: #211d17;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         margin: 0;
       }
-      .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      .wrap { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
       .brand {
         display: inline-flex; align-items: center; gap: 0.6rem;
         font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-        color: #fff3d5; text-decoration: none; font-size: 0.95rem;
+        color: #211d17; text-decoration: none; font-size: 0.95rem;
       }
       .dot { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: #fbe06c; }
-      h1 { font-size: 2rem; font-weight: 500; letter-spacing: -0.02em; margin: 2.25rem 0 0.5rem; }
-      p.sub { color: #b3ad9e; margin: 0 0 1.75rem; line-height: 1.6; }
+      h1 { font-size: 2.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; margin: 2.5rem 0 0.6rem; }
+      h1 .accent { font-family: 'Newsreader', Georgia, serif; font-style: italic; font-weight: 400; color: #a8761f; }
+      p.sub { color: #8a8275; margin: 0 0 1.75rem; line-height: 1.6; font-size: 1.05rem; }
+      .formcard { background: #fffdf8; border: 1px solid rgba(33, 29, 23, 0.10); border-radius: 1.25rem; padding: 0.5rem 1.25rem; box-shadow: 0 14px 40px rgba(33, 29, 23, 0.06); }
       iframe { width: 100%; border: 0; background: transparent; }
     </style>
   </head>
@@ -44,10 +49,12 @@
     <div class="wrap">
       <a href="/" class="brand"><span class="dot"></span><span>founder meets</span></a>
 
-      <h1>Apply to join</h1>
+      <h1>Apply <span class="accent">to join</span></h1>
       <p class="sub">Takes 2 minutes. We accept roughly 1 in 4. You're only charged if you're accepted.</p>
 
-      <iframe data-tally-src="" loading="lazy" height="600" title="Founder Meets application"></iframe>
+      <div class="formcard">
+        <iframe data-tally-src="" loading="lazy" height="600" title="Founder Meets application"></iframe>
+      </div>
     </div>
 
     <script>
