@@ -829,11 +829,11 @@
       `).join('');
 
       // How-it-works steps: photo card + number badge + title/body.
-      const STEP_IMGS = VARIANT === 'one' ? ['ugc-10', 'ugc-11', 'ugc-12'] : ['ugc-1', 'ugc-2', 'ugc-3'];
+      const STEP_IMGS = VARIANT === 'one' ? ['ugc-10', 'ugc-11', 'ugc-8'] : ['ugc-1', 'ugc-2', 'ugc-3'];
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => `
         <div class="reveal overflow-hidden rounded-2xl border border-coffee/10 bg-paper" style="transition-delay:${i * 100}ms">
           <div class="relative">
-            <img src="images/ugc/${STEP_IMGS[i % STEP_IMGS.length]}.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" class="aspect-square w-full object-cover object-center sm:aspect-[4/3]" />
+            <img src="images/ugc/${STEP_IMGS[i % STEP_IMGS.length]}.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" class="aspect-square w-full object-cover object-[center_40%]" />
             <span class="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-gold text-sm font-semibold text-ink">${esc(s.n)}</span>
           </div>
           <div class="p-6">
