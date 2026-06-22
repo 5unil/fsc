@@ -199,7 +199,7 @@
     <!-- ============================ HERO ============================ -->
     <section class="relative flex min-h-screen items-end overflow-hidden">
       <!-- Full-bleed splash (swap per variant via the `splash` field). -->
-      <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover object-top" />
+      <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover" />
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/25 to-transparent"></div>
 
@@ -500,6 +500,7 @@
         accentWord: 'Picked for you.',
         subhead: 'Every Monday, Atlas – our AI matching engine – finds the one founder in London who can actually move your business forward. Someone at your level who gets exactly what you are building. A walk, a coffee, 60 minutes.',
         splash: 'images/hero-one.jpg',
+        splashPos: 'center top',
         urgency: 'Apply in 2 minutes · we accept 1 in 4',
         finalHeading: 'Ready to meet your one founder?',
         finalAccent: 'your one founder?',
@@ -557,6 +558,7 @@
           accentWord: 'as soon as tomorrow',
           subhead: 'We match you into a small group of founders in London for the sport you love – padel, tennis, running, whatever your thing is. No fixed schedule – we get your group together fast, so you could be playing as soon as tomorrow.',
           splash: 'images/ugc/ugc-2.jpg',
+          splashPos: 'center 25%',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, chosen on purpose – often as soon as tomorrow, not weeks later.',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
@@ -600,6 +602,7 @@
           accentWord: 'founder friends',
           subhead: 'Every week we match you into a small group of founders in London for the sport you love – padel, tennis, running, whatever your thing is. Compete, build, and meet the people you would never cross paths with otherwise.',
           splash: 'images/ugc/ugc-2.jpg',
+          splashPos: 'center 25%',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London, chosen on purpose – playing the sport you love, not left to chance.',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
@@ -758,7 +761,10 @@
 
       // Hero splash image (template; per-variant via the `splash` field).
       const splashEl = document.querySelector('[data-splash]');
-      if (splashEl && _V.splash) splashEl.src = _V.splash;
+      if (splashEl && _V.splash) {
+        splashEl.src = _V.splash;
+        splashEl.style.objectPosition = _V.splashPos || 'center';
+      }
 
       // Variant-specific copy that lives in otherwise-shared sections.
       const setText = (sel, val) => { const el = document.querySelector(sel); if (el && val != null) el.textContent = val; };
