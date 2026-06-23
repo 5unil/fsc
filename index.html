@@ -354,7 +354,7 @@
           <p class="reveal mx-auto mt-5 max-w-md text-lg leading-relaxed text-muted" style="transition-delay:120ms" data-match-sub></p>
         </div>
 
-        <div class="mt-16 grid gap-x-12 gap-y-12 sm:grid-cols-2" data-benefits></div>
+        <div class="mx-auto mt-16 grid max-w-3xl gap-x-12 gap-y-12 sm:grid-cols-2" data-benefits></div>
 
         <div class="reveal mt-14 text-center" style="transition-delay:120ms">
           <a href="#apply" data-cta="value" class="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-gold-soft">Apply to join</a>
@@ -569,6 +569,7 @@
           subhead: 'We match you into a small group of founders in London for the sport you love – padel, tennis, running, whatever your thing is. No fixed schedule – we get your group together fast, so you could be playing as soon as tomorrow.',
           splash: 'images/ugc/ugc-2.jpg',
           splashPos: 'center 25%',
+          splashFlip: true,
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London who play your sport, chosen on purpose – often as soon as tomorrow, not weeks later.',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
@@ -613,6 +614,7 @@
           subhead: 'Every week we match you into a small group of founders in London for the sport you love – padel, tennis, running, whatever your thing is. Compete, build, and meet the people you would never cross paths with otherwise.',
           splash: 'images/ugc/ugc-2.jpg',
           splashPos: 'center 25%',
+          splashFlip: true,
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London, chosen on purpose – playing the sport you love, not left to chance.',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
@@ -732,7 +734,7 @@
       // Real members with their real photos. NOTE: the quote WORDING is still
       // placeholder – get a real, approved quote from each member before launch.
       const TESTIMONIALS = [
-        { quote: "Two founders I met here became customers within a month – more than a year of events ever got me.", name: 'Max Hertan', company: 'Founder · two exits', img: 'images/members/max.jpg' },
+        { quote: "A founder I met here has become a close friend – we're now exploring launching a company together.", name: 'Max Hertan', company: 'Founder · two exits', img: 'images/members/max.jpg' },
         { quote: "Some of the best founders I've backed, I met right here. No networking theatre, just the right people.", name: 'Gabrielle Bufrem', company: 'Founder + angel', img: 'images/members/gabrielle.jpg' },
         { quote: "Met a founder here who'd solved the exact thing I was stuck on. One coffee saved me months.", name: 'Mathew Russell', company: 'Founder · Rosslyn Coffee', img: 'images/members/matt-russell.jpg' },
       ];
@@ -774,6 +776,7 @@
       if (splashEl && _V.splash) {
         splashEl.src = _V.splash;
         splashEl.style.objectPosition = _V.splashPos || 'center';
+        splashEl.style.transform = _V.splashFlip ? 'scaleX(-1)' : '';
       }
 
       // Variant-specific copy that lives in otherwise-shared sections.
