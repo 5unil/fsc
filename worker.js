@@ -115,6 +115,14 @@ async function createSession(params, env, origin) {
 // only split across the live variants. Detach ladder.foundermeets.com in Cloudflare.
 const VARIANT_SLUGS = ['one', 'chat', 'sport'];
 
+// Per-variant social-preview image (the splash photo). Scrapers don't run JS,
+// so og:image/twitter:image get rewritten server-side per subdomain below.
+const SPLASH = {
+  one: 'images/hero-one.jpg',
+  chat: 'images/ugc/ugc-2.jpg',
+  sport: 'images/ugc/ugc-2.jpg',
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -148,6 +156,18 @@ export default {
     }
 
     // Everything else: serve the static site.
-    return env.ASSETS.fetch(request);
+    const assetResp = await env.ASSETS.fetch(request);
+
+    // On the landing page, rewrite the social-preview image to this subdomain's
+    // splash photo (absolute URL) so shares/unfurls show the right variant image.
+    const splash = SPLASH[host.split('.')[0]];
+    if (splash && (url.pathname === '/' || url.pathname === '/index.html')) {
+      const img = `https://${host}/${splash}`;
+      return new HTMLRewriter()
+        .on('meta[property="og:image"]', { element(el) { el.setAttribute('content', img); } })
+        .on('meta[name="twitter:image"]', { element(el) { el.setAttribute('content', img); } })
+        .transform(assetResp);
+    }
+    return assetResp;
   },
 };

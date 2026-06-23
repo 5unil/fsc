@@ -18,12 +18,12 @@
     <meta name="description" content="A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes." />
     <meta property="og:title" content="Founder Meets – One Match a Week, Picked for You" />
     <meta property="og:description" content="A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes." />
-    <meta property="og:image" content="og.jpg" />
+    <meta property="og:image" content="images/hero-one.jpg" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Founder Meets – One Match a Week, Picked for You" />
     <meta name="twitter:description" content="A private founder community in London. We pick one founder for you to meet every Monday. Walk, coffee, 60 minutes." />
-    <meta name="twitter:image" content="og.jpg" />
+    <meta name="twitter:image" content="images/hero-one.jpg" />
 
     <!-- Favicon: gold circle (AOM accent) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23fbe06c'/%3E%3C/svg%3E" />
@@ -805,6 +805,12 @@
         setMeta('meta[property="og:description"]', SEO.description);
         setMeta('meta[name="twitter:title"]', SEO.title);
         setMeta('meta[name="twitter:description"]', SEO.description);
+        // Social preview image = this variant's splash photo (absolute URL).
+        if (_V.splash) {
+          const splashAbs = new URL(_V.splash, location.origin).href;
+          setMeta('meta[property="og:image"]', splashAbs);
+          setMeta('meta[name="twitter:image"]', splashAbs);
+        }
       }
 
       const headlineEl = document.querySelector('[data-hero-headline]');
