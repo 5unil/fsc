@@ -742,6 +742,51 @@
             description: 'Founder sport nights across London, open to every member. A different sport every week – just turn up and play.',
           },
         },
+
+        // 'circle' = structured peer-forum model: a fixed Circle of 6-8 vetted
+        // founders at your stage, meeting monthly for 90 min with a strict
+        // experience-share protocol; a 12-month commitment.
+        circle: {
+          ...BASE,
+          headline: 'The same 8 founders. Every month. For a year.',
+          accentWord: 'For a year.',
+          subhead: 'We place you in a fixed Circle of 6 to 8 vetted founders at your stage. Once a month you meet for 90 focused minutes – no advice-giving, just a structured share of what you have each actually lived. Same Circle, same faces, for 12 months. The trust compounds.',
+          splash: 'images/ugc/ugc-10.jpg',
+          splashPos: 'center 40%',
+          atlasEyebrow: 'Meet Atlas',
+          atlasHeading: 'Atlas builds your Circle.',
+          atlasAccent: 'your Circle.',
+          atlasBody: "Atlas, our matching engine, deep-researches every founder in our London network – their stage, what they're building, what makes them tick – then composes a Circle of people who will challenge you and get you. The more it learns, the sharper the fit.",
+          atlasFigure: '1,000+',
+          atlasLabel: 'founders researched for your Circle',
+          finalHeading: 'Ready to find your Circle?',
+          finalAccent: 'your Circle?',
+          howHeading: 'One Circle. Eight founders. Twelve months.',
+          howBody: 'This only works if everyone shows up. You commit to your Circle for 12 months, meet every month, and keep it confidential. Miss two without good reason and your seat goes to someone who will.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'Tell us your stage and what you are building. We vet every applicant – the bar is high.' },
+            { n: '2', title: 'Get placed in a Circle', body: 'We place you in a fixed Circle of 6 to 8 founders at your stage – same people every month, for 12 months.' },
+            { n: '3', title: 'Meet monthly', body: '90 focused minutes a month, with a strict experience-share protocol – no advice, no pitching, just what you have each actually lived.' },
+          ],
+          pricing: [
+            'A fixed Circle of 6 to 8 founders at your stage',
+            'A focused 90-minute session every month',
+            'A structured, confidential experience-share protocol',
+            'Vetted founders only',
+            'A 12-month commitment to your Circle',
+            'The private member WhatsApp group, always on',
+          ],
+          faq: [
+            { q: 'How big is a Circle?', a: 'Six to eight founders at a similar stage, kept fixed so trust can build. Small enough that everyone gets airtime.' },
+            { q: 'What is the experience-share protocol?', a: 'No advice-giving. When someone brings a challenge, the rest share only from what they have actually lived through – your experience, not your opinion. It is the format the best founder peer groups in the world use.' },
+            { q: 'What is the commitment?', a: 'You commit to your Circle for 12 months and meet every month. Miss two sessions without good reason and your seat goes to someone on the waitlist – it only works if everyone shows up.' },
+            { q: 'Is it confidential?', a: 'Completely. What is said in your Circle stays in your Circle – that is what makes it safe to be honest.' },
+          ],
+          seo: {
+            title: 'Founder Meets – a structured founder peer Circle in London',
+            description: 'A fixed Circle of 6 to 8 vetted founders at your stage, meeting monthly for 90 minutes with a structured experience-share protocol. A 12-month commitment.',
+          },
+        },
       };
 
       // Variant is chosen by subdomain (one/chat/sport), then ?variant=,
@@ -954,6 +999,7 @@
         sport: ['ugc-1', 'ugc-2', 'ugc-3'],
         dinner: ['ugc-1', 'ugc-10', 'ugc-8'],
         chapter: ['ugc-2', 'ugc-3', 'ugc-13'],
+        circle: ['ugc-1', 'ugc-11', 'ugc-8'],
       })[VARIANT] || ['ugc-1', 'ugc-2', 'ugc-3'];
       const FLIP_STEP_IMGS = ['ugc-2']; // mirror these to match the flipped hero splash
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => {
@@ -1017,7 +1063,7 @@
 
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
-      if (quoteImg) quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-11' })[VARIANT] || 'ugc-13') + '.jpg';
+      if (quoteImg) quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-11', circle: 'ugc-1' })[VARIANT] || 'ugc-13') + '.jpg';
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
         const t = TESTIMONIALS[0];
