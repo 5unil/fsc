@@ -649,6 +649,81 @@
             description: 'Each week, join a small group of founders in London to play sport together. Padel, tennis, table tennis, running.',
           },
         },
+
+        // 'dinner' = monthly small-group founder dinners that open with a round
+        // of gratitude (hold hands, share what you're grateful for).
+        dinner: {
+          ...BASE,
+          headline: 'A monthly founder dinner that feels like home.',
+          accentWord: 'feels like home',
+          subhead: 'Once a month we sit you down with a small table of founders in London for a long, unhurried dinner. Before we eat, we hold hands and each share one thing we are grateful for – a moment of grace. You leave with friends, not business cards.',
+          splash: 'images/ugc/ugc-11.jpg',
+          splashPos: 'center 25%',
+          finalHeading: 'Ready for a seat at the table?',
+          finalAccent: 'a seat at the table?',
+          howHeading: 'One table. Six founders. Once a month.',
+          howBody: 'We keep it small and deliberate. No name tags, no pitching – just six founders, a long table, and a round of gratitude before the first course.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'Tell us about you and what you are building. We vet every applicant.' },
+            { n: '2', title: 'Get your table', body: 'Each month we sit you with a small table of founders in London at your stage – chosen on purpose, not at random.' },
+            { n: '3', title: 'Break bread', body: 'A long, unhurried dinner. We open with a round of gratitude, then let the night go where it goes.' },
+          ],
+          pricing: [
+            "A seat at a founders' dinner every month",
+            'A curated table of 6, placed at your stage',
+            'Vetted founders only',
+            'The private member WhatsApp group, always on',
+            'Cancel anytime',
+          ],
+          faq: [
+            { q: 'How often are the dinners?', a: 'Once a month, in London. You get a seat at a small, curated table of founders at your stage.' },
+            { q: 'What is the gratitude round?', a: 'Before we eat, we go round the table and each share one thing we are grateful for. It sounds small; it changes the whole dinner.' },
+            { q: 'Is food included?', a: 'Your membership covers the curation and your seat. Food and drink on the night are paid or split at the venue – we always tell you up front.' },
+            { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
+          ],
+          seo: {
+            title: 'Founder Meets – monthly founder dinners in London',
+            description: 'A monthly dinner with a small, curated table of founders in London. We open with a round of gratitude, then let the night go where it goes.',
+          },
+        },
+
+        // 'chapter' = citywide/open founder sport nights – drop-in events anyone
+        // can attend (no fixed group), a different sport each time.
+        chapter: {
+          ...BASE,
+          headline: 'Play sport with founders across the city.',
+          accentWord: 'across the city',
+          subhead: 'We run founder sport nights all over London, open to every member. Padel one week, football the next, a run the week after. No fixed group, no pressure to make every one – just turn up, play, and meet founders you would never otherwise cross paths with.',
+          splash: 'images/ugc/ugc-13.jpg',
+          splashPos: 'center 30%',
+          finalHeading: 'Ready to play?',
+          finalAccent: 'play?',
+          howHeading: 'Show up. Play. Meet founders.',
+          howBody: 'No placement, no pressure to make every one. We run sport nights across the city – you pick the ones that work and just turn up.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'Tell us your sports and what stage you are at. We vet every applicant.' },
+            { n: '2', title: 'See the calendar', body: 'Each week we post founder sport nights across London – padel, football, running, whatever we are playing. RSVP to the ones you fancy.' },
+            { n: '3', title: 'Turn up and play', body: 'Just show up. Play, meet founders from across the city, and head to the pub after if you like.' },
+          ],
+          pricing: [
+            'Unlimited founder sport nights across London',
+            'A new sport and venue every week',
+            'No fixed group – come to whichever you like',
+            'Vetted founders only',
+            'The private member WhatsApp group, always on',
+            'Cancel anytime',
+          ],
+          faq: [
+            { q: 'How often are the events?', a: 'Several founder sport nights every week, all over London. Come to as many or as few as you like.' },
+            { q: 'What sports do you play?', a: 'It varies – padel, tennis, football, running, climbing, and more. We post the week ahead so you can pick your nights.' },
+            { q: 'Do I have to come every week?', a: 'No. There is no fixed group and no commitment to show. Turn up to whatever works for you.' },
+            { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
+          ],
+          seo: {
+            title: 'Founder Meets – citywide founder sport nights in London',
+            description: 'Founder sport nights across London, open to every member. A different sport every week – just turn up and play.',
+          },
+        },
       };
 
       // Variant is chosen by subdomain (one/chat/sport), then ?variant=,
@@ -848,7 +923,13 @@
       `).join('');
 
       // How-it-works steps: photo card + number badge + title/body.
-      const STEP_IMGS = VARIANT === 'one' ? ['ugc-10', 'ugc-11', 'ugc-8'] : ['ugc-1', 'ugc-2', 'ugc-3'];
+      const STEP_IMGS = ({
+        one: ['ugc-10', 'ugc-11', 'ugc-8'],
+        chat: ['ugc-1', 'ugc-2', 'ugc-3'],
+        sport: ['ugc-1', 'ugc-2', 'ugc-3'],
+        dinner: ['ugc-1', 'ugc-10', 'ugc-8'],
+        chapter: ['ugc-2', 'ugc-3', 'ugc-13'],
+      })[VARIANT] || ['ugc-1', 'ugc-2', 'ugc-3'];
       const FLIP_STEP_IMGS = ['ugc-2']; // mirror these to match the flipped hero splash
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => {
         const id = STEP_IMGS[i % STEP_IMGS.length];
@@ -911,7 +992,7 @@
 
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
-      if (quoteImg) quoteImg.src = VARIANT === 'one' ? 'images/ugc/ugc-7.jpg' : 'images/ugc/ugc-13.jpg';
+      if (quoteImg) quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-11' })[VARIANT] || 'ugc-13') + '.jpg';
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
         const t = TESTIMONIALS[0];

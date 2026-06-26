@@ -57,7 +57,7 @@ async function createSession(params, env, origin) {
   // submission through a single host. Falls back to the request origin off the
   // production domain (localhost / *.workers.dev) or when the variant is unknown.
   const variant = (params.get('variant') || '').toLowerCase();
-  const slugs = ['one', 'chat', 'sport'];
+  const slugs = ['one', 'chat', 'sport', 'dinner', 'chapter'];
   const base = slugs.includes(variant) && origin.endsWith('foundermeets.com') ? `https://${variant}.foundermeets.com` : origin;
 
   // Attribution (variant + UTM/fbclid), collected once so it can go on BOTH the
@@ -113,7 +113,14 @@ async function createSession(params, env, origin) {
 
 // 'ladder' retired: removed from the apex rotation so new/returning visitors are
 // only split across the live variants. Detach ladder.foundermeets.com in Cloudflare.
-const VARIANT_SLUGS = ['one', 'chat', 'sport'];
+// All valid variant slugs (each maps to a <slug>.foundermeets.com subdomain).
+const VARIANT_SLUGS = ['one', 'chat', 'sport', 'dinner', 'chapter'];
+
+// Variants in the apex random split. Only add a slug here once its Cloudflare
+// subdomain is live, or apex visitors get routed to a 404. dinner/chapter are
+// new test variants - reachable via their subdomain or ?variant=, but kept out
+// of the random rotation until their subdomains exist.
+const APEX_ROTATION = ['one', 'chat', 'sport'];
 
 // Per-variant social-preview image (the splash photo). Scrapers don't run JS,
 // so og:image/twitter:image get rewritten server-side per subdomain below.
@@ -121,6 +128,8 @@ const SPLASH = {
   one: 'images/hero-one.jpg',
   chat: 'images/ugc/ugc-2.jpg',
   sport: 'images/ugc/ugc-2.jpg',
+  dinner: 'images/ugc/ugc-11.jpg',
+  chapter: 'images/ugc/ugc-13.jpg',
 };
 
 export default {
@@ -135,7 +144,7 @@ export default {
       const cookie = (request.headers.get('Cookie') || '').match(/(?:^|;\s*)mf_variant=([a-z]+)/);
       let v = cookie && VARIANT_SLUGS.includes(cookie[1]) ? cookie[1] : null;
       const isNew = !v;
-      if (!v) v = VARIANT_SLUGS[Math.floor(Math.random() * VARIANT_SLUGS.length)];
+      if (!v) v = APEX_ROTATION[Math.floor(Math.random() * APEX_ROTATION.length)];
       const headers = { Location: `https://${v}.foundermeets.com${url.pathname}${url.search}` };
       // Make a newly-assigned visitor sticky from the first hit.
       if (isNew) headers['Set-Cookie'] = `mf_variant=${v}; Domain=.foundermeets.com; Path=/; Max-Age=2592000; SameSite=Lax; Secure`;
