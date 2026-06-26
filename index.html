@@ -320,15 +320,15 @@
       <div class="mx-auto grid max-w-content grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-7">
           <p class="reveal flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-creammuted">
-            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> Meet Atlas
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span> <span data-atlas-eyebrow></span>
           </p>
-          <h2 class="reveal mt-5 max-w-xl text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms">Atlas knows who you should <span class="accent">meet next.</span></h2>
-          <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-creammuted" style="transition-delay:120ms">Atlas, our AI matching engine, deep-researches every founder in our London network – their stage, what they're building, what they need, what makes them tick – then finds the people you'd gain most from meeting. The more it learns, the sharper it gets.</p>
+          <h2 class="reveal mt-5 max-w-xl text-4xl font-medium leading-[1.1] tracking-tight text-cream sm:text-5xl" style="transition-delay:60ms" data-atlas-heading></h2>
+          <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-creammuted" style="transition-delay:120ms" data-atlas-body></p>
         </div>
         <div class="lg:col-span-5">
           <div class="reveal card-dark rounded-2xl p-10 text-center" style="transition-delay:120ms">
-            <p class="text-6xl font-medium tracking-tight text-gold sm:text-7xl">1,000+</p>
-            <p class="mt-4 text-sm uppercase tracking-eyebrow text-creammuted">founders researched for your match</p>
+            <p class="text-6xl font-medium tracking-tight text-gold sm:text-7xl" data-atlas-figure></p>
+            <p class="mt-4 text-sm uppercase tracking-eyebrow text-creammuted" data-atlas-label></p>
           </div>
         </div>
       </div>
@@ -534,6 +534,12 @@
         ],
         matchLine: 'The right people. In your corner.',
         matchSub: 'Make years of progress in one conversation – by asking the right people what you cannot ask anyone else.',
+        atlasEyebrow: 'Meet Atlas',
+        atlasHeading: 'Atlas knows who you should meet next.',
+        atlasAccent: 'meet next.',
+        atlasBody: "Atlas, our AI matching engine, deep-researches every founder in our London network – their stage, what they're building, what they need, what makes them tick – then finds the people you'd gain most from meeting. The more it learns, the sharper it gets.",
+        atlasFigure: '1,000+',
+        atlasLabel: 'founders researched for your match',
         pricing: [
           'One curated 1-on-1 match every week',
           'Placed within your tier, always at your level',
@@ -659,6 +665,12 @@
           subhead: 'Once a month we sit you down with a small table of founders in London for a long, unhurried dinner. Before we eat, we hold hands and each share one thing we are grateful for – a moment of grace. You leave with friends, not business cards.',
           splash: 'images/ugc/ugc-11.jpg',
           splashPos: 'center 25%',
+          atlasEyebrow: 'Meet Atlas',
+          atlasHeading: 'Atlas sets the perfect table.',
+          atlasAccent: 'the perfect table.',
+          atlasBody: "Atlas, our matching engine, deep-researches every founder in our London network – their stage, what they're building, what makes them tick – then seats you with the people you'd most enjoy a long dinner with. The more it learns, the better the table.",
+          atlasFigure: '1,000+',
+          atlasLabel: 'founders researched for your table',
           finalHeading: 'Ready for a seat at the table?',
           finalAccent: 'a seat at the table?',
           howHeading: 'One table. Six founders. Once a month.',
@@ -696,6 +708,12 @@
           subhead: 'We run founder sport nights all over London, open to every member. Padel one week, football the next, a run the week after. No fixed group, no pressure to make every one – just turn up, play, and meet founders you would never otherwise cross paths with.',
           splash: 'images/ugc/ugc-13.jpg',
           splashPos: 'center 30%',
+          atlasEyebrow: 'The network',
+          atlasHeading: 'Founder sport, all over the city.',
+          atlasAccent: 'all over the city.',
+          atlasBody: "Hundreds of founders, dozens of venues, a new sport every week. Wherever you are in London, there's a game with founders worth meeting nearby – and the scene only gets denser as more join.",
+          atlasFigure: '1,000+',
+          atlasLabel: 'founders playing across London',
           finalHeading: 'Ready to play?',
           finalAccent: 'play?',
           howHeading: 'Show up. Play. Meet founders.',
@@ -873,6 +891,13 @@
       setAccent('[data-final-heading]', FINAL_HEADING, FINAL_ACCENT, 'accent');
       setAccent('[data-match-line]', MATCH_LINE, 'In your corner.', 'accent-ink');
       setText('[data-match-sub]', MATCH_SUB);
+
+      // Meet Atlas / network section (variant-aware: matching vs open citywide).
+      setText('[data-atlas-eyebrow]', _V.atlasEyebrow);
+      setText('[data-atlas-body]', _V.atlasBody);
+      setText('[data-atlas-figure]', _V.atlasFigure);
+      setText('[data-atlas-label]', _V.atlasLabel);
+      setAccent('[data-atlas-heading]', _V.atlasHeading, _V.atlasAccent, 'accent');
 
       // Per-variant SEO / social meta.
       if (SEO) {
