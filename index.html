@@ -766,7 +766,7 @@
           finalHeading: 'Ready to find your Circle?',
           finalAccent: 'your Circle?',
           howHeading: 'Your Circle. Six founders. Every month.',
-          howBody: 'This only works if everyone shows up. You commit to your Circle for 12 months, meet every month, and keep it confidential. Miss two without good reason and your seat goes to someone who will.',
+          howBody: 'The same group, every month, for a year. Everyone commits to showing up and keeps what is said confidential – that consistency is what builds real trust and lets the others truly get your business.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us your stage and what you are building. We vet every applicant – the bar is high.' },
             { n: '2', title: 'Get placed in a Circle', body: 'We place you in a small Circle of around 6 founders at your stage – the same people every month, so trust can build.' },
@@ -1056,7 +1056,7 @@
         sport: ['ugc-1', 'ugc-2', 'ugc-3'],
         dinner: ['ugc-18', 'ugc-19', 'ugc-20'],
         chapter: ['ugc-2', 'ugc-3', 'ugc-13'],
-        circle: ['ugc-25', 'ugc-22', 'ugc-26'],
+        circle: ['ugc-6', 'ugc-9', 'ugc-10'],
         pass: ['ugc-2', 'ugc-1', 'ugc-13'],
       })[VARIANT] || ['ugc-1', 'ugc-2', 'ugc-3'];
       const FLIP_STEP_IMGS = ['ugc-2']; // mirror these to match the flipped hero splash
@@ -1122,10 +1122,10 @@
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
       if (quoteImg) {
-        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-24', pass: 'ugc-10' })[VARIANT] || 'ugc-13') + '.jpg';
+        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-11', pass: 'ugc-10' })[VARIANT] || 'ugc-13') + '.jpg';
         // This banner is short + wide, so a centre crop drops the heads on group
         // shots where faces sit high. Bias per-variant toward the faces.
-        quoteImg.style.objectPosition = ({ dinner: 'center 22%' })[VARIANT] || 'center';
+        quoteImg.style.objectPosition = ({ dinner: 'center 22%', circle: 'center 30%' })[VARIANT] || 'center';
       }
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
