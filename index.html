@@ -787,6 +787,52 @@
             description: 'A small Circle of around 6 vetted founders at your stage, meeting monthly for 90 minutes with a structured experience-share protocol.',
           },
         },
+
+        // 'pass' = the "ClassPass for founders" angle: one monthly membership that
+        // unlocks a whole calendar of founder events across the city (sport,
+        // social, co-working, dinners, 1-on-1s) – pick and choose what to attend.
+        // Deliberately the broadest variant.
+        pass: {
+          ...BASE,
+          headline: 'One pass. Every founder event in London.',
+          accentWord: 'Every founder event',
+          subhead: 'One monthly membership unlocks a full calendar of founder events across London – padel, poker, hikes, co-working days, dinners, even a 1-on-1 match. Show up to what you want, skip what you do not. Every event, every founder, vetted.',
+          splash: 'images/ugc/ugc-3.jpg',
+          splashPos: 'center 45%',
+          atlasEyebrow: "What's on",
+          atlasHeading: 'Something on, almost every day.',
+          atlasAccent: 'almost every day.',
+          atlasBody: 'Padel, poker, pickleball, hikes, co-working days, dinners, 1-on-1 intros – a fresh calendar of founder events across London every month, plus events members host themselves. Miss this month’s game? You are auto-rolled into next month’s, so there is always a next one.',
+          atlasFigure: '1,000+',
+          atlasLabel: 'founders to meet across London',
+          finalHeading: "Ready to see what's on?",
+          finalAccent: "what's on?",
+          howHeading: 'One pass. Show up to what you want.',
+          howBody: 'You pay for the option, not the obligation. A full calendar of founder events every month – come to everything, come to one thing, or just see what is on. It is yours to use however you like.',
+          steps: [
+            { n: '1', title: 'Apply', body: 'Tell us about you and what you are building. We vet every member – the whole calendar is founders only.' },
+            { n: '2', title: 'See the calendar', body: 'Every month, a packed lineup across London – padel, poker, hikes, co-working, dinners, 1-on-1 intros – plus events other members host.' },
+            { n: '3', title: 'Show up to what you want', body: 'RSVP to the ones you fancy and just turn up. Miss one? You are auto-rolled into the next. No pressure, no missing out.' },
+          ],
+          pricing: [
+            'Every founder event in London, one membership',
+            'Padel, poker, hikes, co-working, dinners and more',
+            'A 1-on-1 founder match whenever you want one',
+            'Host your own events for the community',
+            'Vetted founders only',
+            'Cancel anytime',
+          ],
+          faq: [
+            { q: 'What kind of events are there?', a: 'A mix every month – padel, poker, pickleball, hikes, co-working days, table tennis, dinners, and 1-on-1 founder intros. New things get added as the community grows.' },
+            { q: 'Do I have to attend a certain number?', a: 'Not at all. You pay for the option, not the obligation – come to everything, come to one thing, or just keep an eye on what is on.' },
+            { q: 'Can I host my own event?', a: 'Yes. Members can post their own events – a dinner, a poker night, a lunch – to the community, and the best ones spread.' },
+            { q: 'What if I miss something?', a: 'No missing out. Miss this month’s pickleball and you are auto-rolled into next month’s, so there is always a next one on the calendar.' },
+          ],
+          seo: {
+            title: 'Founder Meets – one pass to every founder event in London',
+            description: 'One membership, a full calendar of founder events across London – padel, poker, hikes, co-working, dinners, 1-on-1s. Show up to what you want, skip what you do not.',
+          },
+        },
       };
 
       // Variant is chosen by subdomain (one/chat/sport), then ?variant=,
@@ -1000,6 +1046,7 @@
         dinner: ['ugc-1', 'ugc-10', 'ugc-8'],
         chapter: ['ugc-2', 'ugc-3', 'ugc-13'],
         circle: ['ugc-1', 'ugc-11', 'ugc-8'],
+        pass: ['ugc-2', 'ugc-1', 'ugc-13'],
       })[VARIANT] || ['ugc-1', 'ugc-2', 'ugc-3'];
       const FLIP_STEP_IMGS = ['ugc-2']; // mirror these to match the flipped hero splash
       document.querySelector('[data-steps]').innerHTML = STEPS.map((s, i) => {
@@ -1063,7 +1110,7 @@
 
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
-      if (quoteImg) quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-11', circle: 'ugc-1' })[VARIANT] || 'ugc-13') + '.jpg';
+      if (quoteImg) quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-11', circle: 'ugc-1', pass: 'ugc-10' })[VARIANT] || 'ugc-13') + '.jpg';
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
         const t = TESTIMONIALS[0];

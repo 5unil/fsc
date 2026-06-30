@@ -72,7 +72,7 @@
         var params = new URLSearchParams(location.search);
         if (!params.get('variant')) {
           var sub = location.hostname.toLowerCase().split('.')[0];
-          if (['one', 'chat', 'sport', 'dinner', 'chapter', 'circle'].indexOf(sub) !== -1) params.set('variant', sub);
+          if (['one', 'chat', 'sport', 'dinner', 'chapter', 'circle', 'pass'].indexOf(sub) !== -1) params.set('variant', sub);
         }
 
         var opts = 'transparentBackground=1&dynamicHeight=1&hideTitle=1&formEventsForwarding=1';
