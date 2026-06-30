@@ -662,7 +662,7 @@
           ...BASE,
           headline: 'A weekly founder dinner that feels like home.',
           accentWord: 'feels like home',
-          subhead: 'Once a week we sit you down with a small table of founders in London for dinner. Before we eat, we go round the table and each share one thing we are grateful for – a moment of grace. You leave with friends, not business cards.',
+          subhead: 'Once a week you sit down to dinner with a small, curated table of founders in London. Before we eat, we go round the table and each share one thing we are grateful for – a moment of grace. You leave with friends, not business cards.',
           splash: 'images/ugc/ugc-17.jpg',
           splashPos: 'center 40%',
           splashScale: 1.2,
@@ -679,7 +679,7 @@
           howBody: 'We keep it small and deliberate. No name tags, no pitching – just six founders, a shared table, and a round of gratitude before we eat.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us about you and what you are building. We vet every applicant.' },
-            { n: '2', title: 'Get your table', body: 'Each week we sit you with a small table of founders in London at your stage – chosen on purpose, not at random.' },
+            { n: '2', title: 'Get your table', body: 'Each week you join a small table of founders in London at your stage – chosen on purpose, not at random.' },
             { n: '3', title: 'Break bread', body: 'Dinner together. We open with a round of gratitude, then let the night go where it goes.' },
           ],
           pricing: [
@@ -794,19 +794,19 @@
 
         // 'pass' = the "ClassPass for founders" angle: one monthly membership that
         // unlocks a whole calendar of founder events across the city (sport,
-        // social, co-working, dinners, 1-on-1s) – pick and choose what to attend.
+        // social, co-working, dinners) – pick and choose what to attend.
         // Deliberately the broadest variant.
         pass: {
           ...BASE,
-          headline: 'One pass. Every founder event in London.',
-          accentWord: 'Every founder event',
-          subhead: 'One monthly membership unlocks a full calendar of founder events across London – padel, poker, hikes, co-working days, dinners, even a 1-on-1 match. Show up to what you want, skip what you do not. Every event, every founder, vetted.',
+          headline: 'One pass. Every founder event we run in London.',
+          accentWord: 'Every founder event we run',
+          subhead: 'One monthly membership unlocks a full calendar of founder events across London – padel, poker, hikes, co-working days, dinners and more. Show up to what you want, skip what you do not. Every event, every founder, vetted.',
           splash: 'images/ugc/ugc-3.jpg',
           splashPos: 'center 45%',
           atlasEyebrow: "What's on",
           atlasHeading: 'Something on, almost every day.',
           atlasAccent: 'almost every day.',
-          atlasBody: 'Padel, poker, pickleball, hikes, co-working days, dinners, 1-on-1 intros – a fresh calendar of founder events across London every month, plus events members host themselves. Miss this month’s game? You are auto-rolled into next month’s, so there is always a next one.',
+          atlasBody: 'Padel, poker, pickleball, hikes, co-working days, dinners – a fresh calendar of founder events across London every month, plus events members host themselves. Miss one? There is always another coming up.',
           atlasFigure: '1,000+',
           atlasLabel: 'founders to meet across London',
           finalHeading: "Ready to see what's on?",
@@ -815,26 +815,25 @@
           howBody: 'You pay for the option, not the obligation. A full calendar of founder events every month – come to everything, come to one thing, or just see what is on. It is yours to use however you like.',
           steps: [
             { n: '1', title: 'Apply', body: 'Tell us about you and what you are building. We vet every member – the whole calendar is founders only.' },
-            { n: '2', title: 'See the calendar', body: 'Every month, a packed lineup across London – padel, poker, hikes, co-working, dinners, 1-on-1 intros – plus events other members host.' },
-            { n: '3', title: 'Show up to what you want', body: 'RSVP to the ones you fancy and just turn up. Miss one? You are auto-rolled into the next. No pressure, no missing out.' },
+            { n: '2', title: 'See the calendar', body: 'Every month, a packed lineup across London – padel, poker, hikes, co-working, dinners – plus events other members host.' },
+            { n: '3', title: 'Show up to what you want', body: 'RSVP to the ones you fancy and just turn up. Miss one? There is always another. No pressure, no missing out.' },
           ],
           pricing: [
-            'Every founder event in London, one membership',
+            'Every event we run in London, one membership',
             'Padel, poker, hikes, co-working, dinners and more',
-            'A 1-on-1 founder match whenever you want one',
             'Host your own events for the community',
             'Vetted founders only',
             'Cancel anytime',
           ],
           faq: [
-            { q: 'What kind of events are there?', a: 'A mix every month – padel, poker, pickleball, hikes, co-working days, table tennis, dinners, and 1-on-1 founder intros. New things get added as the community grows.' },
+            { q: 'What kind of events are there?', a: 'A mix every month – padel, poker, pickleball, hikes, co-working days, table tennis, and dinners. New things get added as the community grows.' },
             { q: 'Do I have to attend a certain number?', a: 'Not at all. You pay for the option, not the obligation – come to everything, come to one thing, or just keep an eye on what is on.' },
             { q: 'Can I host my own event?', a: 'Yes. Members can post their own events – a dinner, a poker night, a lunch – to the community, and the best ones spread.' },
-            { q: 'What if I miss something?', a: 'No missing out. Miss this month’s pickleball and you are auto-rolled into next month’s, so there is always a next one on the calendar.' },
+            { q: 'What if I miss something?', a: 'No missing out. Events run regularly, so if you miss one there is always another on the calendar.' },
           ],
           seo: {
-            title: 'Founder Meets – one pass to every founder event in London',
-            description: 'One membership, a full calendar of founder events across London – padel, poker, hikes, co-working, dinners, 1-on-1s. Show up to what you want, skip what you do not.',
+            title: 'Founder Meets – one pass to the founder events we run in London',
+            description: 'One membership, a full calendar of founder events across London – padel, poker, hikes, co-working, dinners. Show up to what you want, skip what you do not.',
           },
         },
       };
@@ -1122,10 +1121,10 @@
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
       if (quoteImg) {
-        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-11', pass: 'ugc-10' })[VARIANT] || 'ugc-13') + '.jpg';
+        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-11', pass: 'ugc-24' })[VARIANT] || 'ugc-13') + '.jpg';
         // This banner is short + wide, so a centre crop drops the heads on group
         // shots where faces sit high. Bias per-variant toward the faces.
-        quoteImg.style.objectPosition = ({ dinner: 'center 22%', circle: 'center 30%' })[VARIANT] || 'center';
+        quoteImg.style.objectPosition = ({ dinner: 'center 22%', circle: 'center 30%', pass: 'center 30%' })[VARIANT] || 'center';
       }
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
