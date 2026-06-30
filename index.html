@@ -752,7 +752,7 @@
           ...BASE,
           headline: 'A small Circle of founders who have your back.',
           accentWord: 'have your back.',
-          subhead: 'We place you in a small Circle of around 6 vetted founders at your stage – the same faces every month, so trust has time to build. You meet once a month to talk through what each of you is actually working through – real experience from people in it with you, not advice from the sidelines. Think of it as a board for your business, made of founders who get it.',
+          subhead: 'A small Circle of around 6 founders at your stage, meeting every month – the same faces, so real trust builds. A board for your business: honest experience from people in it with you, not advice from the sidelines.',
           splash: 'images/ugc/ugc-18.jpg',
           // x=80% only bites on mobile (portrait crops the sides) – pans to the
           // woman on the right so she stays in frame; desktop shows full width.
@@ -1055,7 +1055,7 @@
         sport: ['ugc-1', 'ugc-2', 'ugc-3'],
         dinner: ['ugc-18', 'ugc-19', 'ugc-20'],
         chapter: ['ugc-2', 'ugc-3', 'ugc-13'],
-        circle: ['ugc-6', 'ugc-9', 'ugc-10'],
+        circle: ['ugc-1', 'ugc-9', 'ugc-21'],
         pass: ['ugc-2', 'ugc-1', 'ugc-13'],
       })[VARIANT] || ['ugc-1', 'ugc-2', 'ugc-3'];
       const FLIP_STEP_IMGS = ['ugc-2']; // mirror these to match the flipped hero splash
@@ -1121,10 +1121,10 @@
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
       if (quoteImg) {
-        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-11', pass: 'ugc-24' })[VARIANT] || 'ugc-13') + '.jpg';
+        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-17', pass: 'ugc-24' })[VARIANT] || 'ugc-13') + '.jpg';
         // This banner is short + wide, so a centre crop drops the heads on group
         // shots where faces sit high. Bias per-variant toward the faces.
-        quoteImg.style.objectPosition = ({ dinner: 'center 22%', circle: 'center 30%', pass: 'center 30%' })[VARIANT] || 'center';
+        quoteImg.style.objectPosition = ({ dinner: 'center 22%', circle: 'center 28%', pass: 'center 30%' })[VARIANT] || 'center';
       }
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
