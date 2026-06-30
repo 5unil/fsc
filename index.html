@@ -1121,7 +1121,12 @@
 
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
-      if (quoteImg) quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-24', pass: 'ugc-10' })[VARIANT] || 'ugc-13') + '.jpg';
+      if (quoteImg) {
+        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-24', pass: 'ugc-10' })[VARIANT] || 'ugc-13') + '.jpg';
+        // This banner is short + wide, so a centre crop drops the heads on group
+        // shots where faces sit high. Bias per-variant toward the faces.
+        quoteImg.style.objectPosition = ({ dinner: 'center 22%' })[VARIANT] || 'center';
+      }
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
         const t = TESTIMONIALS[0];
