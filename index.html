@@ -140,6 +140,12 @@
         -webkit-text-fill-color: transparent;
         color: transparent;
         animation: shimmer 5s ease-in-out infinite;
+        /* Italic glyphs overhang their advance width; background-clip:text clips
+           that overhang at a line end (e.g. "full"). A little right padding,
+           cloned to each wrapped line, gives the slanted letters room. */
+        padding-right: 0.08em;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
       }
       @media (prefers-reduced-motion: reduce) { .accent { animation: none; } }
 
@@ -1020,8 +1026,15 @@
       const headlineEl = document.querySelector('[data-hero-headline]');
       if (ACCENT_WORD && HEADLINE.includes(ACCENT_WORD)) {
         const parts = HEADLINE.split(ACCENT_WORD);
+        let accent = ACCENT_WORD;
+        let after = parts.slice(1).join(ACCENT_WORD);
+        // Pull trailing punctuation into the accent span, so the accent's right
+        // padding (which gives the italic overhang room) sits after the period
+        // rather than opening a gap before it (e.g. "home .").
+        const punct = after.match(/^[.,!?…]+/);
+        if (punct) { accent += punct[0]; after = after.slice(punct[0].length); }
         headlineEl.innerHTML =
-          esc(parts[0]) + '<span class="accent">' + esc(ACCENT_WORD) + '</span>' + esc(parts.slice(1).join(ACCENT_WORD));
+          esc(parts[0]) + '<span class="accent">' + esc(accent) + '</span>' + esc(after);
       } else {
         headlineEl.textContent = HEADLINE;
       }
