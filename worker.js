@@ -127,9 +127,9 @@ const SPLASH = {
   one: 'images/hero-one.jpg',
   chat: 'images/ugc/ugc-2.jpg',
   sport: 'images/ugc/ugc-2.jpg',
-  dinner: 'images/ugc/ugc-11.jpg',
+  dinner: 'images/ugc/ugc-17.jpg',
   chapter: 'images/ugc/ugc-13.jpg',
-  circle: 'images/ugc/ugc-10.jpg',
+  circle: 'images/ugc/ugc-23.jpg',
   pass: 'images/ugc/ugc-3.jpg',
 };
 
