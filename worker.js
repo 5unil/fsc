@@ -116,10 +116,12 @@ async function createSession(params, env, origin) {
 // All valid variant slugs (each maps to a <slug>.foundermeets.com subdomain).
 const VARIANT_SLUGS = ['one', 'chat', 'sport', 'dinner', 'chapter', 'circle', 'pass'];
 
-// Variants in the apex random split (an even split across all of them). A slug
-// must have a LIVE Cloudflare subdomain before it goes in here, or that share
-// of apex visitors gets routed to a dead subdomain (404).
-const APEX_ROTATION = ['one', 'chat', 'sport', 'dinner', 'chapter', 'circle'];
+// Variants in the apex random split (even). A slug must have a LIVE Cloudflare
+// subdomain before it goes in here, or that share of apex visitors gets routed
+// to a dead subdomain (404). 'chat' is paused (still a valid subdomain + sticky
+// for anyone already on it, just no new apex traffic). 'pass' added now its
+// subdomain is live.
+const APEX_ROTATION = ['one', 'sport', 'dinner', 'chapter', 'circle', 'pass'];
 
 // Per-variant social-preview image (the splash photo). Scrapers don't run JS,
 // so og:image/twitter:image get rewritten server-side per subdomain below.
