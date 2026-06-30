@@ -131,7 +131,7 @@ const SPLASH = {
   sport: 'images/ugc/ugc-2.jpg',
   dinner: 'images/ugc/ugc-17.jpg',
   chapter: 'images/ugc/ugc-13.jpg',
-  circle: 'images/ugc/ugc-23.jpg',
+  circle: 'images/ugc/ugc-18.jpg',
   pass: 'images/ugc/ugc-3.jpg',
 };
 
