@@ -175,7 +175,8 @@
         border-bottom-color: rgba(33, 29, 23, 0.10);
       }
       /* Brand is light over the dark hero, dark once the nav goes solid on light. */
-      #nav.nav-scrolled [data-brand] { color: #211d17; }
+      #nav [data-brand] { text-shadow: 0 1px 3px rgba(8, 8, 10, 0.35); }
+      #nav.nav-scrolled [data-brand] { color: #211d17; text-shadow: none; }
 
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
@@ -218,6 +219,11 @@
       <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover" />
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/60 via-ink/10 to-transparent"></div>
+      <!-- Top scrim: a dark gradient concentrated behind the transparent nav so
+           the brand mark + gold CTA stay legible over any splash crop (bright
+           sky, a lamp, a face). Needed now the main overlay leaves the top of the
+           photo clear. Above the photo, below the nav (z-50) and hero content. -->
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-40" style="background: linear-gradient(to bottom, rgba(8,8,10,0.7) 0%, rgba(8,8,10,0.45) 40%, rgba(8,8,10,0.18) 70%, rgba(8,8,10,0) 100%);"></div>
 
       <div class="relative mx-auto w-full max-w-content px-5 pb-16 pt-36 sm:px-8 sm:pb-24">
         <div class="max-w-2xl">
