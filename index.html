@@ -183,6 +183,21 @@
         .shimmer { animation: none; }
         #nav { transition: none; }
       }
+
+      /* Boulder splash (312) is a dimmer indoor shot; on the tall mobile hero the
+         default scrim swallows the climbers. Lighten the upper scrim on mobile for
+         boulder only — keep the bottom dark for headline/subhead/CTA legibility. */
+      @media (max-width: 640px) {
+        html[data-variant="boulder"] [data-scrim="top"] {
+          background-image: linear-gradient(
+            to top,
+            #0f0e0c 0%,
+            rgba(15, 14, 12, 0.9) 18%,
+            rgba(15, 14, 12, 0.45) 50%,
+            rgba(15, 14, 12, 0.08) 100%
+          );
+        }
+      }
     </style>
 
   <script type="text/javascript">
@@ -216,7 +231,7 @@
     <section class="relative flex min-h-screen items-end overflow-hidden">
       <!-- Full-bleed splash (swap per variant via the `splash` field). -->
       <img data-splash alt="Founders meeting up in London" class="absolute inset-0 h-full w-full object-cover" />
-      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
+      <div data-scrim="top" class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/25 to-transparent"></div>
 
       <div class="relative mx-auto w-full max-w-content px-5 pb-16 pt-36 sm:px-8 sm:pb-24">
@@ -897,6 +912,7 @@
         return VARIANTS[q] ? q : 'one';
       }
       const VARIANT = detectVariant();
+      document.documentElement.setAttribute('data-variant', VARIANT);
       const _V = VARIANTS[VARIANT] || VARIANTS.one;
 
       // Remember the variant this visitor saw, so the apex (foundermeets.com)
