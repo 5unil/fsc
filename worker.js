@@ -121,7 +121,7 @@ const VARIANT_SLUGS = ['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', '
 // to a dead subdomain (404). 'chat' is paused (still a valid subdomain + sticky
 // for anyone already on it, just no new apex traffic). 'pass' added now its
 // subdomain is live.
-const APEX_ROTATION = ['one', 'sport', 'dinner', 'chapter', 'circle', 'pass'];
+const APEX_ROTATION = ['one', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'];
 
 // Per-variant social-preview image (the splash photo). Scrapers don't run JS,
 // so og:image/twitter:image get rewritten server-side per subdomain below.
