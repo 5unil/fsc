@@ -669,16 +669,16 @@
           headline: 'Make founder friends at the bouldering wall.',
           accentWord: 'founder friends',
           subhead: 'Every week we match you into a small group of founders in London to go bouldering – same stage, same intent. Warm up, work the same problems, and meet the people you would never cross paths with otherwise.',
-          splash: 'images/ugc/ugc-3.jpg',
-          splashPos: 'center 82%',
+          splash: 'images/ugc/ugc-35.jpg',
+          splashPos: '75% 40%',
           ideaSub: 'So we are deliberate about who that is. A small group of founders in London, chosen on purpose – on the wall with you, not left to chance.',
           finalHeading: 'Ready to climb?',
           finalAccent: 'climb?',
           howHeading: 'A new group. Every week. Picked by Atlas.',
           howBody: 'We keep it deliberate. No awkward networking events – just a small group of founders to boulder with, a fresh group chosen on purpose every week.',
           steps: [
-            { n: '1', title: 'Apply', body: 'Tell us your level and what stage you are at. We vet every applicant.' },
-            { n: '2', title: 'Match', body: 'Each week, we put you into a small group of 4-6 founders in London at a similar level. Same stage. Same intent. We email you your group each week.' },
+            { n: '1', title: 'Apply', body: 'Tell us what stage you are at. We vet every applicant.' },
+            { n: '2', title: 'Match', body: 'Each week, we put you into a small group of 4-6 founders in London. Same stage. Same intent. We email you your group each week.' },
             { n: '3', title: 'Climb', body: 'Your group picks a wall and a time that works. We help you book it.' },
           ],
           stats: [
@@ -695,7 +695,7 @@
             'Cancel anytime',
           ],
           faq: [
-            { q: 'Do I need to be good at climbing?', a: 'Not at all. All levels are welcome, from first-timers to regulars – we group you with founders at a similar level, and bouldering is quick to pick up.' },
+            { q: 'Do I need to be good at climbing?', a: 'Not at all. All levels are welcome, from first-timers to regulars – everyone works their own problems on the same wall, and bouldering is quick to pick up.' },
             { q: "What if my group doesn't show up?", a: 'Groups are committed before they are confirmed: you opt in 24 hours before, lock in within 4 hours, and skipped meetups get a strike. Three strikes and your membership is paused.' },
             { q: 'Which walls do you use?', a: "London's best bouldering walls – we rotate based on where your group is. You just turn up and climb." },
             { q: 'Can I cancel anytime?', a: 'Yes. No commitment, no lock-in.' },
@@ -1110,7 +1110,7 @@
         one: ['ugc-10', 'ugc-11', 'ugc-8'],
         chat: ['ugc-1', 'ugc-2', 'ugc-3'],
         sport: ['ugc-1', 'ugc-2', 'ugc-3'],
-        boulder: ['ugc-2', 'ugc-5', 'ugc-3'],
+        boulder: ['ugc-34', 'ugc-37', 'ugc-36'],
         dinner: ['ugc-18', 'ugc-19', 'ugc-20'],
         chapter: ['ugc-28', 'ugc-32', 'ugc-30'],
         circle: ['ugc-1', 'ugc-9', 'ugc-21'],
@@ -1179,10 +1179,10 @@
       // Featured testimonial: full-bleed photo banner with the quote overlaid.
       const quoteImg = document.querySelector('[data-quote-img]');
       if (quoteImg) {
-        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', dinner: 'ugc-21', circle: 'ugc-17', pass: 'ugc-24' })[VARIANT] || 'ugc-13') + '.jpg';
+        quoteImg.src = 'images/ugc/' + (({ one: 'ugc-7', boulder: 'ugc-33', dinner: 'ugc-21', circle: 'ugc-17', pass: 'ugc-24' })[VARIANT] || 'ugc-13') + '.jpg';
         // This banner is short + wide, so a centre crop drops the heads on group
         // shots where faces sit high. Bias per-variant toward the faces.
-        quoteImg.style.objectPosition = ({ dinner: 'center 22%', circle: 'center 28%', pass: 'center 30%' })[VARIANT] || 'center';
+        quoteImg.style.objectPosition = ({ boulder: 'center 32%', dinner: 'center 22%', circle: 'center 28%', pass: 'center 30%' })[VARIANT] || 'center';
       }
       const atlasQuoteEl = document.querySelector('[data-atlas-quote]');
       if (atlasQuoteEl && TESTIMONIALS[0]) {
