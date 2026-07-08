@@ -57,7 +57,7 @@ async function createSession(params, env, origin) {
   // submission through a single host. Falls back to the request origin off the
   // production domain (localhost / *.workers.dev) or when the variant is unknown.
   const variant = (params.get('variant') || '').toLowerCase();
-  const slugs = ['one', 'chat', 'sport', 'dinner', 'chapter', 'circle', 'pass'];
+  const slugs = ['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'];
   const base = slugs.includes(variant) && origin.endsWith('foundermeets.com') ? `https://${variant}.foundermeets.com` : origin;
 
   // Attribution (variant + UTM/fbclid), collected once so it can go on BOTH the
@@ -114,7 +114,7 @@ async function createSession(params, env, origin) {
 // 'ladder' retired: removed from the apex rotation so new/returning visitors are
 // only split across the live variants. Detach ladder.foundermeets.com in Cloudflare.
 // All valid variant slugs (each maps to a <slug>.foundermeets.com subdomain).
-const VARIANT_SLUGS = ['one', 'chat', 'sport', 'dinner', 'chapter', 'circle', 'pass'];
+const VARIANT_SLUGS = ['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'];
 
 // Variants in the apex random split (even). A slug must have a LIVE Cloudflare
 // subdomain before it goes in here, or that share of apex visitors gets routed
@@ -129,6 +129,7 @@ const SPLASH = {
   one: 'images/hero-one.jpg',
   chat: 'images/ugc/ugc-2.jpg',
   sport: 'images/ugc/ugc-2.jpg',
+  boulder: 'images/ugc/ugc-3.jpg',
   dinner: 'images/ugc/ugc-17.jpg',
   chapter: 'images/ugc/ugc-27.jpg',
   circle: 'images/ugc/ugc-18.jpg',
