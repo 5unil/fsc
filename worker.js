@@ -129,7 +129,7 @@ const SPLASH = {
   one: 'images/hero-one.jpg',
   chat: 'images/ugc/ugc-2.jpg',
   sport: 'images/ugc/ugc-2.jpg',
-  boulder: 'images/ugc/ugc-3.jpg',
+  boulder: 'images/ugc/ugc-35.jpg',
   dinner: 'images/ugc/ugc-17.jpg',
   chapter: 'images/ugc/ugc-27.jpg',
   circle: 'images/ugc/ugc-18.jpg',
