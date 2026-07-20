@@ -42,14 +42,14 @@ async function createSession(params, env, origin) {
     return new Response('Stripe is not configured (missing STRIPE_SECRET_KEY).', { status: 500 });
   }
 
-  const stripe = (path, body) =>
+  const stripe = (path, body, method = 'POST') =>
     fetch('https://api.stripe.com/v1/' + path, {
-      method: 'POST',
+      method,
       headers: {
         Authorization: `Bearer ${secret}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        ...(body ? { 'Content-Type': 'application/x-www-form-urlencoded' } : {}),
       },
-      body: body.toString(),
+      ...(body ? { body: body.toString() } : {}),
     });
 
   // Send the applicant back to THEIR variant's subdomain for /welcome, so each
@@ -68,19 +68,29 @@ async function createSession(params, env, origin) {
     if (value) meta.set(key, value);
   }
 
-  // Pre-create the customer WITH the attribution metadata, then attach the setup
-  // session to it - so variant/UTM are stamped on the customer record, not just on
-  // the checkout session (which isn't browsable in the Dashboard).
-  const customerForm = new URLSearchParams();
+  // Reuse an existing customer with this email instead of making a new one, so
+  // repeat visits and resent /pay links don't pile up duplicate (often cardless)
+  // customer records. Attribution metadata is only stamped when we CREATE a
+  // customer, so a returning applicant keeps their original variant/UTM.
   const email = params.get('email');
-  if (email) customerForm.set('email', email);
-  for (const [key, value] of meta) customerForm.set(`metadata[${key}]`, value);
-
-  const customerResp = await stripe('customers', customerForm);
-  if (!customerResp.ok) {
-    return new Response(`Stripe error (customer): ${await customerResp.text()}`, { status: 502 });
+  let customer;
+  if (email) {
+    const found = await stripe(`customers?email=${encodeURIComponent(email)}&limit=1`, null, 'GET');
+    if (found.ok) {
+      const list = (await found.json()).data;
+      if (list && list.length) customer = list[0].id;
+    }
   }
-  const customer = (await customerResp.json()).id;
+  if (!customer) {
+    const customerForm = new URLSearchParams();
+    if (email) customerForm.set('email', email);
+    for (const [key, value] of meta) customerForm.set(`metadata[${key}]`, value);
+    const customerResp = await stripe('customers', customerForm);
+    if (!customerResp.ok) {
+      return new Response(`Stripe error (customer): ${await customerResp.text()}`, { status: 502 });
+    }
+    customer = (await customerResp.json()).id;
+  }
 
   // Checkout session in setup mode: saves the card, charges £0, attached to the
   // customer above. Nothing is charged here - charge the saved card manually from
@@ -144,7 +154,11 @@ export default {
     // Apex / www: don't serve a variant here (it would bias the test). Send the
     // visitor to a variant subdomain - sticky to the one they first saw (the
     // mf_variant cookie), or a random one for a brand-new visitor (even split).
-    if (host === 'foundermeets.com' || host === 'www.foundermeets.com') {
+    // Funnel endpoints (/pay, /api/*) must run on whatever host they're hit on -
+    // don't bounce them to a variant subdomain, so a mail-merge can safely point
+    // at https://foundermeets.com/pay?email=...
+    const isFunnelPath = url.pathname === '/pay' || url.pathname.startsWith('/api/');
+    if ((host === 'foundermeets.com' || host === 'www.foundermeets.com') && !isFunnelPath) {
       const cookie = (request.headers.get('Cookie') || '').match(/(?:^|;\s*)mf_variant=([a-z]+)/);
       let v = cookie && VARIANT_SLUGS.includes(cookie[1]) ? cookie[1] : null;
       const isNew = !v;
@@ -166,6 +180,14 @@ export default {
         return createSession(params, env, url.origin);
       }
       return new Response('Method not allowed', { status: 405 });
+    }
+
+    // Resume link for applicants who didn't finish the card step. Reuses their
+    // existing Stripe customer (matched by email) and opens a fresh £0 card-capture
+    // page. Email one link per person, e.g.
+    //   https://foundermeets.com/pay?email=<their email>
+    if (url.pathname === '/pay') {
+      return createSession(url.searchParams, env, url.origin);
     }
 
     // Everything else: serve the static site.
