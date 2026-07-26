@@ -448,7 +448,11 @@
 
         <div class="mt-12 flex flex-wrap items-center gap-x-12 gap-y-8">
           <div class="reveal flex items-center gap-4" style="transition-delay:180ms">
-            <img src="images/members/evan.jpg" alt="Evan, co-founder of Art of Mondays" loading="lazy" onerror="this.style.display='none'" class="h-16 w-16 shrink-0 rounded-full object-cover" />
+            <!-- Wide portrait source: clip to a circle, then zoom onto his face so the
+                 framing matches the other (tighter) headshots. -->
+            <span class="block h-16 w-16 shrink-0 overflow-hidden rounded-full">
+              <img src="images/members/evan.jpg" alt="Evan, co-founder of Art of Mondays" loading="lazy" onerror="this.style.display='none'" style="object-position:center 66%; transform:scale(1.7); transform-origin:center 66%" class="h-full w-full object-cover" />
+            </span>
             <div>
               <p class="font-semibold text-coffee">Evan</p>
               <p class="text-sm text-muted">Co-founder, Art of Mondays</p>
