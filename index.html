@@ -632,7 +632,9 @@
       };
 
       const VARIANTS = {
-        one: BASE,
+        // 1-on-1 leads with the free first match; every other variant keeps BASE's
+        // generic price line (they don't offer a free first session).
+        one: { ...BASE, urgency: 'First match free · then £49/month' },
 
         // 'chat' slug = FAST-MATCH SPORT: same sport product as 'sport', but you
         // get matched into a group right away (no scheduled day), not on a weekly
