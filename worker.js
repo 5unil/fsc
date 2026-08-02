@@ -105,10 +105,14 @@ async function createSession(params, env, origin) {
 
   // Setup mode has no line items, so the product name/price/description never
   // render. This message (above the submit button) gives the applicant context
-  // on what saving their card means.
+  // on what saving their card means. The 1-on-1 variant offers a free first
+  // match, so its message has to promise the 14-day no-charge window too -
+  // otherwise the card page contradicts the landing page.
   form.set(
     'custom_text[submit][message]',
-    '£49/month. Cancel any time. You will only be charged if your application is successful.',
+    variant === 'one'
+      ? 'Your first match is free. Nothing is charged today, and nothing for your first 14 days. £49/month after that, cancel any time. You will only be charged if your application is successful.'
+      : '£49/month. Cancel any time. You will only be charged if your application is successful.',
   );
 
   const resp = await stripe('checkout/sessions', form);
@@ -128,10 +132,13 @@ const VARIANT_SLUGS = ['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', '
 
 // Variants in the apex random split (even). A slug must have a LIVE Cloudflare
 // subdomain before it goes in here, or that share of apex visitors gets routed
-// to a dead subdomain (404). 'chat' is paused (still a valid subdomain + sticky
-// for anyone already on it, just no new apex traffic). 'pass' added now its
-// subdomain is live.
-const APEX_ROTATION = ['one', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'];
+// to a dead subdomain (404).
+//
+// Narrowed to the two variants under test: 1-on-1 and circle. The rest (chat,
+// sport, boulder, dinner, chapter, pass) stay in VARIANT_SLUGS, so their
+// subdomains still serve and anyone already cookied to one stays sticky - they
+// just get no new apex traffic.
+const APEX_ROTATION = ['one', 'circle'];
 
 // Per-variant social-preview image (the splash photo). Scrapers don't run JS,
 // so og:image/twitter:image get rewritten server-side per subdomain below.
