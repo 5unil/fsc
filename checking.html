@@ -142,13 +142,12 @@
         // Carry every param Tally forwarded (email, variant, utm_*, fbclid) straight
         // through to checkout, so Stripe attribution is unbroken. Fall back to the
         // subdomain for `variant` exactly like apply.html does.
+        // NOTE: deliberately NO subdomain fallback for `variant` here. Tally sends
+        // every applicant to one fixed redirect URL, so the host we land on says
+        // nothing about which variant they came from - guessing from it would file
+        // circle applicants as 'one'. The variant must be piped through by Tally.
+        // If it's missing we pass none: "unknown" is recoverable, wrong is not.
         var params = new URLSearchParams(location.search);
-        if (!params.get('variant')) {
-          var sub = location.hostname.toLowerCase().split('.')[0];
-          if (['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'].indexOf(sub) !== -1) {
-            params.set('variant', sub);
-          }
-        }
         var variant = params.get('variant') || '';
         var q = params.toString();
         var checkoutUrl = '/api/checkout' + (q ? '?' + q : '');
