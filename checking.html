@@ -116,7 +116,7 @@
       <a href="/" class="brand"><span class="dot"></span><span>founder meets</span></a>
 
       <h1 data-title>Reviewing <span class="accent">your application</span></h1>
-      <p class="sub" data-sub>Atlas, our matching engine, is going through your answers. This takes a few seconds.</p>
+      <p class="sub" data-sub>Atlas, our AI matching engine, is going through your answers. This takes a few seconds.</p>
 
       <ul class="checks" data-checks>
         <li data-step><span class="mark"></span><span>Reading your application</span></li>
@@ -126,8 +126,8 @@
       </ul>
 
       <div class="result" data-result>
-        <a class="cta" data-continue href="/api/checkout">Secure your place</a>
-        <p class="fineprint" data-fineprint>Nothing is charged today.</p>
+        <a class="cta" data-continue href="/api/checkout">Add your card to confirm</a>
+        <p class="fineprint" data-fineprint>Nothing is charged today. Card handled securely by Stripe.</p>
       </div>
 
       <noscript>
@@ -140,8 +140,8 @@
     <script>
       (function () {
         // Carry every param Tally forwarded (email, variant, utm_*, fbclid) straight
-        // through to checkout, so Stripe attribution is unbroken. Fall back to the
-        // subdomain for `variant` exactly like apply.html does.
+        // through to checkout, so Stripe attribution is unbroken.
+        //
         // NOTE: deliberately NO subdomain fallback for `variant` here. Tally sends
         // every applicant to one fixed redirect URL, so the host we land on says
         // nothing about which variant they came from - guessing from it would file
@@ -158,13 +158,16 @@
 
         // 1-on-1 is the only variant with a free first match, so it's the only one
         // that can promise a trial here.
+        // The CTA always names the card. Saying "start with your free match" here
+        // reads as though the match itself comes next, which makes the Stripe page
+        // feel like an ambush.
         if (variant === 'one') {
           document.querySelector('[data-fineprint]').textContent =
-            'Your first match is free. Nothing is charged today, and nothing for 14 days.';
-          cta.textContent = 'Start with your free match';
+            'Your first match is free. Nothing is charged today, and nothing for 14 days. Card handled securely by Stripe.';
+          cta.textContent = 'Add your card to start free';
         } else if (variant === 'circle') {
           document.querySelector('[data-fineprint]').textContent =
-            'Nothing is charged today. Your first payment is taken when we place you in your Circle.';
+            'Nothing is charged today. Your first payment is taken when we place you in your Circle. Card handled securely by Stripe.';
         }
 
         var steps = Array.prototype.slice.call(document.querySelectorAll('[data-step]'));

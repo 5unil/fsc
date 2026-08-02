@@ -24,7 +24,7 @@
       })(window, document, "clarity", "script", "xbcx8grp7l");
     </script>
 
-    <title>You're in the queue – Founder Meets</title>
+    <title>You're in – Founder Meets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,16 +36,37 @@
   </head>
   <body class="flex min-h-screen items-center justify-center px-5">
     <div class="max-w-lg text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.2em]" style="color:#8a8275">Application received</p>
-      <h1 class="mt-6 text-3xl font-medium leading-tight sm:text-4xl">Your card is saved. <span class="accent">You're in the queue.</span></h1>
-      <p class="mt-6 text-base leading-relaxed" style="color:#8a8275">
-        You haven't been charged anything. We review applications each week – if you're a fit,
-        we'll be in touch and your membership starts then. We reject more than we accept,
-        so this isn't automatic.
+      <p class="text-xs font-semibold uppercase tracking-[0.2em]" style="color:#8a8275">You're a member</p>
+      <h1 class="mt-6 text-3xl font-medium leading-tight sm:text-4xl">Your place is confirmed. <span class="accent">Welcome in.</span></h1>
+      <p class="mt-6 text-base leading-relaxed" style="color:#8a8275" data-next>
+        Your card is saved and nothing has been charged yet. We'll be in touch shortly with your
+        first introduction, and you can cancel any time.
       </p>
       <a href="/" class="mt-10 inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold transition-colors hover:brightness-95" style="background:#fbe06c;color:#211d17">
         Back to Founder Meets
       </a>
     </div>
+
+    <script>
+      (function () {
+        // The Worker sends people to <variant>.foundermeets.com/welcome, so the
+        // subdomain is a reliable variant signal here (unlike /checking, which is a
+        // single shared redirect target). ?variant= wins if present.
+        var params = new URLSearchParams(location.search);
+        var variant = params.get('variant');
+        if (!variant) {
+          var sub = location.hostname.toLowerCase().split('.')[0];
+          if (['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'].indexOf(sub) !== -1) variant = sub;
+        }
+
+        var NEXT = {
+          one: "Your card is saved and nothing has been charged. Your first match is free – we'll introduce you to your founder shortly, and you won't be charged for 14 days. Cancel any time.",
+          circle: "Your card is saved and nothing has been charged yet. We're putting your Circle together now and will introduce you within the next few days – that's when your first payment is taken. Cancel any time.",
+        };
+
+        var el = document.querySelector('[data-next]');
+        if (el && NEXT[variant]) el.textContent = NEXT[variant];
+      })();
+    </script>
   </body>
 </html>
