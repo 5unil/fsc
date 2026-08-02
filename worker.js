@@ -164,7 +164,7 @@ export default {
     // Funnel endpoints (/pay, /api/*) must run on whatever host they're hit on -
     // don't bounce them to a variant subdomain, so a mail-merge can safely point
     // at https://foundermeets.com/pay?email=...
-    const isFunnelPath = url.pathname === '/pay' || url.pathname.startsWith('/api/');
+    const isFunnelPath = url.pathname === '/pay' || url.pathname === '/checking' || url.pathname.startsWith('/api/');
     if ((host === 'foundermeets.com' || host === 'www.foundermeets.com') && !isFunnelPath) {
       const cookie = (request.headers.get('Cookie') || '').match(/(?:^|;\s*)mf_variant=([a-z]+)/);
       let v = cookie && VARIANT_SLUGS.includes(cookie[1]) ? cookie[1] : null;

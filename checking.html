@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- Atlas review step. Sits between the Tally form and Stripe: Tally's "redirect on
+     completion" should point here (carrying email + variant + utm params), and this
+     page forwards the same params on to /api/checkout once the review completes.
+
+     The qualifying logic itself lives in the Tally form today - bad answers are
+     rejected there and never reach this page. So everyone landing here has already
+     passed a real check; this step surfaces that decision as Atlas rather than
+     leaving people with a silent jump to a card form. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '3608330112763628');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3608330112763628&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "xbcx8grp7l");
+    </script>
+
+    <title>Reviewing your application – Founder Meets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital@1&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        background: #f6efe1;
+        color: #211d17;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.25rem;
+      }
+      .wrap { width: 100%; max-width: 30rem; }
+      .brand {
+        display: inline-flex; align-items: center; gap: 0.6rem;
+        font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        color: #211d17; text-decoration: none; font-size: 0.85rem;
+      }
+      .dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: #fbe06c; }
+      h1 {
+        font-size: 1.9rem; font-weight: 500; letter-spacing: -0.02em;
+        line-height: 1.15; margin: 1.75rem 0 0.5rem;
+      }
+      h1 .accent { font-family: 'Newsreader', Georgia, serif; font-style: italic; font-weight: 400; color: #a8761f; }
+      p.sub { color: #8a8275; margin: 0; line-height: 1.6; font-size: 1rem; }
+
+      /* Check list */
+      ul.checks { list-style: none; padding: 0; margin: 2.25rem 0 0; }
+      ul.checks li {
+        display: flex; align-items: center; gap: 0.85rem;
+        padding: 0.7rem 0;
+        color: #b3ab9c;
+        font-size: 0.98rem;
+        opacity: 0.45;
+        transition: opacity 0.45s ease, color 0.45s ease;
+      }
+      ul.checks li.active { opacity: 1; color: #211d17; }
+      ul.checks li.done { opacity: 1; color: #6b6457; }
+
+      .mark {
+        width: 1.4rem; height: 1.4rem; flex: 0 0 1.4rem;
+        border-radius: 50%;
+        border: 2px solid #ded5c4;
+        position: relative;
+        transition: background-color 0.35s ease, border-color 0.35s ease;
+      }
+      li.active .mark { border-color: #a8761f; border-right-color: transparent; animation: spin 0.75s linear infinite; }
+      li.done .mark { background: #fbe06c; border-color: #fbe06c; animation: none; }
+      li.done .mark::after {
+        content: ''; position: absolute; left: 0.42rem; top: 0.18rem;
+        width: 0.28rem; height: 0.6rem;
+        border: solid #211d17; border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        li.active .mark { animation: none; }
+      }
+
+      /* Result */
+      .result { margin-top: 2.25rem; opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
+      .result.show { opacity: 1; transform: none; }
+      .cta {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 100%;
+        border-radius: 999px; background: #fbe06c; color: #211d17;
+        padding: 0.95rem 1.75rem; font-size: 1rem; font-weight: 600;
+        text-decoration: none; border: 0; cursor: pointer;
+        transition: filter 0.2s ease;
+      }
+      .cta:hover { filter: brightness(0.95); }
+      .fineprint { color: #8a8275; font-size: 0.82rem; margin: 0.9rem 0 0; text-align: center; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <a href="/" class="brand"><span class="dot"></span><span>founder meets</span></a>
+
+      <h1 data-title>Reviewing <span class="accent">your application</span></h1>
+      <p class="sub" data-sub>Atlas is going through your answers. This takes a few seconds.</p>
+
+      <ul class="checks" data-checks>
+        <li data-step><span class="mark"></span><span>Reading your application</span></li>
+        <li data-step><span class="mark"></span><span>Checking you're building in London</span></li>
+        <li data-step><span class="mark"></span><span>Comparing your stage with our members</span></li>
+        <li data-step><span class="mark"></span><span>Confirming your fit</span></li>
+      </ul>
+
+      <div class="result" data-result>
+        <a class="cta" data-continue href="/api/checkout">Secure your place</a>
+        <p class="fineprint" data-fineprint>Nothing is charged today.</p>
+      </div>
+
+      <noscript>
+        <p class="sub" style="margin-top:1.5rem">
+          <a href="/api/checkout" style="color:#a8761f">Continue to secure your place</a>
+        </p>
+      </noscript>
+    </div>
+
+    <script>
+      (function () {
+        // Carry every param Tally forwarded (email, variant, utm_*, fbclid) straight
+        // through to checkout, so Stripe attribution is unbroken. Fall back to the
+        // subdomain for `variant` exactly like apply.html does.
+        var params = new URLSearchParams(location.search);
+        if (!params.get('variant')) {
+          var sub = location.hostname.toLowerCase().split('.')[0];
+          if (['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'].indexOf(sub) !== -1) {
+            params.set('variant', sub);
+          }
+        }
+        var variant = params.get('variant') || '';
+        var q = params.toString();
+        var checkoutUrl = '/api/checkout' + (q ? '?' + q : '');
+
+        var cta = document.querySelector('[data-continue]');
+        cta.setAttribute('href', checkoutUrl);
+        document.querySelectorAll('noscript a').forEach(function (a) { a.setAttribute('href', checkoutUrl); });
+
+        // 1-on-1 is the only variant with a free first match, so it's the only one
+        // that can promise a trial here.
+        if (variant === 'one') {
+          document.querySelector('[data-fineprint]').textContent =
+            'Your first match is free. Nothing is charged today, and nothing for 14 days.';
+          cta.textContent = 'Start with your free match';
+        }
+
+        var steps = Array.prototype.slice.call(document.querySelectorAll('[data-step]'));
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var per = reduce ? 260 : 900;
+
+        function run(i) {
+          if (i > 0) {
+            steps[i - 1].classList.remove('active');
+            steps[i - 1].classList.add('done');
+          }
+          if (i === steps.length) return finish();
+          steps[i].classList.add('active');
+          setTimeout(function () { run(i + 1); }, per);
+        }
+
+        function finish() {
+          document.querySelector('[data-title]').innerHTML =
+            'Good news. <span class="accent">You’re in.</span>';
+          document.querySelector('[data-sub]').textContent =
+            'You’re a fit for Founder Meets. Add your card to confirm your place.';
+          document.querySelector('[data-result]').classList.add('show');
+        }
+
+        run(0);
+      })();
+    </script>
+  </body>
+</html>
