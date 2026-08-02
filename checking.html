@@ -162,11 +162,17 @@
           document.querySelector('[data-fineprint]').textContent =
             'Your first match is free. Nothing is charged today, and nothing for 14 days.';
           cta.textContent = 'Start with your free match';
+        } else if (variant === 'circle') {
+          document.querySelector('[data-fineprint]').textContent =
+            'Nothing is charged today. Your first payment is taken when we place you in your Circle.';
         }
 
         var steps = Array.prototype.slice.call(document.querySelectorAll('[data-step]'));
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var per = reduce ? 260 : 900;
+        // Uneven, deliberately unhurried timings (~10s total). A fast, evenly-paced
+        // sweep reads as a progress bar; varying the dwell makes it feel like each
+        // check is actually doing different work.
+        var timings = reduce ? [200, 200, 200, 200] : [2000, 3200, 2600, 2400];
 
         function run(i) {
           if (i > 0) {
@@ -175,7 +181,7 @@
           }
           if (i === steps.length) return finish();
           steps[i].classList.add('active');
-          setTimeout(function () { run(i + 1); }, per);
+          setTimeout(function () { run(i + 1); }, timings[i]);
         }
 
         function finish() {

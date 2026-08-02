@@ -84,6 +84,13 @@ async function createSession(params, env, origin) {
   if (!customer) {
     const customerForm = new URLSearchParams();
     if (email) customerForm.set('email', email);
+    // Tally forwards first_name / last_name, so name the customer rather than
+    // leaving a dashboard full of anonymous email-only records.
+    const name = [params.get('first_name'), params.get('last_name')]
+      .map((p) => (p || '').trim())
+      .filter(Boolean)
+      .join(' ');
+    if (name) customerForm.set('name', name);
     for (const [key, value] of meta) customerForm.set(`metadata[${key}]`, value);
     const customerResp = await stripe('customers', customerForm);
     if (!customerResp.ok) {
@@ -108,11 +115,15 @@ async function createSession(params, env, origin) {
   // on what saving their card means. The 1-on-1 variant offers a free first
   // match, so its message has to promise the 14-day no-charge window too -
   // otherwise the card page contradicts the landing page.
+  const SUBMIT_MESSAGE = {
+    // Free first match, so the card sits idle for 14 days.
+    one: 'Your first match is free. Nothing is charged today, and nothing for your first 14 days. £49/month after that, cancel any time.',
+    // Charged once we place them in a Circle, which takes a few days.
+    circle: 'Nothing is charged today. Your first £49 is taken when we place you in your Circle, within the next few days. £49/month after that, cancel any time.',
+  };
   form.set(
     'custom_text[submit][message]',
-    variant === 'one'
-      ? 'Your first match is free. Nothing is charged today, and nothing for your first 14 days. £49/month after that, cancel any time. You will only be charged if your application is successful.'
-      : '£49/month. Cancel any time. You will only be charged if your application is successful.',
+    SUBMIT_MESSAGE[variant] || '£49/month. Cancel any time. You will only be charged if your application is successful.',
   );
 
   const resp = await stripe('checkout/sessions', form);
