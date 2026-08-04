@@ -1007,7 +1007,10 @@
       const FINAL_HEADING = _V.finalHeading;
       const FINAL_ACCENT = _V.finalAccent;
       const STEPS = _V.steps;
-      const STATS = _V.stats;
+      // NOTE: no STATS binding. The stats strip was replaced by the static trust bar
+      // in the light-theme redesign, so every variant's `stats` array is inert -
+      // editing one changes nothing on the page. Left in the configs for now in case
+      // the strip comes back; don't trust them as live copy.
       const TIERS = _V.tiers;
       const MATCH_LINE = _V.matchLine;
       const MATCH_SUB = _V.matchSub;
