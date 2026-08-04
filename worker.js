@@ -56,7 +56,13 @@ async function createSession(params, env, origin) {
   // variant's funnel stays clean in analytics even though Tally redirects every
   // submission through a single host. Falls back to the request origin off the
   // production domain (localhost / *.workers.dev) or when the variant is unknown.
-  const variant = (params.get('variant') || '').toLowerCase();
+  // Tally pipes answers wrapped in single quotes ('a@b.com' arrives as %27a%40b.com%27),
+  // which would poison the customer lookup and create duplicates with quoted emails.
+  // Strip surrounding quotes and whitespace off every value we read.
+  const clean = (v) => (v || '').trim().replace(/^['"]+|['"]+$/g, '').trim();
+  const get = (key) => clean(params.get(key));
+
+  const variant = get('variant').toLowerCase();
   const slugs = ['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'];
   const base = slugs.includes(variant) && origin.endsWith('foundermeets.com') ? `https://${variant}.foundermeets.com` : origin;
 
@@ -64,7 +70,7 @@ async function createSession(params, env, origin) {
   // customer (visible right on their Dashboard page) and the session.
   const meta = new URLSearchParams();
   for (const key of META_KEYS) {
-    const value = params.get(key);
+    const value = get(key);
     if (value) meta.set(key, value);
   }
 
@@ -72,7 +78,7 @@ async function createSession(params, env, origin) {
   // repeat visits and resent /pay links don't pile up duplicate (often cardless)
   // customer records. Attribution metadata is only stamped when we CREATE a
   // customer, so a returning applicant keeps their original variant/UTM.
-  const email = params.get('email');
+  const email = get('email');
   let customer;
   if (email) {
     const found = await stripe(`customers?email=${encodeURIComponent(email)}&limit=1`, null, 'GET');
@@ -86,8 +92,8 @@ async function createSession(params, env, origin) {
     if (email) customerForm.set('email', email);
     // Tally forwards first_name / last_name, so name the customer rather than
     // leaving a dashboard full of anonymous email-only records.
-    const name = [params.get('first_name'), params.get('last_name')]
-      .map((p) => (p || '').trim())
+    const name = [get('first_name'), get('last_name')]
+      .map((p) => p.trim())
       .filter(Boolean)
       .join(' ');
     if (name) customerForm.set('name', name);
