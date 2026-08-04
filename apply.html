@@ -58,7 +58,7 @@
       <a href="/" class="brand"><span class="dot"></span><span>founder meets</span></a>
 
       <h1>Apply <span class="accent">to join</span></h1>
-      <p class="sub">Takes 2 minutes. We accept roughly 1 in 4. Membership is £49/month – you're only charged if you're accepted.</p>
+      <p class="sub" data-sub>Takes 2 minutes. We accept roughly 1 in 4. Membership is £49/month – you're only charged if you're accepted.</p>
 
       <iframe data-tally-src="" loading="lazy" height="600" title="Founder Meets application"></iframe>
     </div>
@@ -74,6 +74,17 @@
           var sub = location.hostname.toLowerCase().split('.')[0];
           if (['one', 'chat', 'sport', 'boulder', 'dinner', 'chapter', 'circle', 'pass'].indexOf(sub) !== -1) params.set('variant', sub);
         }
+
+        // Carry the variant's offer through to the form page. Without this, someone
+        // sold "first match free" on the landing page arrives here and is told
+        // £49/month - the offer getting worse at the highest-friction step.
+        var SUB_COPY = {
+          one: "Takes 2 minutes. We accept roughly 1 in 4. Your first match is free – then £49/month, cancel any time.",
+          circle: "Takes 2 minutes. We accept roughly 1 in 4. Membership is £49/month, and you're only charged once we place you in your Circle.",
+        };
+        var subEl = document.querySelector('[data-sub]');
+        var subCopy = SUB_COPY[params.get('variant')];
+        if (subEl && subCopy) subEl.textContent = subCopy;
 
         var opts = 'transparentBackground=1&dynamicHeight=1&hideTitle=1&formEventsForwarding=1';
         var q = params.toString();
